@@ -1,0 +1,258 @@
+﻿<!DOCTYPE html>
+<html lang="pl-PL">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="style.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="wrapper">
+    <div class="row left-div">
+        <div class="model">
+            <div class="row model-img">
+                <img alt="Model" class="model-photo" src="Images/model.jpg" />
+            </div>
+            <div class="row model-labels">
+                <label class="model-label green">
+                    <span class="model-label-name">Wysokość - <span style="color: #6a9768;">h</span> [mm]</span>
+                    <input class="model-label-value"/>
+                </label>
+                <label class="model-label green">
+                    <span class="model-label-name">Szerokość - <span style="color: #5ea9e8;">w</span> [mm]</span>
+                    <input class="model-label-value"/>
+                </label>
+                <label class="model-label green">
+                    <span class="model-label-name">Długość - <span style="color: #bc348e;">l</span> [mm]</span>
+                    <input class="model-label-value"/>
+                </label>
+                <label class="model-label green">
+                    <span class="model-label-name">Grubość ściany - <span style="color: #3b3682;">b</span> [mm]</span>
+                    <input class="model-label-value"/>
+                </label>
+                <label class="model-label">
+                    <span class="model-label-name">Waga [kg]</span>
+                    <input class="model-label-value"/>
+                </label>
+                <label class="model-label green">
+                    <span class="model-label-name">Cena/kg [zł]</span>
+                    <input class="model-label-value"/>
+                </label>
+                <label class="model-label">
+                    <span class="model-label-name">Wartość [zł]</span>
+                    <input class="model-label-value"/>
+                </label>
+                <div class="model-label model-button">
+                    <button><span class="button-plus">&#43;</span> &nbsp DODAJ</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row right-div">
+        <div class="row shapes">
+            <div class="shape">
+                <img alt="shape" class="shape-img" src="Images/circle.png"/>
+                <div class="shape-line"></div>
+                <div class="shape-name">Profil zamknięty</div>
+            </div>
+            <div class="shape green">
+                <img alt="shape" class="shape-img" src="Images/square-green.png"/>
+                <div class="shape-line"></div>
+                <div class="shape-name">Profil zamknięty</div>
+            </div>
+            <div class="shape">
+                <img alt="shape" class="shape-img" src="Images/circle.png"/>
+                <div class="shape-line"></div>
+                <div class="shape-name">Profil zamknięty</div>
+            </div>
+            <div class="shape">
+                <img alt="shape" class="shape-img" src="Images/square.png"/>
+                <div class="shape-line"></div>
+                <div class="shape-name">Profil zamknięty</div>
+            </div>
+        </div>
+        <div class="row shapes">
+            <div class="shape">
+                <img alt="material" class="shape-circle" src="Images/material_1.jpg" />
+                <div class="shape-line"></div>
+                <div class="shape-material">Aluminium</div>
+                <div class="shape-chosen">
+                    <span class="shape-desc">8,5 kg/dm&sup3<span class="shape-arrow"></span></span>
+                    <span class="shape-desc">8,5 kg/dm&sup3</span>
+                    <span class="shape-desc">8,5 kg/dm&sup3</span>
+                </div>
+            </div>
+            <div class="shape green">
+                <img alt="material" class="shape-circle" src="Images/material_2.jpg" />
+                <div class="shape-line"></div>
+                <div class="shape-material">Brąz</div>
+                <div class="shape-chosen">
+                    <span class="shape-desc">8,5 kg/dm&sup3<span class="shape-arrow"></span></span>
+                    <span class="shape-desc">8,5 kg/dm&sup3</span>
+                    <span class="shape-desc">8,5 kg/dm&sup3</span>
+                </div>
+            </div>
+            <div class="shape">
+                <img alt="material" class="shape-circle" src="Images/material_1.jpg" />
+                <div class="shape-line"></div>
+                <div class="shape-material">Cynk</div>
+                <div class="shape-chosen">
+                    <span class="shape-desc">8,5 kg/dm&sup3<span class="shape-arrow"></span></span>
+                    <span class="shape-desc">8,5 kg/dm&sup3</span>
+                    <span class="shape-desc">8,5 kg/dm&sup3</span>
+                </div>
+            </div>
+            <div class="shape">
+                <img alt="material" class="shape-circle" src="Images/material_2.jpg" />
+                <div class="shape-line"></div>
+                <div class="shape-material">Aluminium</div>
+                <div class="shape-chosen">
+                    <span class="shape-desc">8,5 kg/dm&sup3<span class="shape-arrow"></span></span>
+                    <span class="shape-desc">8,5 kg/dm&sup3</span>
+                    <span class="shape-desc">8,5 kg/dm&sup3</span>
+                </div>
+            </div>
+        </div>
+        <div class="row line"></div>
+        <div class="row summary">
+            <div class="summary-sum">
+                <span class="summary-name">Podsumowanie:</span>
+                <span class="summary-amount">492,88 zł</span>
+            </div>
+            <div class="row container">
+                <div class="box">
+                    <div class="row left-box">
+                        <div class="row box-shape">
+                            <img alt="shape" class="box-img" src="Images/square.png" />
+                            <div class="box-name">Profil zamknięty</div>
+                        </div>
+                        <div class="row box-shape">
+                            <img alt="material" class="box-circle" src="Images/material_2.jpg" />
+                            <div class="box-material">Aluminium</div>
+                            <div class="box-desc">8,5 kg/dm&sup3</div>
+                        </div>
+                    </div>
+                    <div class="row right-box">
+                        <div class="box-labels">
+                            <div class="box-label">
+                                wysokość - h = <span class="box-value">13</span> mm
+                            </div>
+                            <div class="box-label">
+                                szerokość - w = <span class="box-value">27</span> mm
+                            </div>
+                            <div class="box-label">
+                                grubość ściany - b = <span class="box-value">18</span> mm
+                            </div>
+                            <div class="box-label">
+                                długość - l = <span class="box-value">3000</span> mm
+                            </div>
+                            <div class="box-label">
+                                waga = <span class="box-value">0,762</span> kg
+                            </div>
+                            <div class="box-label">
+                                cena/kg = <span class="box-value">48</span> zł
+                            </div>
+                            <br />
+                            <div class="box-label">
+                                wartość <span class="box-value">22,86</span> zł
+                            </div>
+                            <div class="box-button">
+                                <button>EDYTUJ</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="row left-box">
+                        <div class="row box-shape">
+                            <img alt="shape" class="box-img" src="Images/square.png" />
+                            <div class="box-name">Profil zamknięty</div>
+                        </div>
+                        <div class="row box-shape">
+                            <img alt="material" class="box-circle" src="Images/material_2.jpg" />
+                            <div class="box-material">Aluminium</div>
+                            <div class="box-desc">8,5 kg/dm&sup3</div>
+                        </div>
+                    </div>
+                    <div class="row right-box">
+                        <div class="box-labels">
+                            <div class="box-label">
+                                wysokość - h = <span class="box-value">13</span> mm
+                            </div>
+                            <div class="box-label">
+                                szerokość - w = <span class="box-value">27</span> mm
+                            </div>
+                            <div class="box-label">
+                                grubość ściany - b = <span class="box-value">18</span> mm
+                            </div>
+                            <div class="box-label">
+                                długość - l = <span class="box-value">3000</span> mm
+                            </div>
+                            <div class="box-label">
+                                waga = <span class="box-value">0,762</span> kg
+                            </div>
+                            <div class="box-label">
+                                cena/kg = <span class="box-value">48</span> zł
+                            </div>
+                            <br />
+                            <div class="box-label">
+                                wartość <span class="box-value">22,86</span> zł
+                            </div>
+                            <div class="box-button">
+                                <button>EDYTUJ</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="row left-box">
+                        <div class="row box-shape">
+                            <img alt="shape" class="box-img" src="Images/square.png" />
+                            <div class="box-name">Profil zamknięty</div>
+                        </div>
+                        <div class="row box-shape">
+                            <img alt="material" class="box-circle" src="Images/material_2.jpg" />
+                            <div class="box-material">Aluminium</div>
+                            <div class="box-desc">8,5 kg/dm&sup3</div>
+                        </div>
+                    </div>
+                    <div class="row right-box">
+                        <div class="box-labels">
+                            <div class="box-label">
+                                wysokość - h = <span class="box-value">13</span> mm
+                            </div>
+                            <div class="box-label">
+                                szerokość - w = <span class="box-value">27</span> mm
+                            </div>
+                            <div class="box-label">
+                                grubość ściany - b = <span class="box-value">18</span> mm
+                            </div>
+                            <div class="box-label">
+                                długość - l = <span class="box-value">3000</span> mm
+                            </div>
+                            <div class="box-label">
+                                waga = <span class="box-value">0,762</span> kg
+                            </div>
+                            <div class="box-label">
+                                cena/kg = <span class="box-value">48</span> zł
+                            </div>
+                            <br />
+                            <div class="box-label">
+                                wartość <span class="box-value">22,86</span> zł
+                            </div>
+                            <div class="box-button">
+                                <button>EDYTUJ</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="boxes-arrow">
+                    <img alt="arrow" class="arrow-img" src="Images/boxes-arrow.png" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="main.js"></script>
+</body>
+</html>
