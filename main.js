@@ -1,10 +1,10 @@
 ﻿let modelValues = document.querySelectorAll('.model-label-value');
-let modelShapes = document.querySelector('.shapes').querySelectorAll('.shape');
-let modelMaterialImgs = document.querySelectorAll('.shapes')[1].querySelectorAll('.shape-circle');
-let materialArrows = document.querySelectorAll('.shapes')[1].querySelectorAll('.shape-chosen');
+let modelProfiles = document.querySelector('#profiles');
+let modelMaterialImgs = document.querySelector('#materials').querySelectorAll('.shape-circle');
+let materialArrows = document.querySelector('#materials').querySelectorAll('.shape-box');
 
 let values = new Array(7);
-let modelShape = modelShapes[0];
+let modelProfile = modelProfiles[0];
 let modelMaterial = modelMaterialImgs[0];
 
 let height = 13; 
@@ -98,7 +98,7 @@ const materials = [
         new density("", 8.5),
         new density("B2, B4, B8, B443", 8.895),
         new density("BA5", 8.197), //TODO: fill with missing densities
-    ], "Images/material_1.jpg"),
+    ], "./Images/material_1.jpg"),
     new material("mosiądz", [
         new density("", 8.5)
     ], "Images/material_2.jpg"), //TODO: fill with correct material icons
@@ -121,7 +121,7 @@ let profiles = [
         profileValues[0],
         profileValues[2],
         profileValues[1],
-    ], materials[0],"Images/square-green.png"),
+    ], materials[0],"Images/square.png"),
     new profile("rura okrągła", [
         profileValues[0],
         profileValues[2],
@@ -135,7 +135,27 @@ let profiles = [
 
 function fillProfiles()
 {
+    profilesDiv = document.querySelector('#profiles');
 
+    profilesDiv.innerHTML = "";
+    for(let i = 0; i < profiles.length; i++) {
+        let profileElement = "";
+        profileElement += "<div class=\"shape\">\n" +
+            "<img alt=\"shape\" class=\"shape-img\" src=" + profiles[i].icon + "/>\n" +
+            "<div class=\"shape-line\"></div>\n" +
+            "<div class=\"shape-name\">" + profiles[i].name + "</div>\n" +
+            "</div>";
+        profilesDiv.innerHTML += profileElement;
+
+        let originalImg = profilesDiv.lastChild.querySelector('.shape-img');
+        originalImg.setAttribute('src', profiles[i].icon);
+    }
+
+    let profilesDivs = profilesDiv.querySelectorAll('.shape');
+
+    // profilesDivs.forEach(function (item, idx) {
+    //    item.addEventListener('click', () => ChangeProfile(item));
+    // });
 }
 
 function fillMaterials()
@@ -149,33 +169,48 @@ function fillMaterials()
          "<img alt=\"material\" class=\"shape-circle\" src=" + materials[i].icon + "/>" +
          "<div class=\"shape-line\"></div>" +
          "<div class=\"shape-material\">" + materials[i].name + "</div>" +
-         "<div class=\"shape-chosen\">";
-        for (let j = 0; j < materials[i].densities.length; j++) {
-            let density = materials[i].densities[j];
-            let spanClosing = j == 0 ? "<span class=\"shape-arrow\"></span>" : "";
-            materialElement += "<span class=\"shape-desc\">" + density.getFullName() + spanClosing + "</span>";
-        }
+         "<div class=\"shape-box\">" + 
+            "<div class=\"shape-container\">";
+            for (let j = 0; j < materials[i].densities.length; j++) {
+                let density = materials[i].densities[j];
+                materialElement += "<div class=\"shape-option\">" + 
+                    "<input class=\"shape-radio\" id=\"materialDensity" + j + "\" type=\"radio\" name=\"category\"/>" + 
+                    "<label for=\"materialDensity" + j + "\">" + density.getFullName() + "</label>"
+                    + "</div>";
+            }
+            materialElement += "</div>";
+            materialElement += "<div class=\"shape-selected\">" +
+                materials[i].densities[0].getFullName() +
+            "</div>";
         materialElement += "</div>";
         materialElement += "</div>";
 
         materialsDiv.innerHTML += materialElement;
-
-        let materialCircles = materialsDiv.querySelectorAll('.shape-circle');
-        let materialDensities = materialsDiv.querySelectorAll('.shape-chosen');
-
-        materialCircles.forEach(function(item, idx){
-            item.addEventListener('click', () => ChangeMaterial(item.parentElement, idx));
+        
+        const dropdown = materialsDiv.querySelectorAll('.shape-box');
+        dropdown.forEach(function(item) {
+            Dropdown(item);
         });
 
-        materialDensities.forEach(function(item, idx){
-            item.addEventListener('click', () => ShowList(item.parentElement, idx));
-
-            let densityOptions = item.querySelectorAll('.shape-desc');
-            densityOptions.forEach(function(item, idx){
-                item.addEventListener('click', () => selectDensity(idx));
-            });
-        });
+        let originalImg = materialsDiv.lastChild.querySelector('.shape-circle');
+        originalImg.setAttribute('src', materials[i].icon);
     }
+
+    let materialCircles = materialsDiv.querySelectorAll('.shape-circle');
+    let materialDensities = materialsDiv.querySelectorAll('.shape-box');
+
+    // materialCircles.forEach(function(item, idx){
+    //     item.addEventListener('click', () => ChangeMaterial(item.parentElement, idx));
+    // });
+
+    // materialDensities.forEach(function(item, idx){
+    //     item.addEventListener('click', () => ShowList(item.parentElement, idx));
+
+    //     let densityOptions = item.querySelectorAll('.shape-option');
+    //     densityOptions.forEach(function(item, idx){
+    //         item.addEventListener('click', () => selectDensity(idx));
+    //     });
+    // });
 }
 
 function selectMaterial(index)
@@ -193,6 +228,7 @@ let currentlySelectedMaterial = materials[0];
 let currentlySelectedDensity = materials[0].densities[0];
 
 function Start() {
+    fillProfiles();
     fillMaterials();
     values = [
         height = 13,
@@ -206,26 +242,21 @@ function Start() {
     for (let i = 0; i < values.length; i++) {
         modelValues[i].value = values[i];
     }
-    modelShape = modelShapes[1];
-    ChangeShape(modelShape);
-    modelMaterial = modelMaterialImgs[1];
-    ChangeMaterial(modelMaterial.parentElement);
 }
 
 function Update() {
     for (let i = 0; i < values.length; i++) {
         values[i] = parseFloat(modelValues[i].value);
     }
-    console.log(values);
 }
 
-function ChangeShape(chosenShape){
+function ChangeProfile(chosenShape){
     // unselect old
-    let originalImg = modelShape.firstElementChild;
+    let originalImg = modelProfile.firstElementChild;
     let src = originalImg.getAttribute('src');
     let nameShape = src.substring(7, src.indexOf('-'));
     originalImg.setAttribute('src', 'Images/' + nameShape + '.png');
-    modelShape.classList.remove('green');
+    modelProfile.classList.remove('green');
 
     // select new
     chosenShape.classList.add('green');
@@ -234,7 +265,7 @@ function ChangeShape(chosenShape){
     let newNameShape = newSrc.substring(7, newSrc.indexOf('.'));
     newOriginalImg.setAttribute('src', 'Images/' + newNameShape + '-green.png');
 
-    modelShape = chosenShape;
+    modelProfile = chosenShape;
 }
 
 function ChangeMaterial(chosenMaterial, chosenMaterialId){
@@ -260,13 +291,22 @@ Start();
 modelValues.forEach(function(item) {
     item.addEventListener('change', () => Update());
 });
-modelShapes.forEach(function(item) {
-    item.addEventListener('click', () => ChangeShape(item));
-});
-modelMaterialImgs.forEach(function(item, idx) {
-    item.addEventListener('click', () => ChangeMaterial(item.parentElement, idx));
-});
-materialArrows.forEach(function (item) {
-    item.addEventListener('click', () => ShowList(item.parentElement));
-});
+
+function Dropdown(elementDiv) {
+    const selected = elementDiv.querySelector(".shape-selected");
+    const optionsContainer = elementDiv.querySelector(".shape-container");
+
+    const optionsList = optionsContainer.querySelectorAll(".shape-option");
+    
+    selected.addEventListener("click", () => {
+        optionsContainer.classList.toggle("shape-active");
+    });
+
+    optionsList.forEach(itemOption => {
+        itemOption.addEventListener("click", () => {
+            selected.innerHTML = itemOption.querySelector("label").innerHTML;
+            optionsContainer.classList.remove("shape-active")
+        });
+    });
+}
 

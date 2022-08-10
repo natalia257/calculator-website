@@ -48,67 +48,37 @@
         </div>
     </div>
     <div class="row right-div">
-        <div class="row shapes">
+        <div id="profiles" class="row shapes">
             <div class="shape">
-                <img alt="shape" class="shape-img" src="Images/circle.png"/>
-                <div class="shape-line"></div>
-                <div class="shape-name">Profil zamknięty</div>
-            </div>
-            <div class="shape green">
-                <img alt="shape" class="shape-img" src="Images/square-green.png"/>
-                <div class="shape-line"></div>
-                <div class="shape-name">Profil zamknięty</div>
-            </div>
-            <div class="shape">
-                <img alt="shape" class="shape-img" src="Images/circle.png"/>
-                <div class="shape-line"></div>
-                <div class="shape-name">Profil zamknięty</div>
-            </div>
-            <div class="shape">
-                <img alt="shape" class="shape-img" src="Images/square.png"/>
+                <img alt="shape" class="shape-img" src/>
                 <div class="shape-line"></div>
                 <div class="shape-name">Profil zamknięty</div>
             </div>
         </div>
         <div id="materials" class="row shapes">
             <div class="shape">
-                <img alt="material" class="shape-circle" src="Images/material_1.jpg" />
+                <img alt="material" class="shape-circle" src />
                 <div class="shape-line"></div>
                 <div class="shape-material">Aluminium</div>
-                <div class="shape-chosen">
-                    <span class="shape-desc">8,5 kg/dm&sup3<span class="shape-arrow"></span></span>
-                    <span class="shape-desc">8,5 kg/dm&sup3</span>
-                    <span class="shape-desc">8,5 kg/dm&sup3</span>
-                </div>
-            </div>
-            <div class="shape green">
-                <img alt="material" class="shape-circle" src="Images/material_2.jpg" />
-                <div class="shape-line"></div>
-                <div class="shape-material">Brąz</div>
-                <div class="shape-chosen">
-                    <span class="shape-desc">8,5 kg/dm&sup3<span class="shape-arrow"></span></span>
-                    <span class="shape-desc">8,5 kg/dm&sup3</span>
-                    <span class="shape-desc">8,5 kg/dm&sup3</span>
-                </div>
-            </div>
-            <div class="shape">
-                <img alt="material" class="shape-circle" src="Images/material_1.jpg" />
-                <div class="shape-line"></div>
-                <div class="shape-material">Cynk</div>
-                <div class="shape-chosen">
-                    <span class="shape-desc">8,5 kg/dm&sup3<span class="shape-arrow"></span></span>
-                    <span class="shape-desc">8,5 kg/dm&sup3</span>
-                    <span class="shape-desc">8,5 kg/dm&sup3</span>
-                </div>
-            </div>
-            <div class="shape">
-                <img alt="material" class="shape-circle" src="Images/material_2.jpg" />
-                <div class="shape-line"></div>
-                <div class="shape-material">Aluminium</div>
-                <div class="shape-chosen">
-                    <span class="shape-desc">8,5 kg/dm&sup3<span class="shape-arrow"></span></span>
-                    <span class="shape-desc">8,5 kg/dm&sup3</span>
-                    <span class="shape-desc">8,5 kg/dm&sup3</span>
+
+                <div class="shape-box">
+                    <div class="shape-container">
+                        <div class="shape-option">
+                            <input class="shape-radio" id="materialDensity1" type="radio" name="category"/>
+                            <label for="materialDensity1">8,5 kg/dm&sup3</label>
+                        </div>
+                        <div class="shape-option">
+                            <input class="shape-radio" id="materialDensity2" type="radio" name="category"/>
+                            <label for="materialDensity2">8,5 kg/dm&sup3</label>
+                        </div>
+                        <div class="shape-option">
+                            <input class="shape-radio" id="materialDensity3" type="radio" name="category"/>
+                            <label for="materialDensity3">8,5 kg/dm&sup3</label>
+                        </div>
+                    </div>
+                    <div class="shape-selected">
+                        18,5 kg/dm&sup3
+                    </div>
                 </div>
             </div>
         </div>
