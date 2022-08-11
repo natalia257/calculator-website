@@ -39,6 +39,7 @@ class material {
         this.name = name;
         this.densities = densities;
         this.icon = icon;
+        this.selectedDensityIndex = 0;
     }
 }
 
@@ -58,7 +59,6 @@ class profile {
         this.name = name;
         this.values = values;
         this.material = material;
-        this.selectedDensityIndex = 0;
         this.weight = 0;
         this.pricePerKg = 0;
         this.icon = icon;
@@ -71,12 +71,6 @@ class profile {
     setMaterial(newMaterial)
     {
         this.material = newMaterial;
-        this.selectedDensityIndex = 0;
-    }
-
-    selectedDensityIndex(newSelectedDensityIndex)
-    {
-        this.selectedDensityIndex = newSelectedDensityIndex;
     }
 }
 
@@ -150,8 +144,8 @@ function fillProfiles()
 
     let profilesDivs = profilesDiv.querySelectorAll('.shape');
 
-    profilesDivs.forEach(function (item) {
-       item.addEventListener('click', () => ChangeProfile(item));
+    profilesDivs.forEach(function (item, idx) {
+       item.addEventListener('click', () => ChangeProfile(item, idx));
     });
 }
 
@@ -210,25 +204,36 @@ function fillMaterials()
     });
 }
 
+function selectProfile(index)
+{
+    currentlySelectedProfile = profiles[index];
+    console.log("selected profile: " + profiles[index].name);
+}
+
 function selectMaterial(index)
 {
-    console.log("selected material " + materials[index]);
+    currentlySelectedMaterial = materials[index];
+    console.log("selected material " + materials[index].name);
+
+    selectDensity(currentlySelectedMaterial.selectedDensityIndex);
 }
 
 function selectDensity(index)
 {
     currentlySelectedDensity = currentlySelectedMaterial.densities[index];
+    currentlySelectedMaterial.selectedDensityIndex = index;
     console.log('selected density: ' + currentlySelectedDensity.getFullName());
 }
 
-let currentlySelectedMaterial = materials[0];
-let currentlySelectedDensity = materials[0].densities[0];
+let currentlySelectedProfile = undefined;
+let currentlySelectedMaterial = undefined;
+let currentlySelectedDensity = undefined;
 
 function Start() {
     fillProfiles();
     fillMaterials();
     values = [
-        height = 13,
+        height = 17,
         width = 27,
         length = 3000,
         thickness = 18,
@@ -247,7 +252,7 @@ function Update() {
     }
 }
 
-function ChangeProfile(chosenShape){
+function ChangeProfile(chosenShape, chosenProfileId){
     // unselect old
     if(modelProfile != null) {
         let originalImg = modelProfile.firstElementChild;
@@ -265,6 +270,7 @@ function ChangeProfile(chosenShape){
     newOriginalImg.setAttribute('src', 'Images/' + newNameShape + '-green.png');
 
     modelProfile = chosenShape;
+    selectProfile(chosenProfileId);
 }
 
 function ChangeMaterial(chosenMaterial, chosenMaterialId){
@@ -280,10 +286,10 @@ function ChangeMaterial(chosenMaterial, chosenMaterialId){
 
     // select profile if only one
     if(chosenMaterial.querySelector('.shape-single-box')) {
-        console.log('select chosen profile')
-    } 
+        //console.log('select chosen profile')
+    }
 
-    currentlySelectedMaterial = materials[chosenMaterialId];
+    selectMaterial(chosenMaterialId);
     if(currentlySelectedMaterial == undefined)
         return;
 }
@@ -303,10 +309,11 @@ function Dropdown(elementDiv) {
         optionsContainer.classList.toggle("shape-active");
     });
 
-    optionsList.forEach(itemOption => {
+    optionsList.forEach(function(itemOption, idx) {
         itemOption.addEventListener("click", () => {
             selected.innerHTML = itemOption.querySelector("label").innerHTML;
             optionsContainer.classList.remove("shape-active")
+            selectDensity(idx);
         });
     });
 }
