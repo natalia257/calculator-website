@@ -118,6 +118,8 @@ input[type="text"]
     float: left;
     width: 105px;
     text-align: center;
+    cursor: pointer;
+    min-height: 150px;
 }
 
 .shape-img {
@@ -174,11 +176,25 @@ input[type="text"]
 /* SHAPE BOX ----------------------------------------------------------------- */
 
 .shape-box {
+    display: none;
     position: absolute;
-    display: flex;
     width: 120px;
     text-align: left;
     flex-direction: column;
+}
+
+.green .shape-box {
+    display: flex;
+}
+
+.shape-single-box {
+    display: none;
+}
+
+.green .shape-single-box {
+    display: block;
+    padding: 5px;
+    cursor: pointer;
 }
 
 .shape-container {

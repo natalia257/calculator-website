@@ -1,11 +1,8 @@
 ﻿let modelValues = document.querySelectorAll('.model-label-value');
-let modelProfiles = document.querySelector('#profiles');
-let modelMaterialImgs = document.querySelector('#materials').querySelectorAll('.shape-circle');
-let materialArrows = document.querySelector('#materials').querySelectorAll('.shape-box');
 
 let values = new Array(7);
-let modelProfile = modelProfiles[0];
-let modelMaterial = modelMaterialImgs[0];
+let modelProfile;
+let modelMaterial;
 
 let height = 13; 
 let width = 27;
@@ -153,9 +150,9 @@ function fillProfiles()
 
     let profilesDivs = profilesDiv.querySelectorAll('.shape');
 
-    // profilesDivs.forEach(function (item, idx) {
-    //    item.addEventListener('click', () => ChangeProfile(item));
-    // });
+    profilesDivs.forEach(function (item) {
+       item.addEventListener('click', () => ChangeProfile(item));
+    });
 }
 
 function fillMaterials()
@@ -166,23 +163,33 @@ function fillMaterials()
     for (let i = 0; i < materials.length; i++) {
         let materialElement = "";
         materialElement += "<div class=\"shape\">" +
-         "<img alt=\"material\" class=\"shape-circle\" src=" + materials[i].icon + "/>" +
-         "<div class=\"shape-line\"></div>" +
-         "<div class=\"shape-material\">" + materials[i].name + "</div>" +
-         "<div class=\"shape-box\">" + 
+         "<div class=\"shape-clicked\">" +
+            "<img alt=\"material\" class=\"shape-circle\" src=" + materials[i].icon + "/>" +
+            "<div class=\"shape-line\"></div>" +
+            "<div class=\"shape-material\">" + materials[i].name + "</div>" +
+         "</div>";
+        
+        if(materials[i].densities.length > 1) {
+            materialElement += "<div class=\"shape-box\">" + 
             "<div class=\"shape-container\">";
-            for (let j = 0; j < materials[i].densities.length; j++) {
-                let density = materials[i].densities[j];
-                materialElement += "<div class=\"shape-option\">" + 
-                    "<input class=\"shape-radio\" id=\"materialDensity" + j + "\" type=\"radio\" name=\"category\"/>" + 
-                    "<label for=\"materialDensity" + j + "\">" + density.getFullName() + "</label>"
-                    + "</div>";
-            }
+                for (let j = 0; j < materials[i].densities.length; j++) {
+                    let density = materials[i].densities[j];
+                    materialElement += "<div class=\"shape-option\">" + 
+                        "<input class=\"shape-radio\" id=\"materialDensity" + j + "\" type=\"radio\" name=\"category\"/>" + 
+                        "<label for=\"materialDensity" + j + "\">" + density.getFullName() + "</label>"
+                        + "</div>";
+                }
+                materialElement += "</div>";
+                materialElement += "<div class=\"shape-selected\">" +
+                    materials[i].densities[0].getFullName() +
+                "</div>";
             materialElement += "</div>";
-            materialElement += "<div class=\"shape-selected\">" +
+        }
+        else {
+            materialElement += "<div class=\"shape-single-box\">" +
                 materials[i].densities[0].getFullName() +
             "</div>";
-        materialElement += "</div>";
+        }
         materialElement += "</div>";
 
         materialsDiv.innerHTML += materialElement;
@@ -196,21 +203,11 @@ function fillMaterials()
         originalImg.setAttribute('src', materials[i].icon);
     }
 
-    let materialCircles = materialsDiv.querySelectorAll('.shape-circle');
-    let materialDensities = materialsDiv.querySelectorAll('.shape-box');
+    let materialCircles = materialsDiv.querySelectorAll('.shape-clicked');
 
-    // materialCircles.forEach(function(item, idx){
-    //     item.addEventListener('click', () => ChangeMaterial(item.parentElement, idx));
-    // });
-
-    // materialDensities.forEach(function(item, idx){
-    //     item.addEventListener('click', () => ShowList(item.parentElement, idx));
-
-    //     let densityOptions = item.querySelectorAll('.shape-option');
-    //     densityOptions.forEach(function(item, idx){
-    //         item.addEventListener('click', () => selectDensity(idx));
-    //     });
-    // });
+    materialCircles.forEach(function(item, idx){
+        item.addEventListener('click', () => ChangeMaterial(item.parentElement, idx));
+    });
 }
 
 function selectMaterial(index)
@@ -252,11 +249,13 @@ function Update() {
 
 function ChangeProfile(chosenShape){
     // unselect old
-    let originalImg = modelProfile.firstElementChild;
-    let src = originalImg.getAttribute('src');
-    let nameShape = src.substring(7, src.indexOf('-'));
-    originalImg.setAttribute('src', 'Images/' + nameShape + '.png');
-    modelProfile.classList.remove('green');
+    if(modelProfile != null) {
+        let originalImg = modelProfile.firstElementChild;
+        let src = originalImg.getAttribute('src');
+        let nameShape = src.substring(7, src.indexOf('-'));
+        originalImg.setAttribute('src', 'Images/' + nameShape + '.png');
+        modelProfile.classList.remove('green');
+    }
 
     // select new
     chosenShape.classList.add('green');
@@ -270,21 +269,23 @@ function ChangeProfile(chosenShape){
 
 function ChangeMaterial(chosenMaterial, chosenMaterialId){
     // unselect old
-    modelMaterial.classList.remove('show');
-    modelMaterial.classList.remove('green');
+    if(modelMaterial != null) {
+        modelMaterial.classList.remove('show');
+        modelMaterial.classList.remove('green');
+    }
 
     // select new
     chosenMaterial.classList.add('green');
     modelMaterial = chosenMaterial;
+
+    // select profile if only one
+    if(chosenMaterial.querySelector('.shape-single-box')) {
+        console.log('select chosen profile')
+    } 
+
     currentlySelectedMaterial = materials[chosenMaterialId];
     if(currentlySelectedMaterial == undefined)
         return;
-
-    console.log('selected material : ' + currentlySelectedMaterial.getFullName());
-}
-
-function ShowList(chosenMaterial) {
-    chosenMaterial.classList.add('show');
 }
 
 Start();
