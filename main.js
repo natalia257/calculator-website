@@ -204,10 +204,23 @@ function fillMaterials()
     });
 }
 
+function hoverModel(chosenText) {
+    let hoverModelElement = document.querySelector('#modelHovered');
+
+    if(currentlySelectedMaterial != undefined && currentlySelectedProfile != undefined) {
+        hoverModelElement.classList.remove('hover');
+    }
+    else {
+        hoverModelElement.classList.add('hover');
+        hoverModelElement.firstElementChild.textContent = chosenText;
+    }
+}
+
 function selectProfile(index)
 {
     currentlySelectedProfile = profiles[index];
     console.log("selected profile: " + profiles[index].name);
+    hoverModel("Wybierz materiał");
 }
 
 function selectMaterial(index)
@@ -216,6 +229,7 @@ function selectMaterial(index)
     console.log("selected material " + materials[index].name);
 
     selectDensity(currentlySelectedMaterial.selectedDensityIndex);
+    hoverModel("Wybierz profil");
 }
 
 function selectDensity(index)
@@ -244,6 +258,7 @@ function Start() {
     for (let i = 0; i < values.length; i++) {
         modelValues[i].value = values[i];
     }
+    hoverModel("Wybierz profil");
 }
 
 function Update() {
