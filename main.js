@@ -212,7 +212,7 @@ function hoverModel(chosenText) {
     }
     else {
         hoverModelElement.classList.add('hover');
-        hoverModelElement.firstElementChild.textContent = chosenText;
+        hoverModelElement.querySelector('.hover-text').textContent = chosenText;
     }
 }
 
@@ -258,7 +258,7 @@ function Start() {
     for (let i = 0; i < values.length; i++) {
         modelValues[i].value = values[i];
     }
-    hoverModel("Wybierz profil");
+    Carousel();
 }
 
 function Update() {
@@ -333,3 +333,37 @@ function Dropdown(elementDiv) {
     });
 }
 
+function Carousel() {
+    const prev  = document.querySelector('.prev.boxes-arrow');
+    const next = document.querySelector('.next.boxes-arrow');
+
+    const track = document.querySelector('.boxes-track');
+
+    let carouselWidth = document.querySelector('.boxes-container').offsetWidth;
+
+    window.addEventListener('resize', () => {
+        carouselWidth = document.querySelector('.boxes-container').offsetWidth;
+    })
+
+    let index = 0;
+
+    next.addEventListener('click', () => {
+        index++;
+        prev.classList.add('show');
+        track.style.transform = `translateX(-${index * carouselWidth}px)`;
+        
+        if (track.offsetWidth - (index * carouselWidth) < carouselWidth) {
+            next.classList.add('hide');
+            prev.classList.add('show');
+        }
+    })
+
+    prev.addEventListener('click', () => {
+        index--;
+        next.classList.remove('hide');
+        if (index === 0) {
+            prev.classList.remove('show');
+        }
+        track.style.transform = `translateX(-${index * carouselWidth}px)`;
+    })
+}

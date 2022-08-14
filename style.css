@@ -118,10 +118,6 @@ input[type="text"]
     background-color: #6a9768;
 }
 
-.model-button {
-    
-}
-
 .model-button button {
     margin-right: 10%;
     margin-top: 20px;
@@ -134,7 +130,7 @@ input[type="text"]
 /* SHAPES -------------------------------------------------------------------------------------------*/
 
 .shapes {
-    padding: 30px;
+    padding: 30px 0 30px 60px;
 }
 
 .shape {
@@ -299,11 +295,11 @@ input[type="text"]
 }
 
 .summary {
-    padding: 40px 10px;
+    margin-left: 50px;
 }
 
 .summary-sum {
-    padding-left: 40px;
+    padding: 20px;
 }
 
 .summary-name {
@@ -320,38 +316,47 @@ input[type="text"]
 
 /* BOX ----------------------------------------------------------------------------------*/
 
-.container {
+.boxes-container {
+    width: 1104px;   /* 1104 */
     position: relative;
-    padding: 10px;
-    width: 100%;
+    min-height: 250px;
+    margin: 0 auto;
+}
+
+.boxes-inner {
+    overflow: hidden;
+}
+
+.boxes-track {
+    display: inline-flex;
+    transition: transform 0.5s;
+}
+
+.box-container {
+    width: 373px;
+    flex-shrink: 0;
+    height: 250px;
+    padding-right: 30px;
+    box-sizing: border-box;
 }
 
 .box {
-    float: left;
-    height: 250px;
-    width: 30%;
+    width: 100%;
+    height: 100%;
     border: 2px solid #599c50;
-    margin: 10px;
-}
-
-.box:nth-of-type(3) {
-    -webkit-mask-image: linear-gradient(to left, transparent 10%, black 100%);
-    mask-image: linear-gradient(to left, transparent 10%, black 100%);
+    box-sizing: border-box;
 }
 
 .left-box {
-    height: 240px;
+    height: 100%;
     width: 100px;
-    padding: 5px;
     border-right: 1px solid #dfdfdf;
     text-align: center;
 }
 
-
 .right-box {
-    height: 240px;
-    width: 60%;
-    padding: 5px;
+    height: 100%;
+    width: auto;
     position: relative;
 }
 
@@ -386,16 +391,36 @@ input[type="text"]
 
 .box-button {
     position: absolute;
-    right: 20px;
+    right: 0px;
     bottom: 20px;
     text-align: right;
 }
 
 .boxes-arrow {
     position: absolute;
+    width: 50px;
+    height: 100px;
     z-index: 100;
-    right: 60px;
-    top: 80px;
+    top: 70px;
+    cursor: pointer;
+}
+
+.next {
+    right: -50px;
+}
+
+.prev {
+    left: -50px;
+    transform: rotate(180deg);
+    display: none;
+}
+
+.prev.show {
+    display: block;
+}
+
+.next.hide {
+    display: none;
 }
 
 /* MOBILE ------------------------------------------------------------------------------=*/
@@ -433,12 +458,22 @@ input[type="text"]
         width: 50%;
     }
 
-    .box {
-        width: 45%;
+    .boxes-container {
+        width: 80%;
     }
 
-    .boxes-arrow {
-        display: none;
+    .boxes-arrow.next {
+        right: -50px;
     }
+}
 
+@media only screen and (min-width: 1200px) {
+    .box-container:nth-of-type(3n) {
+        -webkit-mask-image: linear-gradient(to left, transparent 5%, black 50%);
+        mask-image: linear-gradient(to left, transparent 5%, black 100%);
+    }
+}
+
+.box-container:last-of-type {
+    mask-image: none;
 }
