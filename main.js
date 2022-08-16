@@ -55,13 +55,14 @@ class profileValue {
 }
 
 class profile {
-    constructor(name, values, material, icon) {
+    constructor(name, values, material, icon, image) {
         this.name = name;
         this.values = values;
         this.material = material;
         this.weight = 0;
         this.pricePerKg = 0;
         this.icon = icon;
+        this.image = image;
     }
 
     getCost(){
@@ -107,21 +108,21 @@ let profiles = [
     new profile("pręt okrągły", [
         profileValues[0],
         profileValues[1]
-    ], materials[0], "Images/circle.png"),
+    ], materials[0], "Images/circle.png", "Images/model.jpg"),
     new profile("rura okrągła", [
         profileValues[0],
         profileValues[2],
         profileValues[1],
-    ], materials[0],"Images/square.png"),
+    ], materials[0],"Images/square.png", "Images/model.jpg"),
     new profile("rura okrągła", [
         profileValues[0],
         profileValues[2],
         profileValues[1],
-    ], materials[0],"Images/circle.png" ),
+    ], materials[0],"Images/circle.png", "Images/model.jpg"),
     new profile("rura sześciokątna", [
         profileValue[3],
         profileValue[1]
-    ], materials[0], "Images/square.png")
+    ], materials[0], "Images/square.png", "Images/model.jpg")
 ]
 
 function fillProfiles()
@@ -221,6 +222,7 @@ function selectProfile(index)
     currentlySelectedProfile = profiles[index];
     console.log("selected profile: " + profiles[index].name);
     hoverModel("Wybierz materiał");
+    AddCorrectFields(currentlySelectedProfile);
 }
 
 function selectMaterial(index)
@@ -367,3 +369,43 @@ function Carousel() {
         track.style.transform = `translateX(-${index * carouselWidth}px)`;
     })
 }
+
+function AddCorrectFields(clickedProfile) {
+
+    modelDiv = document.querySelector('#modelContent');
+
+    modelDiv.innerHTML = "";
+    let profileElement = "";
+    profileElement = "<div class=\"row model-img\">\n" +
+            "<img alt=\"Model\" class=\"model-photo\" src=" + clickedProfile.image + "/>" +
+        "</div>\n" +
+        "<div class=\"row model-labels\">\n";
+        for (let i = 0; i < clickedProfile.values.length; i++) {
+            profileElement += "<label class=\"model-label green\">\n" +
+                "<span class=\"model-label-name\">" + clickedProfile.values[i].name + " [" + clickedProfile.values[i].unit + "]" + "</span>\n" +
+                "<input class=\"model-label-value\"/>\n" +
+            "</label>\n";
+        }
+    profileElement += 
+        "<label class=\"model-label\">\n" +
+            "<span class=\"model-label-name\">Waga [kg]</span>\n" +
+            "<input class=\"model-label-value\"/>\n" +
+        "</label>\n" +
+        "<label class=\"model-label green\">\n" +
+            "<span class=\"model-label-name\">Cena/kg [zł]</span>\n" +
+            "<input class=\"model-label-value\"/>\n" +
+        "</label>\n" +
+        "<label class=\"model-label\">\n" +
+            "<span class=\"model-label-name\">Wartość [zł]</span>\n" +
+            "<input class=\"model-label-value\"/>\n" +
+        "</label>\n" +
+        "<div class=\"model-label model-button\">\n" +
+            "<button><span class=\"button-plus\">&#43;</span> &nbsp DODAJ</button>\n" +
+        "</div>\n" +
+    "</div>\n";
+    modelDiv.innerHTML += profileElement;
+
+    let originalImg = modelDiv.querySelector('.model-photo');
+    originalImg.setAttribute('src', clickedProfile.image);
+}
+

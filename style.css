@@ -66,11 +66,12 @@ input[type="text"]
     background-color: #dfdfdf;
     width: 100%;
     height: 100%;
-    z-index: 99;
+    transform: translateY(-100%);
 }
 
 .model-hover.hover {
     display: block;
+    z-index: 99;
 }
 
 .hover-text {
@@ -84,7 +85,6 @@ input[type="text"]
 }
 
 .model-img {
-    padding-top: 20px;
     text-align: center;
 }
 
@@ -93,6 +93,7 @@ input[type="text"]
 }
 
 .model-labels {
+    position: relative;
     font-weight: bold;
     text-align: end;
 }
@@ -101,6 +102,10 @@ input[type="text"]
     display: inline-block;
     margin: 4px 0;
     width: 100%;
+}
+
+.model-label-name:first-letter {
+    text-transform: uppercase;
 }
 
 .model-label-value {
@@ -116,6 +121,12 @@ input[type="text"]
 .green .model-label-value {
     color: white;
     background-color: #6a9768;
+}
+
+.model-button {
+    position: absolute;
+    top: 210px;
+    left: 0;
 }
 
 .model-button button {
@@ -333,7 +344,7 @@ input[type="text"]
 }
 
 .box-container {
-    width: 373px;
+    width: 370px;
     flex-shrink: 0;
     height: 250px;
     padding-right: 30px;
@@ -435,8 +446,13 @@ input[type="text"]
     }
 
     .model {
-        height: auto;
+        height: 320px;
+        padding-top: 40px;
         text-align: center;
+    }
+
+    .model-content {
+        height: 100%;
     }
 
     .model-img {
@@ -459,7 +475,7 @@ input[type="text"]
     }
 
     .boxes-container {
-        width: 80%;
+        width: 370px;
     }
 
     .boxes-arrow.next {
@@ -472,8 +488,8 @@ input[type="text"]
         -webkit-mask-image: linear-gradient(to left, transparent 5%, black 50%);
         mask-image: linear-gradient(to left, transparent 5%, black 100%);
     }
-}
 
-.box-container:last-of-type {
-    mask-image: none;
+    .box-container:last-of-type {
+        mask-image: none;
+    }
 }
