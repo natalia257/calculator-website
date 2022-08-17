@@ -87,21 +87,68 @@ const profileValues = [
 
 const materials = [
     new material("brąz", [
-        new density("", 8.5),
-        new density("B2, B4, B8, B443", 8.895),
-        new density("BA5", 8.197), //TODO: fill with missing densities
+        new density("8,5", 8.5),
+        new density("B2, B4, B8, B443 - 8,895", 8.895),
+        new density("BA5 - 8,197", 8.197),
+        new density("BA8 - 7,8", 7.8),
+        new density("BA83 - 7,695", 7.695),
+        new density("Bk1, Bk31 - 8,497", 8.497),
+        new density("BB1,7 - 8,4", 8.4),
+        new density("BB2 - 8,295", 8.295),
+        new density("BB21, BC2 - 8,895", 8.895)
     ], "./Images/material_1.jpg"),
     new material("mosiądz", [
-        new density("", 8.5)
-    ], "Images/material_2.jpg"), //TODO: fill with correct material icons
+        new density("8,5", 8.5)
+    ], "Images/material_2.jpg"),
     new material("miedź", [
-        new density("", 8.5)
-    ], "Images/material_1.jpg"),
+        new density("8,9", 8.9)
+    ], "Images/material_2.jpg"),
     new material("aluminium", [
-        new density("", 2.7),
-        new density("EN AW-3103", 2.749)//TODO: fill with missing densities
-    ], "Images/material_2.jpg")
-    //TODO: add more material
+        new density("2,7", 2.7),
+        new density("EN AW-3103 2,749", 2.749),
+        new density("EN AW-5251 2,678", 2.678),
+        new density("EN AW-6101A 2,689", 2.689),
+        new density("EN AW-6082 2,7", 2.7),
+        new density("EN AW-5019 2,638", 2.638),
+        new density("EN AW-6061 2,713", 2.713),
+        new density("EN AW-2017A 2,799", 2.799),
+        new density("EN AW-2024 2,767", 2.767),
+        new density("EN AW-2014 2,799", 2.799),
+        new density("EN AW-5754 2,659", 2.659),
+        new density("EN AW-5005A 2,689", 2.689),
+        new density("2,8", 2.8),
+        new density("2,9", 2.9),
+    ], "Images/material_2.jpg"),
+    new material("stal", [
+        new density("7,85 kg/dm3", 7.85),
+        new density("7,5 kg/dm3", 7.5),
+        new density("7,7 kg/dm3", 7.7),
+        new density("7,8 kg/dm3", 7.8),
+        new density("7,9 kg/dm3", 7.9),
+        new density("8,0 kg/dm3", 8),
+        new density("8,1 kg/dm3", 8.1),
+    ], "Images/material_2.jpg"),
+    new material("stopy Cu-Ni", [
+        new density("8,9", 8.9)
+    ], "Images/material_2.jpg"),
+    new material("CuA18/BA8", [
+        new density("7,8", 7.8)
+    ], "Images/material_2.jpg"),
+    new material("ołów", [
+        new density("11,68", 11.68)
+    ], "Images/material_2.jpg"),
+    new material("stopy ołowiu", [
+        new density("9,9", 9.9)
+    ], "Images/material_2.jpg"),
+    new material("cynk", [
+        new density("7,2", 7.2)
+    ], "Images/material_2.jpg"),
+    new material("stopy cynku", [
+        new density("6,7", 6.7)
+    ], "Images/material_2.jpg"),
+    new material("złoto", [
+        new density("19,3", 19.3)
+    ], "Images/material_2.jpg"), //TODO: fill with correct material icons
 ];
 
 let profiles = [
@@ -114,14 +161,53 @@ let profiles = [
         profileValues[2],
         profileValues[1],
     ], materials[0],"Images/square.png", "Images/model.jpg"),
-    new profile("rura okrągła", [
-        profileValues[0],
-        profileValues[2],
-        profileValues[1],
+    new profile("pręt sześciokątny", [
+        profileValues[3],
+        profileValues[1]
     ], materials[0],"Images/circle.png", "Images/model.jpg"),
     new profile("rura sześciokątna", [
-        profileValue[3],
-        profileValue[1]
+        profileValues[3],
+        profileValues[4],
+        profileValues[1],
+    ], materials[0], "Images/square.png", "Images/model.jpg"),
+    new profile("kwadrat", [
+        profileValues[5],
+        profileValues[1]
+    ], materials[0], "Images/square.png", "Images/model.jpg"),
+    new profile("blacha / płaskownik", [
+        profileValues[6],
+        profileValues[5],
+        profileValues[1]
+    ], materials[0], "Images/square.png", "Images/model.jpg"),
+    new profile("profil zamknięty", [
+        profileValues[3],
+        profileValues[5],
+        profileValues[2],
+        profileValues[1]
+    ], materials[0], "Images/square.png", "Images/model.jpg"),
+    new profile("kątownik", [
+        profileValues[3],
+        profileValues[5],
+        profileValues[2],
+        profileValues[1]
+    ], materials[0], "Images/square.png", "Images/model.jpg"),
+    new profile("ceownik", [
+        profileValues[3],
+        profileValues[5],
+        profileValues[2],
+        profileValues[1]
+    ], materials[0], "Images/square.png", "Images/model.jpg"),
+    new profile("teownik", [
+        profileValues[3],
+        profileValues[5],
+        profileValues[2],
+        profileValues[1]
+    ], materials[0], "Images/square.png", "Images/model.jpg"),
+    new profile("dwuteownik", [
+        profileValues[3],
+        profileValues[5],
+        profileValues[2],
+        profileValues[1]
     ], materials[0], "Images/square.png", "Images/model.jpg")
 ]
 
@@ -157,7 +243,7 @@ function fillMaterials()
     materialsDiv.innerHTML = "";
     for (let i = 0; i < materials.length; i++) {
         let materialElement = "";
-        materialElement += "<div class=\"shape\">" +
+        materialElement += "<div class=\"shape material-shape\">" +
          "<div class=\"shape-clicked\">" +
             "<img alt=\"material\" class=\"shape-circle\" src=" + materials[i].icon + "/>" +
             "<div class=\"shape-line\"></div>" +
@@ -380,6 +466,7 @@ function AddCorrectFields(clickedProfile) {
             "<img alt=\"Model\" class=\"model-photo\" src=" + clickedProfile.image + "/>" +
         "</div>\n" +
         "<div class=\"row model-labels\">\n";
+        console.log(clickedProfile.values)
         for (let i = 0; i < clickedProfile.values.length; i++) {
             profileElement += "<label class=\"model-label green\">\n" +
                 "<span class=\"model-label-name\">" + clickedProfile.values[i].name + " [" + clickedProfile.values[i].unit + "]" + "</span>\n" +
