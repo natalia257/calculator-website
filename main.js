@@ -49,10 +49,12 @@ class profileValue {
         this.unit = unit;
         this.value = value;
         this.letter = letter;
-        this.letterColor = letterColour
-        this.getFullName = function () {
-            return this.name + " - " + "<span style=\"color:" + this.letterColor + "\">" + this.letter + "</span>" + " [" + unit + "]";
-        }
+        this.letterColor = letterColour;
+    }
+
+    getFullName()
+    {
+        return this.name + " - " + "<span style=\"color:" + this.letterColor + "\">" + this.letter + "</span>" + " [" + this.unit + "]";
     }
 }
 
