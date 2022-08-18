@@ -28,7 +28,7 @@ class density {
             name += " ";
         }
 
-        name = this.value.toString(); //TODO: removed string addition due to lack of space in select. Consider how to do it.
+        name += this.value.toString(); //TODO: removed string addition due to lack of space in select. Consider how to do it.
         name += " kg/dm&sup3"; //TODO: make it upper index to mark it as cubic rather than number next to unit.
         return name;
     }
