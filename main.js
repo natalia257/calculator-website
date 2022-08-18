@@ -44,13 +44,15 @@ class material {
 }
 
 class profileValue {
-    constructor(name, unit, value) {
+    constructor(name, letter, letterColour, unit, value) {
         this.name = name;
         this.unit = unit;
         this.value = value;
-    }
-    get fullName() {
-        return this.name + "[" + unit + "]";
+        this.letter = letter;
+        this.letterColor = letterColour
+        this.getFullName = function () {
+            return this.name + " - " + "<span style=\"color:" + this.letterColor + "\">" + this.letter + "</span>" + " [" + unit + "]";
+        }
     }
 }
 
@@ -76,13 +78,13 @@ class profile {
 }
 
 const profileValues = [
-    new profileValue("średnica zew. - h", "mm", 0),
-    new profileValue("długość - l", "mm", 0),
-    new profileValue("grubość ściany - b", "mm", 0),
-    new profileValue("wysokość - h", "mm", 0),
-    new profileValue("średnica wew. - b", "mm", 0),
-    new profileValue("szerokość - w", "mm", 0),
-    new profileValue("grubość - h", "mm", 0),
+    new profileValue("średnica zew.", "h", "#00FF00","mm", 0),
+    new profileValue("długość", "l", "#FF0000", "mm", 0),
+    new profileValue("grubość ściany", "b", "#0000FF", "mm", 0),
+    new profileValue("wysokość", "h", "#00FF00", "mm", 0),
+    new profileValue("średnica wew.", "b", "#0000FF", "mm", 0),
+    new profileValue("szerokość", "w", "#0000FF", "mm", 0),
+    new profileValue("grubość", "h", "#00FF00", "mm", 0),
 ]
 
 const materials = [
@@ -469,7 +471,7 @@ function AddCorrectFields(clickedProfile) {
         console.log(clickedProfile.values)
         for (let i = 0; i < clickedProfile.values.length; i++) {
             profileElement += "<label class=\"model-label green\">\n" +
-                "<span class=\"model-label-name\">" + clickedProfile.values[i].name + " [" + clickedProfile.values[i].unit + "]" + "</span>\n" +
+                "<span class=\"model-label-name\">" + clickedProfile.values[i].getFullName() + "</span>\n" +
                 "<input class=\"model-label-value\"/>\n" +
             "</label>\n";
         }
