@@ -28,7 +28,7 @@ class density {
             name += " ";
         }
 
-        name += this.value.toString(); //TODO: removed string addition due to lack of space in select. Consider how to do it.
+        //name += this.value.toString(); //TODO: removed string addition due to lack of space in select. Consider how to do it.
         name += " kg/dm&sup3"; //TODO: make it upper index to mark it as cubic rather than number next to unit.
         return name;
     }
@@ -80,13 +80,13 @@ class profile {
 }
 
 const profileValues = [
-    new profileValue("średnica zew.", "h", "#00FF00","mm", 0),
-    new profileValue("długość", "l", "#FF0000", "mm", 0),
-    new profileValue("grubość ściany", "b", "#0000FF", "mm", 0),
-    new profileValue("wysokość", "h", "#00FF00", "mm", 0),
-    new profileValue("średnica wew.", "b", "#0000FF", "mm", 0),
-    new profileValue("szerokość", "w", "#0000FF", "mm", 0),
-    new profileValue("grubość", "h", "#00FF00", "mm", 0),
+    new profileValue("Średnica zew.", "h", "#00FF00","mm", 0),
+    new profileValue("Długość", "l", "#FF0000", "mm", 0),
+    new profileValue("Grubość ściany", "b", "#0000FF", "mm", 0),
+    new profileValue("Wysokość", "h", "#00FF00", "mm", 0),
+    new profileValue("Średnica wew.", "b", "#0000FF", "mm", 0),
+    new profileValue("Szerokość", "w", "#0000FF", "mm", 0),
+    new profileValue("Grubość", "h", "#00FF00", "mm", 0),
 ]
 
 const materials = [
@@ -124,13 +124,13 @@ const materials = [
         new density("2,9", 2.9),
     ], "Images/material_2.jpg"),
     new material("stal", [
-        new density("7,85 kg/dm3", 7.85),
-        new density("7,5 kg/dm3", 7.5),
-        new density("7,7 kg/dm3", 7.7),
-        new density("7,8 kg/dm3", 7.8),
-        new density("7,9 kg/dm3", 7.9),
-        new density("8,0 kg/dm3", 8),
-        new density("8,1 kg/dm3", 8.1),
+        new density("7,85", 7.85),
+        new density("7,5", 7.5),
+        new density("7,7", 7.7),
+        new density("7,8", 7.8),
+        new density("7,9", 7.9),
+        new density("8,0", 8.0),
+        new density("8,1", 8.1),
     ], "Images/material_2.jpg"),
     new material("stopy Cu-Ni", [
         new density("8,9", 8.9)
@@ -418,9 +418,9 @@ function Dropdown(elementDiv) {
 
     optionsList.forEach(function(itemOption, idx) {
         itemOption.addEventListener("click", () => {
-            selected.innerHTML = itemOption.querySelector("label").innerHTML;
-            optionsContainer.classList.remove("shape-active")
             selectDensity(idx);
+            selected.innerHTML = currentlySelectedMaterial.densities[idx].value + " kg/dm&sup3";
+            optionsContainer.classList.remove("shape-active")
         });
     });
 }
@@ -442,7 +442,10 @@ function Carousel() {
     next.addEventListener('click', () => {
         index++;
         prev.classList.add('show');
+        console.log(track.offsetWidth)
         track.style.transform = `translateX(-${index * carouselWidth}px)`;
+
+        console.log(track.offsetWidth, track.offsetWidth - (index * carouselWidth), index, carouselWidth)
         
         if (track.offsetWidth - (index * carouselWidth) < carouselWidth) {
             next.classList.add('hide');
