@@ -425,6 +425,21 @@ function Dropdown(elementDiv) {
     });
 }
 
+function ifBoxesNumberIsChanging() {
+    const next = document.querySelector('.next.boxes-arrow');
+    let carouselWidth = document.querySelector('.boxes-container').offsetWidth;
+    let boxesDivNumber = document.querySelectorAll('.box').length;
+    let boxDivWidth = document.querySelector('.box-container').offsetWidth;
+
+    console.log(boxesDivNumber * boxDivWidth, carouselWidth)
+
+    if(boxesDivNumber * boxDivWidth > carouselWidth) {
+        next.classList.remove('hide');
+    } else {
+        next.classList.add('hide');
+    }
+}
+
 function Carousel() {
     const prev  = document.querySelector('.prev.boxes-arrow');
     const next = document.querySelector('.next.boxes-arrow');
@@ -433,8 +448,10 @@ function Carousel() {
 
     let carouselWidth = document.querySelector('.boxes-container').offsetWidth;
 
+    ifBoxesNumberIsChanging();
+
     window.addEventListener('resize', () => {
-        carouselWidth = document.querySelector('.boxes-container').offsetWidth;
+        ifBoxesNumberIsChanging();
     })
 
     let index = 0;
@@ -442,11 +459,7 @@ function Carousel() {
     next.addEventListener('click', () => {
         index++;
         prev.classList.add('show');
-        console.log(track.offsetWidth)
         track.style.transform = `translateX(-${index * carouselWidth}px)`;
-
-        console.log(track.offsetWidth, track.offsetWidth - (index * carouselWidth), index, carouselWidth)
-        
         if (track.offsetWidth - (index * carouselWidth) < carouselWidth) {
             next.classList.add('hide');
             prev.classList.add('show');

@@ -37,7 +37,7 @@ input[type="text"]
 }
 
 .wrapper {
-    max-width: 1130px;
+    max-width: 1140px;
     margin: 0 auto;
     position: relative;
     overflow-wrap: break-word;
@@ -363,9 +363,10 @@ input[type="text"]
 }
 
 .box-container {
+    position: relative;
     width: 301.32px;
     flex-shrink: 0;
-    height: 190px;
+    height: 200px;
     padding-right: 30px;
     box-sizing: border-box;
 }
@@ -375,6 +376,32 @@ input[type="text"]
     height: 100%;
     border: 2px solid #599c50;
     box-sizing: border-box;
+}
+
+.box-container-hover {
+    /* display: none; */
+    position: absolute;
+}
+
+.box-hover {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background: #dfdfdf;
+}
+
+.box-hover-content {
+    font-size: 14px;
+    color: #5f9f56;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.box-hover-content button {
+    margin: 10px 10px 10px 0;
 }
 
 .left-box {
@@ -428,9 +455,15 @@ input[type="text"]
     width: 100%;
 }
 
-.box-button button{
+.button-edit{
     position: absolute;
     right: 15px;
+    bottom: 10px;
+}
+
+.button-delete {
+    position: absolute;
+    right: 90px;
     bottom: 10px;
 }
 
@@ -468,7 +501,7 @@ input[type="text"]
 
 /* MOBILE ------------------------------------------------------------------------------=*/
 
-@media only screen and (max-width: 1300px) {
+@media only screen and (max-width: 1140px) {
     body {
         font-size: 16px;
     }
@@ -560,7 +593,7 @@ input[type="text"]
     }
 }
 
-@media only screen and (min-width: 1130px) {
+@media only screen and (min-width: 1140px) {
     .boxes-inner {
         /* -webkit-mask-image: linear-gradient(to left, black 50%);
         mask-image: linear-gradient(to left, black 50%); */
