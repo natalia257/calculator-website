@@ -312,7 +312,7 @@ function selectProfile(index)
     currentlySelectedProfile = profiles[index];
     console.log("selected profile: " + profiles[index].name);
     hoverModel("Wybierz materiał");
-    AddCorrectFields(currentlySelectedProfile);
+    AddFieldsToMaterials(currentlySelectedProfile);
 }
 
 function selectMaterial(index)
@@ -351,12 +351,8 @@ function Start() {
         modelValues[i].value = values[i];
     }
     Carousel();
-}
-
-function Update() {
-    for (let i = 0; i < values.length; i++) {
-        values[i] = parseFloat(modelValues[i].value);
-    }
+    DeleteButtonHover();
+    ChangeModelsValue();
 }
 
 function ChangeProfile(chosenShape, chosenProfileId){
@@ -402,9 +398,17 @@ function ChangeMaterial(chosenMaterial, chosenMaterialId){
 }
 
 Start();
-modelValues.forEach(function(item) {
-    item.addEventListener('change', () => Update());
-});
+
+function ChangeModelsValue() {
+    modelValues.forEach(function(item) {
+        item.addEventListener('change', () => {
+            for (let i = 0; i < values.length; i++) {
+                values[i] = parseFloat(modelValues[i].value);
+            }
+        });
+    });
+}
+
 
 function Dropdown(elementDiv) {
     const selected = elementDiv.querySelector(".shape-selected");
@@ -430,8 +434,6 @@ function ifBoxesNumberIsChanging() {
     let carouselWidth = document.querySelector('.boxes-container').offsetWidth;
     let boxesDivNumber = document.querySelectorAll('.box').length;
     let boxDivWidth = document.querySelector('.box-container').offsetWidth;
-
-    console.log(boxesDivNumber * boxDivWidth, carouselWidth)
 
     if(boxesDivNumber * boxDivWidth > carouselWidth) {
         next.classList.remove('hide');
@@ -476,7 +478,7 @@ function Carousel() {
     })
 }
 
-function AddCorrectFields(clickedProfile) {
+function AddFieldsToMaterials(clickedProfile) {
 
     modelDiv = document.querySelector('#modelContent');
 
@@ -516,3 +518,21 @@ function AddCorrectFields(clickedProfile) {
     originalImg.setAttribute('src', clickedProfile.image);
 }
 
+function DeleteButtonHover() {
+    document.querySelectorAll(".button-delete").forEach((item, idx) => {
+        item.addEventListener('click', () => {
+            let boxHoverDiv = item.closest(".box").querySelector('.box-hover');
+            boxHoverDiv.classList.remove('hover');
+
+            boxHoverDiv.querySelector('#deleteButton').addEventListener('click', () => {
+                // to do: delete element from List
+                console.log("usuń element")
+                boxHoverDiv.classList.add('hover');
+            });
+
+            boxHoverDiv.querySelector('#skipButton').addEventListener('click', () => {
+                boxHoverDiv.classList.add('hover');
+            });
+        })
+    });
+}
