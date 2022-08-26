@@ -77,6 +77,22 @@ class profile {
     {
         this.material = newMaterial;
     }
+
+    clone() 
+    {
+        let prototype = Object.getPrototypeOf(this);
+        let cloned = Object.create(prototype);
+
+        cloned.name = this.name;
+        cloned.values = this.values;
+        cloned.material = this.material;
+        cloned.weight = this.weight;
+        cloned.pricePerKg = this.pricePerKg;
+        cloned.icon = this.icon;
+        cloned.image = this.image;
+
+        return cloned;
+    }
 }
 
 const profileValues = [
@@ -90,7 +106,7 @@ const profileValues = [
 ]
 
 const materials = [
-    new material("brąz", [
+    new material("Brąz", [
         new density("8,5", 8.5),
         new density("B2, B4, B8, B443 - 8,895", 8.895),
         new density("BA5 - 8,197", 8.197),
@@ -101,13 +117,13 @@ const materials = [
         new density("BB2 - 8,295", 8.295),
         new density("BB21, BC2 - 8,895", 8.895)
     ], "./Images/material_1.jpg"),
-    new material("mosiądz", [
+    new material("Mosiądz", [
         new density("8,5", 8.5)
     ], "Images/material_2.jpg"),
-    new material("miedź", [
+    new material("Miedź", [
         new density("8,9", 8.9)
     ], "Images/material_2.jpg"),
-    new material("aluminium", [
+    new material("Aluminium", [
         new density("2,7", 2.7),
         new density("EN AW-3103 2,749", 2.749),
         new density("EN AW-5251 2,678", 2.678),
@@ -123,7 +139,7 @@ const materials = [
         new density("2,8", 2.8),
         new density("2,9", 2.9),
     ], "Images/material_2.jpg"),
-    new material("stal", [
+    new material("Stal", [
         new density("7,85", 7.85),
         new density("7,5", 7.5),
         new density("7,7", 7.7),
@@ -132,82 +148,82 @@ const materials = [
         new density("8,0", 8.0),
         new density("8,1", 8.1),
     ], "Images/material_2.jpg"),
-    new material("stopy Cu-Ni", [
+    new material("Stopy Cu-Ni", [
         new density("8,9", 8.9)
     ], "Images/material_2.jpg"),
     new material("CuA18/BA8", [
         new density("7,8", 7.8)
     ], "Images/material_2.jpg"),
-    new material("ołów", [
+    new material("Ołów", [
         new density("11,68", 11.68)
     ], "Images/material_2.jpg"),
-    new material("stopy ołowiu", [
+    new material("Stopy ołowiu", [
         new density("9,9", 9.9)
     ], "Images/material_2.jpg"),
-    new material("cynk", [
+    new material("Cynk", [
         new density("7,2", 7.2)
     ], "Images/material_2.jpg"),
-    new material("stopy cynku", [
+    new material("Stopy cynku", [
         new density("6,7", 6.7)
     ], "Images/material_2.jpg"),
-    new material("złoto", [
+    new material("Złoto", [
         new density("19,3", 19.3)
     ], "Images/material_2.jpg"), //TODO: fill with correct material icons
 ];
 
 let profiles = [
-    new profile("pręt okrągły", [
+    new profile("Pręt okrągły", [
         profileValues[0],
         profileValues[1]
     ], materials[0], "Images/circle.png", "Images/model.jpg"),
-    new profile("rura okrągła", [
+    new profile("Rura okrągła", [
         profileValues[0],
         profileValues[2],
         profileValues[1],
     ], materials[0],"Images/square.png", "Images/model.jpg"),
-    new profile("pręt sześciokątny", [
+    new profile("Pręt sześciokątny", [
         profileValues[3],
         profileValues[1]
     ], materials[0],"Images/circle.png", "Images/model.jpg"),
-    new profile("rura sześciokątna", [
+    new profile("Rura sześciokątna", [
         profileValues[3],
         profileValues[4],
         profileValues[1],
     ], materials[0], "Images/square.png", "Images/model.jpg"),
-    new profile("kwadrat", [
+    new profile("Kwadrat", [
         profileValues[5],
         profileValues[1]
     ], materials[0], "Images/square.png", "Images/model.jpg"),
-    new profile("blacha / płaskownik", [
+    new profile("Blacha / płaskownik", [
         profileValues[6],
         profileValues[5],
         profileValues[1]
     ], materials[0], "Images/square.png", "Images/model.jpg"),
-    new profile("profil zamknięty", [
+    new profile("Profil zamknięty", [
         profileValues[3],
         profileValues[5],
         profileValues[2],
         profileValues[1]
     ], materials[0], "Images/square.png", "Images/model.jpg"),
-    new profile("kątownik", [
+    new profile("Kątownik", [
         profileValues[3],
         profileValues[5],
         profileValues[2],
         profileValues[1]
     ], materials[0], "Images/square.png", "Images/model.jpg"),
-    new profile("ceownik", [
+    new profile("Ceownik", [
         profileValues[3],
         profileValues[5],
         profileValues[2],
         profileValues[1]
     ], materials[0], "Images/square.png", "Images/model.jpg"),
-    new profile("teownik", [
+    new profile("Teownik", [
         profileValues[3],
         profileValues[5],
         profileValues[2],
         profileValues[1]
     ], materials[0], "Images/square.png", "Images/model.jpg"),
-    new profile("dwuteownik", [
+    new profile("Dwuteownik", [
         profileValues[3],
         profileValues[5],
         profileValues[2],
@@ -334,6 +350,7 @@ function selectDensity(index)
 let currentlySelectedProfile = undefined;
 let currentlySelectedMaterial = undefined;
 let currentlySelectedDensity = undefined;
+let createdProfiles = [];
 
 function Start() {
     fillProfiles();
@@ -352,7 +369,8 @@ function Start() {
     }
     Carousel();
     DeleteButtonHover();
-    ChangeModelsValue();
+    ChangeCurrentProfileValues();
+    document.querySelector("#boxesContainer").innerHTML = "";
 }
 
 function ChangeProfile(chosenShape, chosenProfileId){
@@ -399,7 +417,7 @@ function ChangeMaterial(chosenMaterial, chosenMaterialId){
 
 Start();
 
-function ChangeModelsValue() {
+function ChangeCurrentProfileValues() {
     modelValues.forEach(function(item) {
         item.addEventListener('change', () => {
             for (let i = 0; i < values.length; i++) {
@@ -442,6 +460,10 @@ function ifBoxesNumberIsChanging() {
     }
 }
 
+window.addEventListener('resize', () => {
+    ifBoxesNumberIsChanging();
+})
+
 function Carousel() {
     const prev  = document.querySelector('.prev.boxes-arrow');
     const next = document.querySelector('.next.boxes-arrow');
@@ -451,10 +473,6 @@ function Carousel() {
     let carouselWidth = document.querySelector('.boxes-container').offsetWidth;
 
     ifBoxesNumberIsChanging();
-
-    window.addEventListener('resize', () => {
-        ifBoxesNumberIsChanging();
-    })
 
     let index = 0;
 
@@ -509,13 +527,15 @@ function AddFieldsToMaterials(clickedProfile) {
             "<input class=\"model-label-value\"/>\n" +
         "</label>\n" +
         "<div class=\"model-label model-button\">\n" +
-            "<button><span class=\"button-plus\">&#43;</span> &nbsp DODAJ</button>\n" +
+            "<button id=\"addBtn\"><span class=\"button-plus\">&#43;</span> &nbsp DODAJ</button>\n" +
         "</div>\n" +
     "</div>\n";
     modelDiv.innerHTML += profileElement;
 
     let originalImg = modelDiv.querySelector('.model-photo');
     originalImg.setAttribute('src', clickedProfile.image);
+
+    AddProfileToList();
 }
 
 function DeleteButtonHover() {
@@ -535,4 +555,70 @@ function DeleteButtonHover() {
             });
         })
     });
+}
+
+function AddProfileToList() {
+    document.querySelector("#addBtn").addEventListener('click', () => {
+        let createdProfile = currentlySelectedProfile.clone();
+        createdProfiles.push(createdProfile);
+        console.log(createdProfile)
+        let boxesContainer = document.querySelector("#boxesContainer");
+        let profileElement = "";
+        profileElement = "<div class=\"box-container\">" + 
+            "<div class=\"box\">" +
+                "<div class=\"row left-box\">" +
+                    "<div class=\"row box-shape\">" +
+                        "<img alt=\"shape\" class=\"box-img\" src=" + createdProfile.icon + " />" +
+                        "<div class=\"box-name\">" + createdProfile.name + "</div>" +
+                    "</div>" +
+                    "<div class=\"row box-shape\">" +
+                        "<img alt=\"material\" class=\"box-circle\" src=" + createdProfile.material.icon + " />" +
+                        "<div class=\"box-material\">" + createdProfile.material.name + "</div>" +
+                        "<div class=\"box-desc\">" + createdProfile.material.densities[createdProfile.material.selectedDensityIndex].getFullName() + "</div>" +
+                    "</div>" +
+                "</div>" +
+                "<div class=\"row right-box\">" +
+                    "<div class=\"box-labels\">";
+                        for (let i = 0; i < createdProfile.values.length; i++) {
+                            profileElement += "<div class=\"box-label\">" +
+                                createdProfile.values[i].name + " - " + createdProfile.values[i].letter + " = " + createdProfile.values[i].value + " " + createdProfile.values[i].unit +
+                            "</div>";
+                        }
+                        profileElement += "<div class=\"box-label\">" +
+                            "Waga = " + createdProfile.weight + " kg" +
+                        "</div>" +
+                        "<div class=\"box-label\">" +
+                            "Cena/kg = " + createdProfile.pricePerKg + " zł" +
+                        "</div><br />" + 
+                        "<div class=\"box-label\">" +
+                            "Wartość " + createdProfile.getCost() + " zł" +
+                        "</div>" +
+                    "</div>" +
+                    "<div class=\"box-button\">" +
+                        "<button class=\"button-edit\">EDYTUJ</button>" +
+                    "</div>" +
+                    "<div class=\"box-button\">" +
+                        "<button class=\"button-delete\">USUŃ</button>" +
+                    "</div>" +
+                "</div>" +
+                "<div class=\"box-hover hover\">" +
+                    "<div class=\"box-hover-content\">" +
+                        "<div>Czy napewno chcesz usunąć element?</div>" +
+                        "<button id=\"deleteButton\">Usuń</button>" +
+                        "<button id=\"skipButton\">Anuluj</button>" +
+                    "</div>" +
+                "</div>" +
+            "</div>" +
+        "</div>";
+        
+        boxesContainer.innerHTML += profileElement;
+
+        let originalImg = boxesContainer.querySelector('.box-img');
+        originalImg.setAttribute('src', createdProfile.icon);
+
+        originalImg = boxesContainer.querySelector('.box-circle');
+        originalImg.setAttribute('src', createdProfile.material.icon);
+
+        ifBoxesNumberIsChanging();
+    })
 }
