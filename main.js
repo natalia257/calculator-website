@@ -117,13 +117,13 @@ const materials = [
         new density("BB1,7 - 8,4", 8.4),
         new density("BB2 - 8,295", 8.295),
         new density("BB21, BC2 - 8,895", 8.895)
-    ], "Images/materials_icons/material_braz_icon.png"),
+    ], "Images/materials_icons/material_braz.png"),
     new material("Mosiądz", [
         new density("8,5", 8.5)
-    ], "./Images/materials_icons/material_mosiadz_icon.png"),
+    ], "Images/materials_icons/material_mosiadz.png"),
     new material("Miedź", [
         new density("8,9", 8.9)
-    ], "./Images/materials_icons/material_miedz_icon.png"),
+    ], "Images/materials_icons/material_miedz.png"),
     new material("Aluminium", [
         new density("2,7", 2.7),
         new density("EN AW-3103 2,749", 2.749),
@@ -139,7 +139,7 @@ const materials = [
         new density("EN AW-5005A 2,689", 2.689),
         new density("2,8", 2.8),
         new density("2,9", 2.9),
-    ], "./Images/materials_icons/material_aluminium_icon.png"),
+    ], "Images/materials_icons/material_aluminium.png"),
     new material("Stal", [
         new density("7,85", 7.85),
         new density("7,5", 7.5),
@@ -148,88 +148,88 @@ const materials = [
         new density("7,9", 7.9),
         new density("8,0", 8.0),
         new density("8,1", 8.1),
-    ], "./Images/materials_icons/material_stal_icon.png"),
+    ], "Images/materials_icons/material_stal.png"),
     new material("Stopy Cu-Ni", [
         new density("8,9", 8.9)
-    ], "./Images/materials_icons/material_miedzionikiel_icon.png"),
+    ], "Images/materials_icons/material_miedzionikiel.png"),
     new material("CuA18/BA8", [
         new density("7,8", 7.8)
-    ], "./Images/materials_icons/material_miedzionikiel_icon.png"),
+    ], "Images/materials_icons/material_miedzionikiel.png"),
     new material("Ołów", [
         new density("11,68", 11.68)
-    ], "./Images/materials_icons/material_olow_icon.png"),
+    ], "Images/materials_icons/material_olow.png"),
     new material("Stopy ołowiu", [
         new density("9,9", 9.9)
-    ], "./Images/materials_icons/material_stopy_olowiu_icon.png"),
+    ], "Images/materials_icons/material_stopy_olowiu.png"),
     new material("Cynk", [
         new density("7,2", 7.2)
-    ], "./Images/materials_icons/material_cynk_icon.png"),
+    ], "Images/materials_icons/material_cynk.png"),
     new material("Stopy cynku", [
         new density("6,7", 6.7)
-    ], "./Images/materials_icons/material_stopy_cynku_icon.png"),
+    ], "Images/materials_icons/material_stopy_cynku.png"),
     new material("Złoto", [
         new density("19,3", 19.3)
-    ], "./Images/materials_icons/material_zloto_icon.png"), //TODO: fill with correct material icons
+    ], "Images/materials_icons/material_zloto.png"), //TODO: fill with correct material icons
 ];
 
 let profiles = [
     new profile("Pręt okrągły", [
         profileValues[0],
         profileValues[1]
-    ], materials[0], "Images/profiles_icons/profile_pret_okragly_icon.png", "Images/models/pret_okragly.png"),
+    ], materials[0], "Images/profiles_icons/profile_pret_okragly.png", "Images/models/pret_okragly.png"),
     new profile("Rura okrągła", [
         profileValues[0],
         profileValues[2],
         profileValues[1],
-    ], materials[0], "Images/profiles_icons/profile_rura_okragla_icon.png", "Images/models/rura_okragla.png"),
+    ], materials[0], "Images/profiles_icons/profile_rura_okragla.png", "Images/models/rura_okragla.png"),
     new profile("Pręt sześciokątny", [
         profileValues[3],
         profileValues[1]
-    ], materials[0], "Images/profiles_icons/profile_pret_szesciokatny_icon.png", "Images/models/pret_szesciokatny.png"),
+    ], materials[0], "Images/profiles_icons/profile_pret_szesciokatny.png", "Images/models/pret_szesciokatny.png"),
     new profile("Rura sześciokątna", [
         profileValues[3],
         profileValues[4],
         profileValues[1],
-    ], materials[0], "Images/profiles_icons/profile_rura_szesciokatna_icon.png", "Images/models/rura_szesciokatna.png"),
+    ], materials[0], "Images/profiles_icons/profile_rura_szesciokatna.png", "Images/models/rura_szesciokatna.png"),
     new profile("Kwadrat", [
         profileValues[5],
         profileValues[1]
-    ], materials[0], "Images/profiles_icons/profile_kwadrat_icon.png", "Images/models/kwadrat.png"),
+    ], materials[0], "Images/profiles_icons/profile_kwadrat.png", "Images/models/kwadrat.png"),
     new profile("Blacha / płaskownik", [
         profileValues[6],
         profileValues[5],
         profileValues[1]
-    ], materials[0], "Images/profiles_icons/profile_blacha-plaskownik_icon.png", "Images/models/blacha-plaskownik.png"),
+    ], materials[0], "Images/profiles_icons/profile_blacha-plaskownik.png", "Images/models/blacha-plaskownik.png"),
     new profile("Profil zamknięty", [
         profileValues[3],
         profileValues[5],
         profileValues[2],
         profileValues[1]
-    ], materials[0], "Images/profiles_icons/profile_profil_zamkniety_icon.png", "Images/models/profil_zamkniety.png"),
+    ], materials[0], "Images/profiles_icons/profile_profil_zamkniety.png", "Images/models/profil_zamkniety.png"),
     new profile("Kątownik", [
         profileValues[3],
         profileValues[5],
         profileValues[2],
         profileValues[1]
-    ], materials[0], "Images/profiles_icons/profile_katownik_icon.png", "Images/models/katownik.png"),
+    ], materials[0], "Images/profiles_icons/profile_katownik.png", "Images/models/katownik.png"),
     new profile("Ceownik", [
         profileValues[3],
         profileValues[5],
         profileValues[2],
         profileValues[1]
-    ], materials[0], "Images/profiles_icons/profile_ceownik_icon.png", "Images/models/ceownik.png"),
+    ], materials[0], "Images/profiles_icons/profile_ceownik.png", "Images/models/ceownik.png"),
     new profile("Teownik", [
         profileValues[3],
         profileValues[5],
         profileValues[2],
         profileValues[1]
-    ], materials[0], "Images/profiles_icons/profile_teownik_icon.png", "Images/models/teownik.png"),
+    ], materials[0], "Images/profiles_icons/profile_teownik.png", "Images/models/teownik.png"),
     new profile("Dwuteownik", [
         profileValues[3],
         profileValues[5],
         profileValues[2],
         profileValues[1]
-    ], materials[0], "Images/profiles_icons/profile_dwuteownik_icon.png", "Images/models/dwuteownik.png")
+    ], materials[0], "Images/profiles_icons/profile_dwuteownik.png", "Images/models/dwuteownik.png")
 ]
 
 function fillProfiles()
@@ -376,19 +376,19 @@ function Start() {
 function ChangeProfile(chosenShape, chosenProfileId){
     // unselect old
     if(modelProfile != null) {
-        let originalImg = modelProfile.firstElementChild;
+        let originalImg = modelProfile.querySelector('img');
         let src = originalImg.getAttribute('src');
-        let nameShape = src.substring(7, src.indexOf('-'));
-        originalImg.setAttribute('src', 'Images/' + nameShape + '.png');
+        let nameShape = src.substring(23, src.indexOf('_selected'));
+        originalImg.setAttribute('src', 'Images/profiles_icons/' + nameShape + '.png');
         modelProfile.classList.remove('green');
     }
 
     // select new
     chosenShape.classList.add('green');
-    let newOriginalImg = chosenShape.firstElementChild;
+    let newOriginalImg = chosenShape.querySelector('img');
     let newSrc = newOriginalImg.getAttribute('src');
-    let newNameShape = newSrc.substring(7, newSrc.indexOf('.'));
-    newOriginalImg.setAttribute('src', 'Images/' + newNameShape + '-green.png');
+    let newNameShape = newSrc.substring(22, newSrc.indexOf('.'));
+    newOriginalImg.setAttribute('src', 'Images/profiles_select/' + newNameShape + '_selected.png');
 
     modelProfile = chosenShape;
     selectProfile(chosenProfileId);
@@ -397,12 +397,21 @@ function ChangeProfile(chosenShape, chosenProfileId){
 function ChangeMaterial(chosenMaterial, chosenMaterialId){
     // unselect old
     if(modelMaterial != null) {
+        let originalImg = modelMaterial.querySelector('img');
+        let src = originalImg.getAttribute('src');
+        let nameShape = src.substring(24, src.indexOf('_selected'));
+        originalImg.setAttribute('src', 'Images/materials_icons/' + nameShape + '.png');
         modelMaterial.classList.remove('show');
         modelMaterial.classList.remove('green');
     }
 
     // select new
     chosenMaterial.classList.add('green');
+    let newOriginalImg = chosenMaterial.querySelector('img');
+    let newSrc = newOriginalImg.getAttribute('src');
+    let newNameShape = newSrc.substring(23, newSrc.indexOf('.png'));
+    newOriginalImg.setAttribute('src', 'Images/materials_select/' + newNameShape + '_selected.png');
+
     modelMaterial = chosenMaterial;
 
     // select profile if only one
@@ -441,12 +450,14 @@ function ifBoxesNumberIsChanging() {
     const next = document.querySelector('.next.boxes-arrow');
     let carouselWidth = document.querySelector('.boxes-container').offsetWidth;
     let boxesDivNumber = document.querySelectorAll('.box').length;
-    let boxDivWidth = document.querySelector('.box-container').offsetWidth;
-
-    if(boxesDivNumber * boxDivWidth > carouselWidth) {
-        next.classList.remove('hide');
-    } else {
-        next.classList.add('hide');
+    if(document.querySelector('.box-container')) {
+        let boxDivWidth = document.querySelector('.box-container').offsetWidth;
+    
+        if(boxesDivNumber * boxDivWidth > carouselWidth) {
+            next.classList.remove('hide');
+        } else {
+            next.classList.add('hide');
+        }
     }
 }
 
@@ -620,7 +631,5 @@ function AddProfileToList() {
         originalImg.setAttribute('src', createdProfile.material.icon);
 
         ifBoxesNumberIsChanging();
-
-        currentlySelectedProfile.reset();
     })
 }
