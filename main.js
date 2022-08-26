@@ -82,6 +82,7 @@ class profile {
     {
         let prototype = Object.getPrototypeOf(this);
         let cloned = Object.create(prototype);
+        console.log(cloned)
 
         cloned.name = this.name;
         cloned.values = this.values;
@@ -116,13 +117,13 @@ const materials = [
         new density("BB1,7 - 8,4", 8.4),
         new density("BB2 - 8,295", 8.295),
         new density("BB21, BC2 - 8,895", 8.895)
-    ], "./Images/material_1.jpg"),
+    ], "Images/materials_icons/material_braz_icon.png"),
     new material("Mosiądz", [
         new density("8,5", 8.5)
-    ], "Images/material_2.jpg"),
+    ], "./Images/materials_icons/material_mosiadz_icon.png"),
     new material("Miedź", [
         new density("8,9", 8.9)
-    ], "Images/material_2.jpg"),
+    ], "./Images/materials_icons/material_miedz_icon.png"),
     new material("Aluminium", [
         new density("2,7", 2.7),
         new density("EN AW-3103 2,749", 2.749),
@@ -138,7 +139,7 @@ const materials = [
         new density("EN AW-5005A 2,689", 2.689),
         new density("2,8", 2.8),
         new density("2,9", 2.9),
-    ], "Images/material_2.jpg"),
+    ], "./Images/materials_icons/material_aluminium_icon.png"),
     new material("Stal", [
         new density("7,85", 7.85),
         new density("7,5", 7.5),
@@ -147,88 +148,88 @@ const materials = [
         new density("7,9", 7.9),
         new density("8,0", 8.0),
         new density("8,1", 8.1),
-    ], "Images/material_2.jpg"),
+    ], "./Images/materials_icons/material_stal_icon.png"),
     new material("Stopy Cu-Ni", [
         new density("8,9", 8.9)
-    ], "Images/material_2.jpg"),
+    ], "./Images/materials_icons/material_miedzionikiel_icon.png"),
     new material("CuA18/BA8", [
         new density("7,8", 7.8)
-    ], "Images/material_2.jpg"),
+    ], "./Images/materials_icons/material_miedzionikiel_icon.png"),
     new material("Ołów", [
         new density("11,68", 11.68)
-    ], "Images/material_2.jpg"),
+    ], "./Images/materials_icons/material_olow_icon.png"),
     new material("Stopy ołowiu", [
         new density("9,9", 9.9)
-    ], "Images/material_2.jpg"),
+    ], "./Images/materials_icons/material_stopy_olowiu_icon.png"),
     new material("Cynk", [
         new density("7,2", 7.2)
-    ], "Images/material_2.jpg"),
+    ], "./Images/materials_icons/material_cynk_icon.png"),
     new material("Stopy cynku", [
         new density("6,7", 6.7)
-    ], "Images/material_2.jpg"),
+    ], "./Images/materials_icons/material_stopy_cynku_icon.png"),
     new material("Złoto", [
         new density("19,3", 19.3)
-    ], "Images/material_2.jpg"), //TODO: fill with correct material icons
+    ], "./Images/materials_icons/material_zloto_icon.png"), //TODO: fill with correct material icons
 ];
 
 let profiles = [
     new profile("Pręt okrągły", [
         profileValues[0],
         profileValues[1]
-    ], materials[0], "Images/circle.png", "Images/model.jpg"),
+    ], materials[0], "Images/profiles_icons/profile_pret_okragly_icon.png", "Images/models/pret_okragly.png"),
     new profile("Rura okrągła", [
         profileValues[0],
         profileValues[2],
         profileValues[1],
-    ], materials[0],"Images/square.png", "Images/model.jpg"),
+    ], materials[0], "Images/profiles_icons/profile_rura_okragla_icon.png", "Images/models/rura_okragla.png"),
     new profile("Pręt sześciokątny", [
         profileValues[3],
         profileValues[1]
-    ], materials[0],"Images/circle.png", "Images/model.jpg"),
+    ], materials[0], "Images/profiles_icons/profile_pret_szesciokatny_icon.png", "Images/models/pret_szesciokatny.png"),
     new profile("Rura sześciokątna", [
         profileValues[3],
         profileValues[4],
         profileValues[1],
-    ], materials[0], "Images/square.png", "Images/model.jpg"),
+    ], materials[0], "Images/profiles_icons/profile_rura_szesciokatna_icon.png", "Images/models/rura_szesciokatna.png"),
     new profile("Kwadrat", [
         profileValues[5],
         profileValues[1]
-    ], materials[0], "Images/square.png", "Images/model.jpg"),
+    ], materials[0], "Images/profiles_icons/profile_kwadrat_icon.png", "Images/models/kwadrat.png"),
     new profile("Blacha / płaskownik", [
         profileValues[6],
         profileValues[5],
         profileValues[1]
-    ], materials[0], "Images/square.png", "Images/model.jpg"),
+    ], materials[0], "Images/profiles_icons/profile_blacha-plaskownik_icon.png", "Images/models/blacha-plaskownik.png"),
     new profile("Profil zamknięty", [
         profileValues[3],
         profileValues[5],
         profileValues[2],
         profileValues[1]
-    ], materials[0], "Images/square.png", "Images/model.jpg"),
+    ], materials[0], "Images/profiles_icons/profile_profil_zamkniety_icon.png", "Images/models/profil_zamkniety.png"),
     new profile("Kątownik", [
         profileValues[3],
         profileValues[5],
         profileValues[2],
         profileValues[1]
-    ], materials[0], "Images/square.png", "Images/model.jpg"),
+    ], materials[0], "Images/profiles_icons/profile_katownik_icon.png", "Images/models/katownik.png"),
     new profile("Ceownik", [
         profileValues[3],
         profileValues[5],
         profileValues[2],
         profileValues[1]
-    ], materials[0], "Images/square.png", "Images/model.jpg"),
+    ], materials[0], "Images/profiles_icons/profile_ceownik_icon.png", "Images/models/ceownik.png"),
     new profile("Teownik", [
         profileValues[3],
         profileValues[5],
         profileValues[2],
         profileValues[1]
-    ], materials[0], "Images/square.png", "Images/model.jpg"),
+    ], materials[0], "Images/profiles_icons/profile_teownik_icon.png", "Images/models/teownik.png"),
     new profile("Dwuteownik", [
         profileValues[3],
         profileValues[5],
         profileValues[2],
         profileValues[1]
-    ], materials[0], "Images/square.png", "Images/model.jpg")
+    ], materials[0], "Images/profiles_icons/profile_dwuteownik_icon.png", "Images/models/dwuteownik.png")
 ]
 
 function fillProfiles()
@@ -545,17 +546,22 @@ function DeleteButtonHover() {
     });
 }
 
+function GetCurrentValues(createdProfile) {
+    let valuesInput = document.querySelectorAll('.model-label-value');
+    for (let i = 0; i < createdProfile.values.length; i++) {
+        createdProfile.values[i].value = valuesInput[i].value;
+    }
+    createdProfile.pricePerKg = document.querySelector('#pricePerKg').value;
+    createdProfile.weight = document.querySelector('#weight').value;
+}
+
 function AddProfileToList() {
     document.querySelector("#addBtn").addEventListener('click', () => {
+        GetCurrentValues(currentlySelectedProfile);
         let createdProfile = currentlySelectedProfile.clone();
-        let valuesInput = document.querySelectorAll('.model-label-value');
-        for (let i = 0; i < createdProfile.values.length; i++) {
-            createdProfile.values[i].value = valuesInput[i].value;
-        }
-        createdProfile.pricePerKg = document.querySelector('#pricePerKg').value;
-        createdProfile.weight = document.querySelector('#weight').value;
         createdProfiles.push(createdProfile);
-        console.log(createdProfile)
+        console.log(currentlySelectedProfile, createdProfile)
+
         let boxesContainer = document.querySelector("#boxesContainer");
         let profileElement = "";
         profileElement = "<div class=\"box-container\">" + 
@@ -614,5 +620,7 @@ function AddProfileToList() {
         originalImg.setAttribute('src', createdProfile.material.icon);
 
         ifBoxesNumberIsChanging();
+
+        currentlySelectedProfile.reset();
     })
 }
