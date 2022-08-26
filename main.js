@@ -232,8 +232,7 @@ let profiles = [
     ], materials[0], "Images/profiles_icons/profile_dwuteownik.png", "Images/models/dwuteownik.png")
 ]
 
-function fillProfiles()
-{
+function fillProfiles() {
     profilesDiv = document.querySelector('#profiles');
 
     profilesDiv.innerHTML = "";
@@ -257,8 +256,7 @@ function fillProfiles()
     });
 }
 
-function fillMaterials()
-{
+function fillMaterials() {
     materialsDiv = document.querySelector('#materials');
 
     materialsDiv.innerHTML = "";
@@ -324,16 +322,14 @@ function hoverModel(chosenText) {
     }
 }
 
-function selectProfile(index)
-{
+function selectProfile(index) {
     currentlySelectedProfile = profiles[index];
     console.log("selected profile: " + profiles[index].name);
     hoverModel("Wybierz materiał");
     AddFieldsToModel(currentlySelectedProfile);
 }
 
-function selectMaterial(index)
-{
+function selectMaterial(index) {
     currentlySelectedMaterial = materials[index];
     console.log("selected material " + materials[index].name);
 
@@ -341,8 +337,7 @@ function selectMaterial(index)
     hoverModel("Wybierz profil");
 }
 
-function selectDensity(index)
-{
+function selectDensity(index) {
     currentlySelectedDensity = currentlySelectedMaterial.densities[index];
     currentlySelectedMaterial.selectedDensityIndex = index;
     console.log('selected density: ' + currentlySelectedDensity.getFullName());
@@ -373,7 +368,7 @@ function Start() {
     document.querySelector("#boxesContainer").innerHTML = "";
 }
 
-function ChangeProfile(chosenShape, chosenProfileId){
+function ChangeProfile(chosenShape, chosenProfileId) {
     // unselect old
     if(modelProfile != null) {
         let originalImg = modelProfile.querySelector('img');
@@ -426,7 +421,6 @@ function ChangeMaterial(chosenMaterial, chosenMaterialId){
 
 Start();
 
-
 function Dropdown(elementDiv) {
     const selected = elementDiv.querySelector(".shape-selected");
     const optionsContainer = elementDiv.querySelector(".shape-container");
@@ -446,6 +440,7 @@ function Dropdown(elementDiv) {
     });
 }
 
+//TODO: nazwa funkcji do poprawy
 function ifBoxesNumberIsChanging() {
     const next = document.querySelector('.next.boxes-arrow');
     let carouselWidth = document.querySelector('.boxes-container').offsetWidth;
@@ -461,6 +456,7 @@ function ifBoxesNumberIsChanging() {
     }
 }
 
+//TODO: co to jest?
 window.addEventListener('resize', () => {
     ifBoxesNumberIsChanging();
 })
@@ -497,22 +493,32 @@ function Carousel() {
     })
 }
 
+function setProfileValue(idx, value)
+{
+
+}
+
 function AddFieldsToModel(clickedProfile) {
 
     modelDiv = document.querySelector('#modelContent');
 
     modelDiv.innerHTML = "";
     let profileElement = "";
+    //creating profile div
     profileElement = "<div class=\"row model-img\">\n" +
-            "<img alt=\"Model\" class=\"model-photo\" src=" + clickedProfile.image + "/>" +
+        "<img alt=\"Model\" class=\"model-photo\" src=" + clickedProfile.image + "/>" +
         "</div>\n" +
         "<div class=\"row model-labels\">\n";
-        for (let i = 0; i < clickedProfile.values.length; i++) {
-            profileElement += "<label class=\"model-label green\">\n" +
-                "<span class=\"model-label-name\">" + clickedProfile.values[i].getFullName() + "</span>\n" +
-                "<input class=\"model-label-value\"/>\n" +
-            "</label>\n";
-        }
+
+    //filling profile with dynamic values
+    for (let i = 0; i < clickedProfile.values.length; i++) {
+        profileElement += "<label class=\"model-label green\">\n" +
+        "<span class=\"model-label-name\">" + clickedProfile.values[i].getFullName() + "</span>\n" +
+        "<input class=\"model-label-value\"/>\n" + //TODO: add event that tells that this particular field has changed and with what value
+        "</label>\n";
+    }
+
+    //filling profile with static values
     profileElement += 
         "<label class=\"model-label\">\n" +
             "<span class=\"model-label-name\">Waga [kg]</span>\n" +
@@ -571,6 +577,9 @@ function AddProfileToList() {
         GetCurrentValues(currentlySelectedProfile);
         let createdProfile = currentlySelectedProfile.clone();
         createdProfiles.push(createdProfile);
+
+
+        //osobna funkcja czytajaca profile.
         console.log(currentlySelectedProfile, createdProfile)
 
         let boxesContainer = document.querySelector("#boxesContainer");
