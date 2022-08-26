@@ -328,7 +328,7 @@ function selectProfile(index)
     currentlySelectedProfile = profiles[index];
     console.log("selected profile: " + profiles[index].name);
     hoverModel("Wybierz materiał");
-    AddFieldsToMaterials(currentlySelectedProfile);
+    AddFieldsToModel(currentlySelectedProfile);
 }
 
 function selectMaterial(index)
@@ -369,7 +369,6 @@ function Start() {
     }
     Carousel();
     DeleteButtonHover();
-    ChangeCurrentProfileValues();
     document.querySelector("#boxesContainer").innerHTML = "";
 }
 
@@ -416,16 +415,6 @@ function ChangeMaterial(chosenMaterial, chosenMaterialId){
 }
 
 Start();
-
-function ChangeCurrentProfileValues() {
-    modelValues.forEach(function(item) {
-        item.addEventListener('change', () => {
-            for (let i = 0; i < values.length; i++) {
-                values[i] = parseFloat(modelValues[i].value);
-            }
-        });
-    });
-}
 
 
 function Dropdown(elementDiv) {
@@ -496,7 +485,7 @@ function Carousel() {
     })
 }
 
-function AddFieldsToMaterials(clickedProfile) {
+function AddFieldsToModel(clickedProfile) {
 
     modelDiv = document.querySelector('#modelContent');
 
@@ -506,7 +495,6 @@ function AddFieldsToMaterials(clickedProfile) {
             "<img alt=\"Model\" class=\"model-photo\" src=" + clickedProfile.image + "/>" +
         "</div>\n" +
         "<div class=\"row model-labels\">\n";
-        console.log(clickedProfile.values)
         for (let i = 0; i < clickedProfile.values.length; i++) {
             profileElement += "<label class=\"model-label green\">\n" +
                 "<span class=\"model-label-name\">" + clickedProfile.values[i].getFullName() + "</span>\n" +
@@ -516,11 +504,11 @@ function AddFieldsToMaterials(clickedProfile) {
     profileElement += 
         "<label class=\"model-label\">\n" +
             "<span class=\"model-label-name\">Waga [kg]</span>\n" +
-            "<input class=\"model-label-value\"/>\n" +
+            "<input id=\"weight\" class=\"model-label-value\"/>\n" +
         "</label>\n" +
         "<label class=\"model-label green\">\n" +
             "<span class=\"model-label-name\">Cena/kg [zł]</span>\n" +
-            "<input class=\"model-label-value\"/>\n" +
+            "<input id=\"pricePerKg\" class=\"model-label-value\"/>\n" +
         "</label>\n" +
         "<label class=\"model-label\">\n" +
             "<span class=\"model-label-name\">Wartość [zł]</span>\n" +
@@ -560,6 +548,12 @@ function DeleteButtonHover() {
 function AddProfileToList() {
     document.querySelector("#addBtn").addEventListener('click', () => {
         let createdProfile = currentlySelectedProfile.clone();
+        let valuesInput = document.querySelectorAll('.model-label-value');
+        for (let i = 0; i < createdProfile.values.length; i++) {
+            createdProfile.values[i].value = valuesInput[i].value;
+        }
+        createdProfile.pricePerKg = document.querySelector('#pricePerKg').value;
+        createdProfile.weight = document.querySelector('#weight').value;
         createdProfiles.push(createdProfile);
         console.log(createdProfile)
         let boxesContainer = document.querySelector("#boxesContainer");
