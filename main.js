@@ -522,15 +522,15 @@ function AddFieldsToModel(clickedProfile) {
     profileElement += 
         "<label class=\"model-label\">\n" +
             "<span class=\"model-label-name\">Waga [kg]</span>\n" +
-            "<input id=\"weight\" class=\"model-label-value\"/>\n" +
+            "<input id=\"weight\" class=\"model-label-value set-price\"/>\n" +
         "</label>\n" +
         "<label class=\"model-label green\">\n" +
             "<span class=\"model-label-name\">Cena/kg [zł]</span>\n" +
-            "<input id=\"pricePerKg\" class=\"model-label-value\"/>\n" +
+            "<input id=\"pricePerKg\" class=\"model-label-value set-price\"/>\n" +
         "</label>\n" +
         "<label class=\"model-label\">\n" +
             "<span class=\"model-label-name\">Wartość [zł]</span>\n" +
-            "<input class=\"model-label-value\"/>\n" +
+            "<input id=\"setPrice\" class=\"model-label-value set-price\"/>\n" +
         "</label>\n" +
         "<div class=\"model-label model-button\">\n" +
             "<button id=\"addBtn\"><span class=\"button-plus\">&#43;</span> &nbsp DODAJ</button>\n" +
@@ -542,6 +542,12 @@ function AddFieldsToModel(clickedProfile) {
     originalImg.setAttribute('src', clickedProfile.image);
 
     AddProfileToList();
+
+    modelDiv.querySelectorAll('.model-label-value:not(.set-price)').forEach((item, idx) => {
+        item.addEventListener('change', e => {
+            SetData(e.target.value, idx);
+        })
+    })
 }
 
 function DeleteButtonHover() {
@@ -601,7 +607,7 @@ function AddProfileToList() {
                     "<div class=\"box-labels\">";
                         for (let i = 0; i < createdProfile.values.length; i++) {
                             profileElement += "<div class=\"box-label\">" +
-                                createdProfile.values[i].name + " - " + createdProfile.values[i].letter + " = " + createdProfile.values[i].value + " " + createdProfile.values[i].unit +
+                                createdProfile.values[i].name + " - " + createdProfile.values[i].letter + " = <span class=\"box-label-value\">" + createdProfile.values[i].value + "</span> " + createdProfile.values[i].unit +
                             "</div>";
                         }
                         profileElement += "<div class=\"box-label\">" +
@@ -641,4 +647,9 @@ function AddProfileToList() {
 
         ifBoxesNumberIsChanging();
     })
+}
+
+function SetData(value, idx) {
+    console.log(value, idx);
+    document.querySelector('#setPrice').value = value;
 }
