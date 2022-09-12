@@ -10,42 +10,7 @@
     <div class="row left-div">
         <div id="model" class="model">
             <div id="modelContent" class="model-content">
-                <div class="row model-img">
-                    <img alt="Model" class="model-photo" src="Images/model.jpg" />
-                </div>
-                <div class="row model-labels">
-                    <label class="model-label green">
-                        <span class="model-label-name">Wysokość - <span style="color: #6a9768;">h</span> [mm]</span>
-                        <input class="model-label-value"/>
-                    </label>
-                    <label class="model-label green">
-                        <span class="model-label-name">Szerokość - <span style="color: #5ea9e8;">w</span> [mm]</span>
-                        <input class="model-label-value"/>
-                    </label>
-                    <label class="model-label green">
-                        <span class="model-label-name">Długość - <span style="color: #bc348e;">l</span> [mm]</span>
-                        <input class="model-label-value"/>
-                    </label>
-                    <label class="model-label green">
-                        <span class="model-label-name">Grubość ściany - <span style="color: #3b3682;">b</span> [mm]</span>
-                        <input class="model-label-value"/>
-                    </label>
-                    <label class="model-label">
-                        <span class="model-label-name">Waga [kg]</span>
-                        <input class="model-label-value"/>
-                    </label>
-                    <label class="model-label green">
-                        <span class="model-label-name">Cena/kg [zł]</span>
-                        <input class="model-label-value"/>
-                    </label>
-                    <label class="model-label">
-                        <span class="model-label-name">Wartość [zł]</span>
-                        <input class="model-label-value"/>
-                    </label>
-                    <div class="model-label model-button">
-                        <button id="addBtn"><span class="button-plus">&#43;</span> &nbsp DODAJ</button>
-                    </div>
-                </div>
+
             </div>
             <div id="modelHovered" class="model-hover hover">
                 <div class="hover-text">Wybierz profil</div>
@@ -55,39 +20,10 @@
     </div>
     <div class="row right-div">
         <div id="profiles" class="row shapes">
-            <div class="shape">
-                <img alt="shape" class="shape-img" src/>
-                <div class="shape-line"></div>
-                <div class="shape-name">Profil zamknięty</div>
-            </div>
+
         </div>
         <div id="materials" class="row shapes">
-            <div class="shape">
-                <div class="shape-clicked">
-                    <img alt="material" class="shape-circle" src />
-                    <div class="shape-line"></div>
-                    <div class="shape-material">Aluminium</div>
-                </div>
-                <div class="shape-box">
-                    <div class="shape-container">
-                        <div class="shape-option">
-                            <input class="shape-radio" id="materialDensity1" type="radio" name="category"/>
-                            <label for="materialDensity1">8,5 kg/dm&sup3</label>
-                        </div>
-                        <div class="shape-option">
-                            <input class="shape-radio" id="materialDensity2" type="radio" name="category"/>
-                            <label for="materialDensity2">8,5 kg/dm&sup3</label>
-                        </div>
-                        <div class="shape-option">
-                            <input class="shape-radio" id="materialDensity3" type="radio" name="category"/>
-                            <label for="materialDensity3">8,5 kg/dm&sup3</label>
-                        </div>
-                    </div>
-                    <div class="shape-selected">
-                        18,5 kg/dm&sup3
-                    </div>
-                </div>
-            </div>
+
         </div>
         <div class="row line"></div>
         <div class="row summary">
@@ -98,123 +34,14 @@
             <div class="row boxes-container">
                 <div class="boxes-inner">
                     <div id="boxesContainer" class="boxes-track">
-                        <div class="box-container">
-                            <div class="box">
-                                <div class="row left-box">
-                                    <div class="row box-shape">
-                                        <img alt="shape" class="box-img" src="Images/square.png" />
-                                        <div class="box-name">Profil zamknięty</div>
-                                    </div>
-                                    <div class="row box-shape">
-                                        <img alt="material" class="box-circle" src="Images/material_2.jpg" />
-                                        <div class="box-material">Aluminium</div>
-                                        <div class="box-desc">8,5 kg/dm&sup3</div>
-                                    </div>
-                                </div>
-                                <div class="row right-box">
-                                    <div class="box-labels">
-                                        <div class="box-label">
-                                            wysokość - h = <span class="box-value">13</span> mm
-                                        </div>
-                                        <div class="box-label">
-                                            szerodsadskość - w = <span class="box-value">27</span> mm
-                                        </div>
-                                        <div class="box-label">
-                                            grubość ściany - b = <span class="box-value">18</span> mm
-                                        </div>
-                                        <div class="box-label">
-                                            długość - l = <span class="box-value">3000</span> mm
-                                        </div>
-                                        <div class="box-label">
-                                            waga = <span class="box-value">0,762</span> kg
-                                        </div>
-                                        <div class="box-label">
-                                            cena/kg = <span class="box-value">48</span> zł
-                                        </div>
-                                        <br />
-                                        <div class="box-label">
-                                            wartość <span class="box-value">22,86</span> zł
-                                        </div>
-                                    </div>
-                                    <div class="box-button">
-                                        <button class="button-edit">EDYTUJ</button>
-                                    </div>
-                                    <div class="box-button">
-                                        <button class="button-delete">USUŃ</button>
-                                    </div>
-                                </div>
-                                <div class="box-hover hover">
-                                    <div class="box-hover-content">
-                                        <div>Czy napewno chcesz usunąć element?</div>
-                                        <button id="deleteButton">Usuń</button>
-                                        <button id="skipButton">Anuluj</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="box-container">
-                            <div class="box">
-                                <div class="row left-box">
-                                    <div class="row box-shape">
-                                        <img alt="shape" class="box-img" src="Images/square.png" />
-                                        <div class="box-name">Profil zamknięty</div>
-                                    </div>
-                                    <div class="row box-shape">
-                                        <img alt="material" class="box-circle" src="Images/material_2.jpg" />
-                                        <div class="box-material">Aluminium</div>
-                                        <div class="box-desc">8,5 kg/dm&sup3</div>
-                                    </div>
-                                </div>
-                                <div class="row right-box">
-                                    <div class="box-labels">
-                                        <div class="box-label">
-                                            wysokość - h = <span class="box-value">13</span> mm
-                                        </div>
-                                        <div class="box-label">
-                                            szerodsadskość - w = <span class="box-value">27</span> mm
-                                        </div>
-                                        <div class="box-label">
-                                            grubość ściany - b = <span class="box-value">18</span> mm
-                                        </div>
-                                        <div class="box-label">
-                                            długość - l = <span class="box-value">3000</span> mm
-                                        </div>
-                                        <div class="box-label">
-                                            waga = <span class="box-value">0,762</span> kg
-                                        </div>
-                                        <div class="box-label">
-                                            cena/kg = <span class="box-value">48</span> zł
-                                        </div>
-                                        <br />
-                                        <div class="box-label">
-                                            wartość <span class="box-value">22,86</span> zł
-                                        </div>
-                                    </div>
-                                    <div class="box-button">
-                                        <button class="button-edit">EDYTUJ</button>
-                                    </div>
-                                    <div class="box-button">
-                                        <button class="button-delete">USUŃ</button>
-                                    </div>
-                                </div>
-                                <div class="box-hover hover">
-                                    <div class="box-hover-content">
-                                        <div>Czy napewno chcesz usunąć element?</div>
-                                        <button id="deleteButton">Usuń</button>
-                                        <button id="skipButton">Anuluj</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        
+
                     </div>
                 </div>
                 <div class="boxes-nav">
                     <div class="boxes-arrow prev">
                         <img class="arrow-img" alt="arrow" src="Images/boxes-arrow.png" />
                     </div>
-                    <div class="boxes-arrow next">
+                    <div class="boxes-arrow next hide">
                         <img class="arrow-img" alt="arrow" src="Images/boxes-arrow.png" />
                     </div>
                 </div>

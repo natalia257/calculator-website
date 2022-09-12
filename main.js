@@ -1,18 +1,17 @@
-﻿let modelValues = document.querySelectorAll('.model-label-value');
+﻿let modelProfileDiv = undefined;
+let modelMaterialDiv = undefined;
+let currentlySelectedProfile = undefined;
+let currentlySelectedMaterial = undefined;
+let currentlySelectedDensity = undefined;
+let createdProfiles = [];
 
-let values = new Array(7);
-let modelProfile;
-let modelMaterial;
 
-let height = 13; 
-let width = 27;
-let length = 3000;
-let thickness = 18;
-let weight = 0.762;
-let pricePerKg = 48;
-let price = 22.86;
-
-//class definitions
+function Start() {
+    fillProfiles();
+    fillMaterials();
+    Carousel();
+    DeleteButtonHover();
+}
 
 class density {
     constructor(name, value) {
@@ -32,6 +31,14 @@ class density {
         name += " kg/dm&sup3"; //TODO: make it upper index to mark it as cubic rather than number next to unit.
         return name;
     }
+
+    clone()
+    {
+        let cloned = Object.create(this);
+        cloned.value = this.value;
+        cloned.name = this.name;
+        return cloned;
+    }
 }
 
 class material {
@@ -40,6 +47,16 @@ class material {
         this.densities = densities;
         this.icon = icon;
         this.selectedDensityIndex = 0;
+    }
+
+    clone()
+    {
+        let cloned = Object.create(this);
+        cloned.name = this.name;
+        cloned.densities = this.densities;
+        cloned.icon = this.icon;
+        cloned.selectedDensityIndex = this.selectedDensityIndex;
+        return cloned;
     }
 }
 
@@ -80,10 +97,7 @@ class profile {
 
     clone() 
     {
-        let prototype = Object.getPrototypeOf(this);
-        let cloned = Object.create(prototype);
-        console.log(cloned)
-
+        let cloned = Object.create(this);
         cloned.name = this.name;
         cloned.values = this.values;
         cloned.material = this.material;
@@ -91,7 +105,6 @@ class profile {
         cloned.pricePerKg = this.pricePerKg;
         cloned.icon = this.icon;
         cloned.image = this.image;
-
         return cloned;
     }
 }
@@ -331,95 +344,54 @@ function selectProfile(index) {
 
 function selectMaterial(index) {
     currentlySelectedMaterial = materials[index];
-    console.log("selected material " + materials[index].name);
-
-    selectDensity(currentlySelectedMaterial.selectedDensityIndex);
+    console.log("selected material: " + materials[index].name);
+    selectDensity(0);
     hoverModel("Wybierz profil");
 }
 
 function selectDensity(index) {
     currentlySelectedDensity = currentlySelectedMaterial.densities[index];
     currentlySelectedMaterial.selectedDensityIndex = index;
-    console.log('selected density: ' + currentlySelectedDensity.getFullName());
+    console.log("selected density: " + currentlySelectedMaterial.densities[index].name);
 }
 
-let currentlySelectedProfile = undefined;
-let currentlySelectedMaterial = undefined;
-let currentlySelectedDensity = undefined;
-let createdProfiles = [];
+function unselectImage(model, folderName, firstnameId, lastnameName) {
+    let originalImg = model.querySelector('img');
+    let src = originalImg.getAttribute('src');
+    let nameShape = src.substring(firstnameId, src.indexOf(lastnameName));
+    originalImg.setAttribute('src', folderName + nameShape + '.png');
+    model.classList.remove('green');
+}
 
-function Start() {
-    fillProfiles();
-    fillMaterials();
-    values = [
-        height = 17,
-        width = 27,
-        length = 3000,
-        thickness = 18,
-        weight = 0.762,
-        pricePerKg = 48,
-        price = 22.86
-    ];
-    for (let i = 0; i < values.length; i++) {
-        modelValues[i].value = values[i];
-    }
-    Carousel();
-    DeleteButtonHover();
-    document.querySelector("#boxesContainer").innerHTML = "";
+function selectImage(model, folderName, firstnameId, lastnameName) {
+    model.classList.add('green');
+    let newOriginalImg = model.querySelector('img');
+    let newSrc = newOriginalImg.getAttribute('src');
+    let newNameShape = newSrc.substring(firstnameId, newSrc.indexOf(lastnameName));
+    newOriginalImg.setAttribute('src', folderName + newNameShape + '_selected.png');
 }
 
 function ChangeProfile(chosenShape, chosenProfileId) {
-    // unselect old
-    if(modelProfile != null) {
-        let originalImg = modelProfile.querySelector('img');
-        let src = originalImg.getAttribute('src');
-        let nameShape = src.substring(23, src.indexOf('_selected'));
-        originalImg.setAttribute('src', 'Images/profiles_icons/' + nameShape + '.png');
-        modelProfile.classList.remove('green');
+    if(modelProfileDiv != null) {
+        unselectImage(modelProfileDiv,  'Images/profiles_icons/', 23, '_selected')
     }
+    selectImage(chosenShape, 'Images/profiles_select/', 22, '.');
+    modelProfileDiv = chosenShape;
 
-    // select new
-    chosenShape.classList.add('green');
-    let newOriginalImg = chosenShape.querySelector('img');
-    let newSrc = newOriginalImg.getAttribute('src');
-    let newNameShape = newSrc.substring(22, newSrc.indexOf('.'));
-    newOriginalImg.setAttribute('src', 'Images/profiles_select/' + newNameShape + '_selected.png');
-
-    modelProfile = chosenShape;
     selectProfile(chosenProfileId);
 }
 
 function ChangeMaterial(chosenMaterial, chosenMaterialId){
-    // unselect old
-    if(modelMaterial != null) {
-        let originalImg = modelMaterial.querySelector('img');
-        let src = originalImg.getAttribute('src');
-        let nameShape = src.substring(24, src.indexOf('_selected'));
-        originalImg.setAttribute('src', 'Images/materials_icons/' + nameShape + '.png');
-        modelMaterial.classList.remove('show');
-        modelMaterial.classList.remove('green');
+    if(modelMaterialDiv != null) {
+        unselectImage(modelMaterialDiv,  'Images/materials_icons/', 24, '_selected');
     }
-
-    // select new
-    chosenMaterial.classList.add('green');
-    let newOriginalImg = chosenMaterial.querySelector('img');
-    let newSrc = newOriginalImg.getAttribute('src');
-    let newNameShape = newSrc.substring(23, newSrc.indexOf('.png'));
-    newOriginalImg.setAttribute('src', 'Images/materials_select/' + newNameShape + '_selected.png');
-
-    modelMaterial = chosenMaterial;
-
-    // select profile if only one
-    if(chosenMaterial.querySelector('.shape-single-box')) {
-        //console.log('select chosen profile')
-    }
+    selectImage(chosenMaterial, 'Images/materials_select/', 23, '.png');
+    modelMaterialDiv = chosenMaterial;
 
     selectMaterial(chosenMaterialId);
     if(currentlySelectedMaterial == undefined)
         return;
 }
-
-Start();
 
 function Dropdown(elementDiv) {
     const selected = elementDiv.querySelector(".shape-selected");
@@ -493,11 +465,6 @@ function Carousel() {
     })
 }
 
-function setProfileValue(idx, value)
-{
-
-}
-
 function AddFieldsToModel(clickedProfile) {
 
     modelDiv = document.querySelector('#modelContent');
@@ -569,6 +536,26 @@ function DeleteButtonHover() {
     });
 }
 
+function SetData(value, idx) {
+    currentlySelectedProfile.values[idx].value = value;
+}
+
+function ResetCurrentlySelectedProfile() {
+    currentlySelectedProfile = undefined;
+    currentlySelectedMaterial = undefined;
+    currentlySelectedDensity = undefined;
+    modelProfileDiv = undefined;
+    modelMaterialDiv = undefined;
+
+    hoverModel("Wybierz profil");
+
+    let profileDiv = document.querySelector('#profiles .green');
+    let materialDiv = document.querySelector('#materials .green');
+
+    unselectImage(profileDiv, 'Images/profiles_icons/', 23, '_selected')
+    unselectImage(materialDiv, 'Images/materials_icons/', 24, '_selected')
+}
+
 function GetCurrentValues(createdProfile) {
     let valuesInput = document.querySelectorAll('.model-label-value');
     for (let i = 0; i < createdProfile.values.length; i++) {
@@ -580,13 +567,15 @@ function GetCurrentValues(createdProfile) {
 
 function AddProfileToList() {
     document.querySelector("#addBtn").addEventListener('click', () => {
-        GetCurrentValues(currentlySelectedProfile);
         let createdProfile = currentlySelectedProfile.clone();
-        createdProfiles.push(createdProfile);
+        createdProfile.material = currentlySelectedMaterial.clone();
+        createdProfile.material.densities = currentlySelectedDensity.clone();
+        GetCurrentValues(createdProfile);
 
+        createdProfiles.push(createdProfile);
+        ResetCurrentlySelectedProfile();
 
         //osobna funkcja czytajaca profile.
-        console.log(currentlySelectedProfile, createdProfile)
 
         let boxesContainer = document.querySelector("#boxesContainer");
         let profileElement = "";
@@ -600,7 +589,7 @@ function AddProfileToList() {
                     "<div class=\"row box-shape\">" +
                         "<img alt=\"material\" class=\"box-circle\" src=" + createdProfile.material.icon + " />" +
                         "<div class=\"box-material\">" + createdProfile.material.name + "</div>" +
-                        "<div class=\"box-desc\">" + createdProfile.material.densities[createdProfile.material.selectedDensityIndex].getFullName() + "</div>" +
+                        "<div class=\"box-desc\">" + createdProfile.material.densities.getFullName() + "</div>" +
                     "</div>" +
                 "</div>" +
                 "<div class=\"row right-box\">" +
@@ -639,17 +628,8 @@ function AddProfileToList() {
         
         boxesContainer.innerHTML += profileElement;
 
-        let originalImg = boxesContainer.querySelector('.box-img');
-        originalImg.setAttribute('src', createdProfile.icon);
-
-        originalImg = boxesContainer.querySelector('.box-circle');
-        originalImg.setAttribute('src', createdProfile.material.icon);
-
         ifBoxesNumberIsChanging();
     })
 }
 
-function SetData(value, idx) {
-    console.log(value, idx);
-    document.querySelector('#setPrice').value = value;
-}
+Start();
