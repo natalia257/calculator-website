@@ -489,7 +489,7 @@ function AddFieldsToModel(clickedProfile) {
     profileElement += 
         "<label class=\"model-label\">\n" +
             "<span class=\"model-label-name\">Waga [kg]</span>\n" +
-            "<input id=\"weight\" class=\"model-label-value set-price\"/>\n" +
+            "<input id=\"weight\" class=\"model-label-value set-price\" disabled/>\n" +
         "</label>\n" +
         "<label class=\"model-label green\">\n" +
             "<span class=\"model-label-name\">Cena/kg [zł]</span>\n" +
@@ -497,7 +497,7 @@ function AddFieldsToModel(clickedProfile) {
         "</label>\n" +
         "<label class=\"model-label\">\n" +
             "<span class=\"model-label-name\">Wartość [zł]</span>\n" +
-            "<input id=\"setPrice\" class=\"model-label-value set-price\"/>\n" +
+            "<input id=\"setPrice\" class=\"model-label-value set-price\" disabled/>\n" +
         "</label>\n" +
         "<div class=\"model-label model-button\">\n" +
             "<button id=\"addBtn\"><span class=\"button-plus\">&#43;</span> &nbsp DODAJ</button>\n" +
@@ -513,6 +513,7 @@ function AddFieldsToModel(clickedProfile) {
     modelDiv.querySelectorAll('.model-label-value:not(.set-price)').forEach((item, idx) => {
         item.addEventListener('change', e => {
             SetData(e.target.value, idx);
+            calculateProfile();
         })
     })
 }
@@ -565,12 +566,28 @@ function GetCurrentValues(createdProfile) {
     createdProfile.weight = document.querySelector('#weight').value;
 }
 
+function ifValuesHigherThanZero(profile) {
+    for (let i = 0; i < profile.values.length; i++) {
+        if(profile.values[i].value <= 0) {
+            return false;
+        }
+    }
+    if(profile.pricePerKg <= 0) {
+        return false;
+    }
+    return true;
+}
+
 function AddProfileToList() {
     document.querySelector("#addBtn").addEventListener('click', () => {
         let createdProfile = currentlySelectedProfile.clone();
         createdProfile.material = currentlySelectedMaterial.clone();
         createdProfile.material.densities = currentlySelectedDensity.clone();
         GetCurrentValues(createdProfile);
+
+        if(!ifValuesHigherThanZero(createdProfile)) {
+            return;
+        }
 
         createdProfiles.push(createdProfile);
         ResetCurrentlySelectedProfile();
@@ -630,6 +647,22 @@ function AddProfileToList() {
 
         ifBoxesNumberIsChanging();
     })
+}
+
+// function RoundNumber(l,n)
+// {
+//     r = Math.pow(10,n);
+//     return Math.round(l*r)/r;
+// }
+//
+function calculateProfile(profileId) {
+//     let density = currentlySelectedDensity.value;
+//     let profileName = currentlySelectedProfile;
+//     console.log(currentlySelectedProfile)
+//     let pricePerKg
+//     #weight = RoundNumber(weight,3);
+//     #setPrice = RoundNumber(weight * pricePerKg,2);
+
 }
 
 Start();
