@@ -239,6 +239,7 @@ function dwuteownik() {
     let p2 = (h-2*b)*(weight-b);
     weight = roundNumber((p1-p2)*l*density,3);
     let price = roundNumber(weight * pricePerKg,2);
+    weight = roundNumber(weight,3);
     document.querySelector('#weight').value = weight;
     document.querySelector('#setPrice').value = price;
 }
@@ -256,7 +257,7 @@ class profile {
     }
 
     getCost(){
-        return this.weight * this.pricePerKg;
+        return roundNumber(this.weight * this.pricePerKg, 2);
     }
 
     setMaterial(newMaterial)
@@ -701,6 +702,13 @@ function AddFieldsToModel(clickedProfile) {
             calculateProfile();
         })
     })
+
+    modelDiv.querySelectorAll('#pricePerKg').forEach((item, idx) => {
+        item.addEventListener('change', e => {
+            currentlySelectedProfile.weight = e.target.value;
+            calculateProfile();
+        })
+    })
 }
 
 function DeleteButtonHover() {
@@ -836,6 +844,7 @@ function AddProfileToList() {
 
 function calculateProfile() {
     GetCurrentValues(currentlySelectedProfile);
+    console.log(currentlySelectedProfile);
 
     if(!ifValuesHigherThanZero(currentlySelectedProfile)) {
         return;
