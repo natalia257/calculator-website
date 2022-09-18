@@ -10,7 +10,6 @@ function Start() {
     fillProfiles();
     fillMaterials();
     Carousel();
-    DeleteButtonHover();
 }
 
 class density {
@@ -712,22 +711,22 @@ function AddFieldsToModel(clickedProfile) {
 }
 
 function DeleteButtonHover() {
-    document.querySelectorAll(".button-delete").forEach((item, idx) => {
-        item.addEventListener('click', () => {
-            let boxHoverDiv = item.closest(".box").querySelector('.box-hover');
-            boxHoverDiv.classList.remove('hover');
+    console.log('tu');
+    document.querySelector(".button-delete").addEventListener('click', (item) => {
+        let boxHoverDiv = item.closest(".box").querySelector('.box-hover');
+        console.log(boxHoverDiv);
+        boxHoverDiv.classList.remove('hover');
 
-            boxHoverDiv.querySelector('#deleteButton').addEventListener('click', () => {
-                // to do: delete element from List
-                console.log("usuń element")
-                boxHoverDiv.classList.add('hover');
-            });
+        boxHoverDiv.querySelector('#deleteButton').addEventListener('click', () => {
+            // to do: delete element from List
+            console.log("usuń element")
+            boxHoverDiv.classList.add('hover');
+        });
 
-            boxHoverDiv.querySelector('#skipButton').addEventListener('click', () => {
-                boxHoverDiv.classList.add('hover');
-            });
-        })
-    });
+        boxHoverDiv.querySelector('#skipButton').addEventListener('click', () => {
+            boxHoverDiv.classList.add('hover');
+        });
+    })
 }
 
 function SetData(value, idx) {
@@ -788,8 +787,10 @@ function AddProfileToList() {
         //osobna funkcja czytajaca profile.
 
         let boxesContainer = document.querySelector("#boxesContainer");
+        // let profileElement = document.createElement('div');
+        // profileElement.classList.add('box-container');
         let profileElement = "";
-        profileElement = "<div class=\"box-container\">" + 
+        profileElement = "<div class=\"box-container\">" +
             "<div class=\"box\">" +
                 "<div class=\"row left-box\">" +
                     "<div class=\"row box-shape\">" +
@@ -835,8 +836,8 @@ function AddProfileToList() {
                 "</div>" +
             "</div>" +
         "</div>";
-        
-        boxesContainer.innerHTML += profileElement;
+
+        boxesContainer.insertAdjacentHTML('afterbegin', profileElement);
 
         ifBoxesNumberIsChanging();
     })
@@ -844,7 +845,6 @@ function AddProfileToList() {
 
 function calculateProfile() {
     GetCurrentValues(currentlySelectedProfile);
-    console.log(currentlySelectedProfile);
 
     if(!ifValuesHigherThanZero(currentlySelectedProfile)) {
         return;
