@@ -711,16 +711,16 @@ function AddFieldsToModel(clickedProfile) {
 }
 
 function DeleteButtonHover() {
+    let index = createdProfiles.length - 1;
     let deleteBtn = document.querySelector(".button-delete");
     deleteBtn.addEventListener('click', e => {
         let boxHoverDiv = deleteBtn.closest(".box").querySelector('.box-hover');
         boxHoverDiv.classList.remove('hover');
 
         boxHoverDiv.querySelector('#deleteButton').addEventListener('click', () => {
-            // to do: delete element from List
-
-            console.log("usuń element")
             boxHoverDiv.classList.add('hover');
+            delete createdProfiles[index];
+            boxHoverDiv.closest(".box-container").remove();
         });
 
         boxHoverDiv.querySelector('#skipButton').addEventListener('click', () => {
