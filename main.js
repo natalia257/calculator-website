@@ -711,14 +711,14 @@ function AddFieldsToModel(clickedProfile) {
 }
 
 function DeleteButtonHover() {
-    console.log('tu');
-    document.querySelector(".button-delete").addEventListener('click', (item) => {
-        let boxHoverDiv = item.closest(".box").querySelector('.box-hover');
-        console.log(boxHoverDiv);
+    let deleteBtn = document.querySelector(".button-delete");
+    deleteBtn.addEventListener('click', e => {
+        let boxHoverDiv = deleteBtn.closest(".box").querySelector('.box-hover');
         boxHoverDiv.classList.remove('hover');
 
         boxHoverDiv.querySelector('#deleteButton').addEventListener('click', () => {
             // to do: delete element from List
+
             console.log("usuń element")
             boxHoverDiv.classList.add('hover');
         });
@@ -840,6 +840,8 @@ function AddProfileToList() {
         boxesContainer.insertAdjacentHTML('afterbegin', profileElement);
 
         ifBoxesNumberIsChanging();
+
+        DeleteButtonHover();
     })
 }
 
@@ -849,8 +851,6 @@ function calculateProfile() {
     if(!ifValuesHigherThanZero(currentlySelectedProfile)) {
         return;
     }
-
-    console.log('tu1')
     currentlySelectedProfile.calculate();
 }
 
