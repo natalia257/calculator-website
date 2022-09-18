@@ -75,8 +75,176 @@ class profileValue {
     }
 }
 
+function roundNumber(l,n) {
+    r = Math.pow(10,n);
+    return Math.round(l*r)/r;
+}
+
+function pretokragly() {
+    let density = currentlySelectedDensity.value;
+    currentlySelectedProfile.pricePerKg = parseFloat(document.querySelector('#pricePerKg').value);
+    let pricePerKg = currentlySelectedProfile.pricePerKg;
+    let r = parseFloat(currentlySelectedProfile.values[0].value) /2 /100;
+    let l = parseFloat(currentlySelectedProfile.values[1].value) /100;
+    let p = Math.PI * Math.pow(r,2);
+    let weight = roundNumber(p*l*density,3);
+    let price = roundNumber(weight * pricePerKg,2);
+    document.querySelector('#weight').value = weight;
+    document.querySelector('#setPrice').value = price;
+}
+
+function ruraokragla() {
+    let density = currentlySelectedDensity.value;
+    currentlySelectedProfile.pricePerKg = parseFloat(document.querySelector('#pricePerKg').value);
+    let pricePerKg = currentlySelectedProfile.pricePerKg;
+    let r = parseFloat(currentlySelectedProfile.values[0].value) /2 /100;
+    let r2 = r - (parseFloat(currentlySelectedProfile.values[1].value) /100);
+    let l = parseFloat(currentlySelectedProfile.values[2].value) /100;
+    let p1 = Math.PI * Math.pow(r,2);
+    let p2 = Math.PI * Math.pow(r2,2);
+    let weight = roundNumber((p1-p2)*l*density,3);
+    let price = roundNumber(weight * pricePerKg,2);
+    document.querySelector('#weight').value = weight;
+    document.querySelector('#setPrice').value = price;
+}
+
+function pretszesciokatny() {
+    let density = currentlySelectedDensity.value;
+    currentlySelectedProfile.pricePerKg = parseFloat(document.querySelector('#pricePerKg').value);
+    let pricePerKg = currentlySelectedProfile.pricePerKg;
+    let h = parseFloat(currentlySelectedProfile.values[0].value) /2 /100;
+    let l = parseFloat(currentlySelectedProfile.values[1].value) /100;
+    let p = 2 * Math.pow(h,2)* Math.sqrt(3);
+    let weight = roundNumber(p*l*density,3);
+    let price = roundNumber(weight * pricePerKg,2);
+    document.querySelector('#weight').value = weight;
+    document.querySelector('#setPrice').value = price;
+}
+
+function ruraszesciotna() {
+    let density = currentlySelectedDensity.value;
+    currentlySelectedProfile.pricePerKg = parseFloat(document.querySelector('#pricePerKg').value);
+    let pricePerKg = currentlySelectedProfile.pricePerKg;
+    let h = parseFloat(currentlySelectedProfile.values[0].value) /2 /100;
+    let b = parseFloat(currentlySelectedProfile.values[1].value) /2 /100;
+    let l = parseFloat(currentlySelectedProfile.values[2].value) /100;
+    let p1 = 2 * Math.pow(h,2)* Math.sqrt(3);
+    let p2 = Math.PI * Math.pow(b,2);
+    let weight = roundNumber((p1-p2)*l*density,3);
+    let price = roundNumber(weight * pricePerKg,2);
+    document.querySelector('#weight').value = weight;
+    document.querySelector('#setPrice').value = price;
+}
+
+function kwadrat() {
+    let density = currentlySelectedDensity.value;
+    currentlySelectedProfile.pricePerKg = parseFloat(document.querySelector('#pricePerKg').value);
+    let pricePerKg = currentlySelectedProfile.pricePerKg;
+    let weight = parseFloat(currentlySelectedProfile.values[0].value) /100;
+    let l = parseFloat(currentlySelectedProfile.values[1].value) /100;
+    let p = weight * weight;
+    weight = roundNumber(p*l*density,3);
+    let price = roundNumber(weight * pricePerKg,2);
+    document.querySelector('#weight').value = weight;
+    document.querySelector('#setPrice').value = price;
+}
+
+function blacha() {
+    let density = currentlySelectedDensity.value;
+    currentlySelectedProfile.pricePerKg = parseFloat(document.querySelector('#pricePerKg').value);
+    let pricePerKg = currentlySelectedProfile.pricePerKg;
+    let h = parseFloat(currentlySelectedProfile.values[0].value) /100;
+    let weight = parseFloat(currentlySelectedProfile.values[1].value) /100;
+    let l = parseFloat(currentlySelectedProfile.values[2].value) /100;
+    let p = h * weight;
+    weight = roundNumber(p*l*density,3);
+    let price = roundNumber(weight * pricePerKg,2);
+    document.querySelector('#weight').value = weight;
+    document.querySelector('#setPrice').value = price;
+}
+
+function profilzamkniety() {
+    let density = currentlySelectedDensity.value;
+    currentlySelectedProfile.pricePerKg = parseFloat(document.querySelector('#pricePerKg').value);
+    let pricePerKg = currentlySelectedProfile.pricePerKg;
+    let h = parseFloat(currentlySelectedProfile.values[0].value) /100;
+    let weight = parseFloat(currentlySelectedProfile.values[1].value) /100;
+    let b = parseFloat(currentlySelectedProfile.values[2].value) /100;
+    let l = parseFloat(currentlySelectedProfile.values[3].value) /100;
+    let p1 = h * weight;
+    let p2 = (h-2*b)*(weight-2*b);
+    weight = roundNumber((p1-p2)*l*density,3);
+    let price = roundNumber(weight * pricePerKg,2);
+    document.querySelector('#weight').value = weight;
+    document.querySelector('#setPrice').value = price;
+}
+
+function katownik() {
+    let density = currentlySelectedDensity.value;
+    currentlySelectedProfile.pricePerKg = parseFloat(document.querySelector('#pricePerKg').value);
+    let pricePerKg = currentlySelectedProfile.pricePerKg;
+    let h = parseFloat(currentlySelectedProfile.values[0].value) /100;
+    let weight = parseFloat(currentlySelectedProfile.values[1].value) /100;
+    let b = parseFloat(currentlySelectedProfile.values[2].value) /100;
+    let l = parseFloat(currentlySelectedProfile.values[3].value) /100;
+    let p1 = h * weight;
+    let p2 = (h-b)*(weight-b);
+    weight = roundNumber((p1-p2)*l*density,3);
+    let price = roundNumber(weight * pricePerKg,2);
+    document.querySelector('#weight').value = weight;
+    document.querySelector('#setPrice').value = price;
+}
+
+function ceownik() {
+    let density = currentlySelectedDensity.value;
+    currentlySelectedProfile.pricePerKg = parseFloat(document.querySelector('#pricePerKg').value);
+    let pricePerKg = currentlySelectedProfile.pricePerKg;
+    let h = parseFloat(currentlySelectedProfile.values[0].value) /100;
+    let weight = parseFloat(currentlySelectedProfile.values[1].value) /100;
+    let b = parseFloat(currentlySelectedProfile.values[2].value) /100;
+    let l = parseFloat(currentlySelectedProfile.values[3].value) /100;
+    let p1 = h * weight;
+    let p2 = (h-2*b)*(weight-b);
+    weight = roundNumber((p1-p2)*l*density,3);
+    let price = roundNumber(weight * pricePerKg,2);
+    document.querySelector('#weight').value = weight;
+    document.querySelector('#setPrice').value = price;
+}
+
+function teownik() {
+    let density = currentlySelectedDensity.value;
+    currentlySelectedProfile.pricePerKg = parseFloat(document.querySelector('#pricePerKg').value);
+    let pricePerKg = currentlySelectedProfile.pricePerKg;
+    let h = parseFloat(currentlySelectedProfile.values[0].value) /100;
+    let weight = parseFloat(currentlySelectedProfile.values[1].value) /100;
+    let b = parseFloat(currentlySelectedProfile.values[2].value) /100;
+    let l = parseFloat(currentlySelectedProfile.values[3].value) /100;
+    let p1 = h * weight;
+    let p2 = (h-b)*(weight-b);
+    weight = roundNumber((p1-p2)*l*density,3);
+    let price = roundNumber(weight * pricePerKg,2);
+    document.querySelector('#weight').value = weight;
+    document.querySelector('#setPrice').value = price;
+}
+
+function dwuteownik() {
+    let density = currentlySelectedDensity.value;
+    currentlySelectedProfile.pricePerKg = parseFloat(document.querySelector('#pricePerKg').value);
+    let pricePerKg = currentlySelectedProfile.pricePerKg;
+    let h = parseFloat(currentlySelectedProfile.values[0].value) /100;
+    let weight = parseFloat(currentlySelectedProfile.values[1].value) /100;
+    let b = parseFloat(currentlySelectedProfile.values[2].value) /100;
+    let l = parseFloat(currentlySelectedProfile.values[3].value) /100;
+    let p1 = h * weight;
+    let p2 = (h-2*b)*(weight-b);
+    weight = roundNumber((p1-p2)*l*density,3);
+    let price = roundNumber(weight * pricePerKg,2);
+    document.querySelector('#weight').value = weight;
+    document.querySelector('#setPrice').value = price;
+}
+
 class profile {
-    constructor(name, values, material, icon, image) {
+    constructor(name, values, material, icon, image, calc) {
         this.name = name;
         this.values = values;
         this.material = material;
@@ -84,6 +252,7 @@ class profile {
         this.pricePerKg = 0;
         this.icon = icon;
         this.image = image;
+        this.calc = calc;
     }
 
     getCost(){
@@ -105,7 +274,12 @@ class profile {
         cloned.pricePerKg = this.pricePerKg;
         cloned.icon = this.icon;
         cloned.image = this.image;
+        cloned.calc = this.calc;
         return cloned;
+    }
+
+    calculate() {
+        this.calc();
     }
 }
 
@@ -189,60 +363,71 @@ let profiles = [
     new profile("Pręt okrągły", [
         profileValues[0],
         profileValues[1]
-    ], materials[0], "Images/profiles_icons/profile_pret_okragly.png", "Images/models/pret_okragly.png"),
+    ], materials[0], "Images/profiles_icons/profile_pret_okragly.png",
+        "Images/models/pret_okragly.png", pretokragly),
     new profile("Rura okrągła", [
         profileValues[0],
         profileValues[2],
         profileValues[1],
-    ], materials[0], "Images/profiles_icons/profile_rura_okragla.png", "Images/models/rura_okragla.png"),
+    ], materials[0], "Images/profiles_icons/profile_rura_okragla.png",
+        "Images/models/rura_okragla.png", ruraokragla),
     new profile("Pręt sześciokątny", [
         profileValues[3],
         profileValues[1]
-    ], materials[0], "Images/profiles_icons/profile_pret_szesciokatny.png", "Images/models/pret_szesciokatny.png"),
+    ], materials[0], "Images/profiles_icons/profile_pret_szesciokatny.png",
+        "Images/models/pret_szesciokatny.png", pretszesciokatny),
     new profile("Rura sześciokątna", [
         profileValues[3],
         profileValues[4],
         profileValues[1],
-    ], materials[0], "Images/profiles_icons/profile_rura_szesciokatna.png", "Images/models/rura_szesciokatna.png"),
+    ], materials[0], "Images/profiles_icons/profile_rura_szesciokatna.png",
+        "Images/models/rura_szesciokatna.png", ruraszesciotna),
     new profile("Kwadrat", [
         profileValues[5],
         profileValues[1]
-    ], materials[0], "Images/profiles_icons/profile_kwadrat.png", "Images/models/kwadrat.png"),
+    ], materials[0], "Images/profiles_icons/profile_kwadrat.png",
+        "Images/models/kwadrat.png", kwadrat),
     new profile("Blacha / płaskownik", [
         profileValues[6],
         profileValues[5],
         profileValues[1]
-    ], materials[0], "Images/profiles_icons/profile_blacha-plaskownik.png", "Images/models/blacha-plaskownik.png"),
+    ], materials[0], "Images/profiles_icons/profile_blacha-plaskownik.png",
+        "Images/models/blacha-plaskownik.png", blacha),
     new profile("Profil zamknięty", [
         profileValues[3],
         profileValues[5],
         profileValues[2],
         profileValues[1]
-    ], materials[0], "Images/profiles_icons/profile_profil_zamkniety.png", "Images/models/profil_zamkniety.png"),
+    ], materials[0], "Images/profiles_icons/profile_profil_zamkniety.png",
+        "Images/models/profil_zamkniety.png", profilzamkniety),
     new profile("Kątownik", [
         profileValues[3],
         profileValues[5],
         profileValues[2],
         profileValues[1]
-    ], materials[0], "Images/profiles_icons/profile_katownik.png", "Images/models/katownik.png"),
+    ], materials[0], "Images/profiles_icons/profile_katownik.png",
+        "Images/models/katownik.png", katownik),
     new profile("Ceownik", [
         profileValues[3],
         profileValues[5],
         profileValues[2],
         profileValues[1]
-    ], materials[0], "Images/profiles_icons/profile_ceownik.png", "Images/models/ceownik.png"),
+    ], materials[0], "Images/profiles_icons/profile_ceownik.png",
+        "Images/models/ceownik.png", ceownik),
     new profile("Teownik", [
         profileValues[3],
         profileValues[5],
         profileValues[2],
         profileValues[1]
-    ], materials[0], "Images/profiles_icons/profile_teownik.png", "Images/models/teownik.png"),
+    ], materials[0], "Images/profiles_icons/profile_teownik.png",
+        "Images/models/teownik.png", teownik),
     new profile("Dwuteownik", [
         profileValues[3],
         profileValues[5],
         profileValues[2],
         profileValues[1]
-    ], materials[0], "Images/profiles_icons/profile_dwuteownik.png", "Images/models/dwuteownik.png")
+    ], materials[0], "Images/profiles_icons/profile_dwuteownik.png",
+        "Images/models/dwuteownik.png", dwuteownik)
 ]
 
 function fillProfiles() {
@@ -649,20 +834,15 @@ function AddProfileToList() {
     })
 }
 
-// function RoundNumber(l,n)
-// {
-//     r = Math.pow(10,n);
-//     return Math.round(l*r)/r;
-// }
-//
-function calculateProfile(profileId) {
-//     let density = currentlySelectedDensity.value;
-//     let profileName = currentlySelectedProfile;
-//     console.log(currentlySelectedProfile)
-//     let pricePerKg
-//     #weight = RoundNumber(weight,3);
-//     #setPrice = RoundNumber(weight * pricePerKg,2);
+function calculateProfile() {
+    GetCurrentValues(currentlySelectedProfile);
 
+    if(!ifValuesHigherThanZero(currentlySelectedProfile)) {
+        return;
+    }
+
+    console.log('tu1')
+    currentlySelectedProfile.calculate();
 }
 
 Start();
