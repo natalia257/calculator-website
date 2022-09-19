@@ -59,7 +59,8 @@ input[type="text"]
 
 .right-div {
     width: 80%;
-    color: #dfdfdf;
+    /*color: #dfdfdf;*/
+    color: black;
 }
 
 /* MODEL ---------------------------------------------------------------------------------------------*/
@@ -382,6 +383,10 @@ input[type="text"]
     box-sizing: border-box;
 }
 
+.box.chosen {
+    background: #6a9768;
+}
+
 .box-hover {
     display: block;
     position: absolute;
@@ -411,7 +416,7 @@ input[type="text"]
 .left-box {
     height: 100%;
     width: 30%;
-    border-right: 1px solid #dfdfdf;
+    border-right: 1px solid #599c50;
     text-align: center;
 }
 

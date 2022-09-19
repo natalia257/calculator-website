@@ -776,9 +776,10 @@ function addProfile() {
     }
 
     createdProfiles.push(createdProfile);
+    let index = createdProfiles.length - 1;
     let boxesContainer = document.querySelector("#boxesContainer");
     let profileElement = "";
-    profileElement = "<div class=\"box-container\">" +
+    profileElement = "<div class=\"box-container\" data-value=" + index + ">" +
         "<div class=\"box\">" +
         "<div class=\"row left-box\">" +
         "<div class=\"row box-shape\">" +
@@ -836,9 +837,9 @@ function addProfile() {
 
     ifBoxesNumberIsChanging();
 
-    DeleteButtonHover();
+    DeleteButtonHover(index);
 
-    EditButtonHover();
+    EditButtonHover(index);
 }
 
 function AddProfileToList() {
@@ -848,8 +849,7 @@ function AddProfileToList() {
     })
 }
 
-function DeleteButtonHover() {
-    let index = createdProfiles.length - 1;
+function DeleteButtonHover(index) {
     let deleteBtn = document.querySelector(".button-delete");
     deleteBtn.addEventListener('click', e => {
         let boxHoverDiv = deleteBtn.closest(".box").querySelector('.box-hover');
@@ -867,9 +867,9 @@ function DeleteButtonHover() {
     })
 }
 
-function EditButtonHover() {
-    let index = createdProfiles.length - 1;
+function EditButtonHover(index) {
     let editBtn = document.querySelector(".button-edit");
+    let boxDiv = editBtn.closest(".box");
     editBtn.addEventListener('click', e => {
         let boxHoverDiv = editBtn.closest(".box").querySelector('.box-hover-edit');
         boxHoverDiv.classList.remove('hover');
@@ -877,21 +877,13 @@ function EditButtonHover() {
         boxHoverDiv.querySelector('#addButton').addEventListener('click', () => {
             console.log('zapisz', createdProfiles,currentlySelectedDensity, currentlySelectedProfile, currentlySelectedProfile);
             boxHoverDiv.classList.add('hover');
-            editBtn.closest(".box").style.background = "yellow";
+            document.querySelectorAll(".box").forEach(item => item.classList.remove('chosen'));
+            boxDiv.classList.add('chosen');
             addProfile();
+            showProfile(createdProfiles[index]);
+            addEditButton(index);
 
-            currentlySelectedProfile = createdProfiles[index].clone();
-            currentlySelectedMaterial = createdProfiles[index].material.clone();
-            currentlySelectedDensity = createdProfiles[index].material.densities[createdProfiles[index].material.selectedDensityIndex];
 
-            let profilesDiv = document.querySelector('#profiles');
-            let profilesDivs = profilesDiv.querySelectorAll('.shape')[createdProfiles[index].id];
-            ChangeProfile(profilesDivs, createdProfiles[index].id);
-            let materialsDiv = document.querySelector('#materials');
-            let materialCircles = materialsDiv.querySelectorAll('.shape-clicked')[createdProfiles[index].material.id]
-            ChangeMaterial(materialCircles.parentElement, createdProfiles[index].material.id);
-            selectDensity(createdProfiles[index].material.selectedDensityIndex)
-            SetCurrentValues(createdProfiles[index]);
 
 
         });
@@ -899,8 +891,106 @@ function EditButtonHover() {
         boxHoverDiv.querySelector('#editButton').addEventListener('click', () => {
             console.log('edytuj')
             boxHoverDiv.classList.add('hover');
+            document.querySelectorAll(".box").forEach(item => item.classList.remove('chosen'));
+            boxDiv.classList.add('chosen');
+            showProfile(createdProfiles[index]);
+            addEditButton(index);
         });
     })
+}
+
+function addEditButton(index) {
+    document.querySelector('.model-button').innerHTML = "<button id=\"addBtn\"><span class=\"button-plus\">&#43;</span> DODAJ</button>\n" +
+        "<button id=\"editBtn\"><span class=\"button-plus\"></span>EDYTUJ</button>\n";
+    document.querySelector('#editBtn').addEventListener('click', () => {
+        let createdProfile = currentlySelectedProfile.clone();
+        createdProfile.material = currentlySelectedMaterial.clone();
+        createdProfile.material.selectedDensityIndex = currentlySelectedMaterial.selectedDensityIndex;
+        GetCurrentValues(createdProfile);
+
+        if (!ifValuesHigherThanZero(createdProfile)) {
+            return;
+        }
+        let boxContainer = document.querySelector("#boxesContainer").querySelector(".box-container[data-value=\"" + index + "\"]");
+        console.log(boxContainer);
+        let profileElement = "";
+        profileElement = "<div class=\"box\">" +
+            "<div class=\"row left-box\">" +
+            "<div class=\"row box-shape\">" +
+            "<img alt=\"shape\" class=\"box-img\" src=" + createdProfile.icon + " />" +
+            "<div class=\"box-name\">" + createdProfile.name + "</div>" +
+            "</div>" +
+            "<div class=\"row box-shape\">" +
+            "<img alt=\"material\" class=\"box-circle\" src=" + createdProfile.material.icon + " />" +
+            "<div class=\"box-material\">" + createdProfile.material.name + "</div>" +
+            "<div class=\"box-desc\">" + createdProfile.material.densities[createdProfile.material.selectedDensityIndex].getFullName() + "</div>" +
+            "</div>" +
+            "</div>" +
+            "<div class=\"row right-box\">" +
+            "<div class=\"box-labels\">";
+        for (let i = 0; i < createdProfile.values.length; i++) {
+            profileElement += "<div class=\"box-label\">" +
+                createdProfile.values[i].name + " - " + createdProfile.values[i].letter + " = <span class=\"box-label-value\">" + createdProfile.values[i].value + "</span> " + createdProfile.values[i].unit +
+                "</div>";
+        }
+        profileElement += "<div class=\"box-label\">" +
+            "Waga = " + createdProfile.weight + " kg" +
+            "</div>" +
+            "<div class=\"box-label\">" +
+            "Cena/kg = " + createdProfile.pricePerKg + " zł" +
+            "</div><br />" +
+            "<div class=\"box-label\">" +
+            "Wartość " + createdProfile.getCost() + " zł" +
+            "</div>" +
+            "</div>" +
+            "<div class=\"box-button\">" +
+            "<button class=\"button-edit\">EDYTUJ</button>" +
+            "</div>" +
+            "<div class=\"box-button\">" +
+            "<button class=\"button-delete\">USUŃ</button>" +
+            "</div>" +
+            "</div>" +
+            "<div class=\"box-hover hover\">" +
+            "<div class=\"box-hover-content\">" +
+            "<div>Czy napewno chcesz usunąć element?</div>" +
+            "<button id=\"deleteButton\">Usuń</button>" +
+            "<button id=\"skipButton\">Anuluj</button>" +
+            "</div>" +
+            "</div>" +
+            "<div class=\"box-hover hover box-hover-edit\">" +
+            "<div class=\"box-hover-content\">" +
+            "<div>Czy zapisać dotychczasowy profil?</div>" +
+            "<button id=\"addButton\">Zapisz</button>" +
+            "<button id=\"editButton\">Edytuj</button>" +
+            "</div>" +
+            "</div>" +
+            "</div>";
+
+        boxContainer.insertAdjacentHTML('afterbegin', profileElement);
+
+        ResetCurrentlySelectedProfile();
+    })
+}
+
+function editProfile() {
+
+}
+
+function showProfile(profile) {
+    console.log(profile)
+    currentlySelectedProfile = profile.clone();
+    currentlySelectedMaterial = profile.material.clone();
+    currentlySelectedDensity = profile.material.densities[profile.material.selectedDensityIndex];
+
+    let profilesDiv = document.querySelector('#profiles');
+    let profilesDivs = profilesDiv.querySelectorAll('.shape')[profile.id];
+    ChangeProfile(profilesDivs, profile.id);
+    let materialsDiv = document.querySelector('#materials');
+    let materialCircles = materialsDiv.querySelectorAll('.shape-clicked')[profile.material.id]
+    ChangeMaterial(materialCircles.parentElement, profile.material.id);
+    selectDensity(profile.material.selectedDensityIndex)
+    SetCurrentValues(profile);
+    calculateProfile();
 }
 
 function SetCurrentValues(createdProfile) {
