@@ -19,16 +19,6 @@ body {
     font-size: 10px;
 }
 
-button {
-    color: white;
-    background: black;
-    font-weight: bold;
-    border-radius: 5px;
-    font-size: 10px;
-    padding: 2px 10px;
-    cursor: pointer;
-}
-
 input[type="text"]
 {
     font-size: 16px;
@@ -136,6 +126,13 @@ input[type="text"]
 }
 
 .model-button button {
+    color: white;
+    background: black;
+    font-weight: bold;
+    border-radius: 5px;
+    font-size: 10px;
+    padding: 2px 10px;
+    cursor: pointer;
     margin-right: 10%;
     margin-top: 20px;
 }
@@ -400,7 +397,6 @@ input[type="text"]
 }
 
 .box-hover-content {
-    font-size: 14px;
     color: #5f9f56;
     margin: 0;
     position: absolute;
@@ -410,7 +406,7 @@ input[type="text"]
 }
 
 .box-hover-content button {
-    margin: 10px 10px 10px 0;
+    margin: 10px 10px 5px 0;
 }
 
 .left-box {
@@ -460,20 +456,20 @@ input[type="text"]
     padding-top: 5px;
 }
 
-.box-button {
-    width: 100%;
-}
-
-.button-edit{
+.box-buttons {
     position: absolute;
     right: 15px;
     bottom: 10px;
 }
 
-.button-delete {
-    position: absolute;
-    right: 90px;
-    bottom: 10px;
+.box button {
+    color: #808080;
+    font-weight: bold;
+    border: none;
+    font-family: inherit;
+    font-size: inherit;
+    cursor: pointer;
+    background: none;
 }
 
 .boxes-arrow {

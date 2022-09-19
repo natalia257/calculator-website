@@ -809,10 +809,9 @@ function addProfile() {
         "Wartość " + createdProfile.getCost() + " zł" +
         "</div>" +
         "</div>" +
-        "<div class=\"box-button\">" +
+        "<div class=\"box-buttons\">" +
         "<button class=\"button-edit\">EDYTUJ</button>" +
-        "</div>" +
-        "<div class=\"box-button\">" +
+        "<button class=\"button-duplicate\">DUPLIKUJ</button>" +
         "<button class=\"button-delete\">USUŃ</button>" +
         "</div>" +
         "</div>" +
@@ -840,6 +839,8 @@ function addProfile() {
     DeleteButtonHover(index);
 
     EditButtonHover(index);
+
+    DuplicateButton(index);
 }
 
 function AddProfileToList() {
@@ -892,6 +893,16 @@ function EditButtonHover(index) {
             showProfile(createdProfiles[index]);
             addEditButtonToModel(index);
         });
+    })
+}
+
+function DuplicateButton(index) {
+    let duplicateBtn = document.querySelector(".button-duplicate");
+    duplicateBtn.addEventListener('click', e => {
+        currentlySelectedProfile = createdProfiles[index].clone();
+        currentlySelectedMaterial = createdProfiles[index].material.clone();
+        currentlySelectedDensity = createdProfiles[index].material.densities[createdProfiles[index].material.selectedDensityIndex];
+        addProfile();
     })
 }
 
