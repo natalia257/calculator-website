@@ -881,11 +881,7 @@ function EditButtonHover(index) {
             boxDiv.classList.add('chosen');
             addProfile();
             showProfile(createdProfiles[index]);
-            addEditButton(index);
-
-
-
-
+            addEditButtonToModel(index);
         });
 
         boxHoverDiv.querySelector('#editButton').addEventListener('click', () => {
@@ -894,14 +890,19 @@ function EditButtonHover(index) {
             document.querySelectorAll(".box").forEach(item => item.classList.remove('chosen'));
             boxDiv.classList.add('chosen');
             showProfile(createdProfiles[index]);
-            addEditButton(index);
+            addEditButtonToModel(index);
         });
     })
 }
 
-function addEditButton(index) {
+function addEditButtonToModel(index) {
     document.querySelector('.model-button').innerHTML = "<button id=\"addBtn\"><span class=\"button-plus\">&#43;</span> DODAJ</button>\n" +
         "<button id=\"editBtn\"><span class=\"button-plus\"></span>EDYTUJ</button>\n";
+    document.querySelector("#addBtn").addEventListener('click', () => {
+        addProfile();
+        ResetCurrentlySelectedProfile();
+        document.querySelector(".box-container[data-value=\"" + index + "\"] .box").classList.remove('chosen');
+    })
     document.querySelector('#editBtn').addEventListener('click', () => {
         let createdProfile = currentlySelectedProfile.clone();
         createdProfile.material = currentlySelectedMaterial.clone();
@@ -911,12 +912,10 @@ function addEditButton(index) {
         if (!ifValuesHigherThanZero(createdProfile)) {
             return;
         }
-        let boxContainer = document.querySelector("#boxesContainer").querySelector(".box-container[data-value=\"" + index + "\"]");
-        console.log(boxContainer);
-        let profileElement = "";
-        profileElement = "<div class=\"box\">" +
-            "<div class=\"row left-box\">" +
-            "<div class=\"row box-shape\">" +
+
+        let leftBoxDiv = document.querySelector(".box-container[data-value=\"" + index + "\"] .left-box");
+        let labelsDiv = document.querySelector(".box-container[data-value=\"" + index + "\"] .box-labels");
+        let profileElement = "<div class=\"row box-shape\">" +
             "<img alt=\"shape\" class=\"box-img\" src=" + createdProfile.icon + " />" +
             "<div class=\"box-name\">" + createdProfile.name + "</div>" +
             "</div>" +
@@ -925,9 +924,10 @@ function addEditButton(index) {
             "<div class=\"box-material\">" + createdProfile.material.name + "</div>" +
             "<div class=\"box-desc\">" + createdProfile.material.densities[createdProfile.material.selectedDensityIndex].getFullName() + "</div>" +
             "</div>" +
-            "</div>" +
-            "<div class=\"row right-box\">" +
-            "<div class=\"box-labels\">";
+            "</div>";
+        leftBoxDiv.innerHTML = profileElement;
+
+        profileElement = "";
         for (let i = 0; i < createdProfile.values.length; i++) {
             profileElement += "<div class=\"box-label\">" +
                 createdProfile.values[i].name + " - " + createdProfile.values[i].letter + " = <span class=\"box-label-value\">" + createdProfile.values[i].value + "</span> " + createdProfile.values[i].unit +
@@ -941,39 +941,13 @@ function addEditButton(index) {
             "</div><br />" +
             "<div class=\"box-label\">" +
             "Wartość " + createdProfile.getCost() + " zł" +
-            "</div>" +
-            "</div>" +
-            "<div class=\"box-button\">" +
-            "<button class=\"button-edit\">EDYTUJ</button>" +
-            "</div>" +
-            "<div class=\"box-button\">" +
-            "<button class=\"button-delete\">USUŃ</button>" +
-            "</div>" +
-            "</div>" +
-            "<div class=\"box-hover hover\">" +
-            "<div class=\"box-hover-content\">" +
-            "<div>Czy napewno chcesz usunąć element?</div>" +
-            "<button id=\"deleteButton\">Usuń</button>" +
-            "<button id=\"skipButton\">Anuluj</button>" +
-            "</div>" +
-            "</div>" +
-            "<div class=\"box-hover hover box-hover-edit\">" +
-            "<div class=\"box-hover-content\">" +
-            "<div>Czy zapisać dotychczasowy profil?</div>" +
-            "<button id=\"addButton\">Zapisz</button>" +
-            "<button id=\"editButton\">Edytuj</button>" +
-            "</div>" +
-            "</div>" +
             "</div>";
+        labelsDiv.innerHTML = profileElement;
 
-        boxContainer.insertAdjacentHTML('afterbegin', profileElement);
+        createdProfiles[index] = createdProfile;
 
         ResetCurrentlySelectedProfile();
     })
-}
-
-function editProfile() {
-
 }
 
 function showProfile(profile) {
@@ -1010,7 +984,5 @@ function calculateProfile() {
     }
     currentlySelectedProfile.calculate();
 }
-
-
 
 Start();
