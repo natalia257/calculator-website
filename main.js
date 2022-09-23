@@ -10,6 +10,7 @@ function Start() {
     fillProfiles();
     fillMaterials();
     Carousel();
+    AddProfileToList();
 }
 
 class density {
@@ -661,7 +662,6 @@ function Carousel() {
 }
 
 function AddFieldsToModel(clickedProfile) {
-
     modelDiv = document.querySelector('#modelContent');
 
     modelDiv.innerHTML = "";
@@ -694,16 +694,12 @@ function AddFieldsToModel(clickedProfile) {
             "<span class=\"model-label-name\">Wartość [zł]</span>\n" +
             "<input id=\"setPrice\" class=\"model-label-value set-price\" disabled/>\n" +
         "</label>\n" +
-        "<div class=\"model-label model-button\">\n" +
-            "<button id=\"addBtn\"><span class=\"button-plus\">&#43;</span> &nbsp DODAJ</button>\n" +
-        "</div>\n" +
-    "</div>\n";
+        "</div>";
+
     modelDiv.innerHTML += profileElement;
 
     let originalImg = modelDiv.querySelector('.model-photo');
     originalImg.setAttribute('src', clickedProfile.image);
-
-    AddProfileToList();
 
     modelDiv.querySelectorAll('.model-label-value:not(.set-price)').forEach((item, idx) => {
         item.addEventListener('change', e => {
@@ -763,7 +759,7 @@ function ifValuesHigherThanZero(profile) {
 
 function addProfile() {
     if(!currentlySelectedProfile || !currentlySelectedMaterial || !currentlySelectedDensity) {
-        return;
+        return false;
     }
 
     let createdProfile = currentlySelectedProfile.clone();
@@ -772,9 +768,8 @@ function addProfile() {
     GetCurrentValues(createdProfile);
 
     if (!ifValuesHigherThanZero(createdProfile)) {
-        return;
+        return false;
     }
-
     createdProfiles.push(createdProfile);
     let index = createdProfiles.length - 1;
     let boxesContainer = document.querySelector("#boxesContainer");
@@ -810,9 +805,9 @@ function addProfile() {
         "</div>" +
         "</div>" +
         "<div class=\"box-buttons\">" +
-        "<button class=\"button-edit\">EDYTUJ</button>" +
-        "<button class=\"button-duplicate\">DUPLIKUJ</button>" +
-        "<button class=\"button-delete\">USUŃ</button>" +
+        "<button class=\"button-edit\"><img class=\"button-icon icon-edit\"/></button>" +
+        "<button class=\"button-duplicate\"><img class=\"button-icon icon-duplicate\"/></button>" +
+        "<button class=\"button-delete\"><img class=\"button-icon icon-delete\"/></button>" +
         "</div>" +
         "</div>" +
         "<div class=\"box-hover hover\">" +
@@ -834,6 +829,15 @@ function addProfile() {
 
     boxesContainer.insertAdjacentHTML('afterbegin', profileElement);
 
+    let editImg = boxesContainer.querySelector('.icon-edit');
+    editImg.setAttribute('src', "Images/icons/icon_edit-profile.png");
+
+    let duplicateImg = boxesContainer.querySelector('.icon-duplicate');
+    duplicateImg.setAttribute('src', "Images/icons/icon_duplicate-profile.png");
+
+    let deleteImg = boxesContainer.querySelector('.icon-delete');
+    deleteImg.setAttribute('src', "Images/icons/icon_delete-profile.png");
+
     ifBoxesNumberIsChanging();
 
     DeleteButtonHover(index);
@@ -844,9 +848,20 @@ function addProfile() {
 }
 
 function AddProfileToList() {
-    document.querySelector("#addBtn").addEventListener('click', () => {
-        addProfile();
-        ResetCurrentlySelectedProfile();
+    let addBtn = document.querySelector("#addBtn");
+    let originalImg = addBtn.querySelector('img');
+    originalImg.setAttribute('src', "Images/icons/icon_add-profile.png");
+
+    addBtn.addEventListener('click', () => {
+        if(addProfile()) {
+            ResetCurrentlySelectedProfile();
+            console.log(document.querySelector('#editBtn'))
+            if(document.querySelector('#editBtn')) {
+                document.querySelector(".box-container[data-value=\"" + index + "\"] .box").classList.remove('chosen');
+                if(document.querySelector('#editBtn'))
+                    document.querySelector('#editBtn').remove();
+            }
+        }
     })
 }
 
@@ -907,14 +922,12 @@ function DuplicateButton(index) {
 }
 
 function addEditButtonToModel(index) {
-    document.querySelector('.model-button').innerHTML = "<button id=\"addBtn\"><span class=\"button-plus\">&#43;</span> DODAJ</button>\n" +
-        "<button id=\"editBtn\"><span class=\"button-plus\"></span>EDYTUJ</button>\n";
-    document.querySelector("#addBtn").addEventListener('click', () => {
-        addProfile();
-        ResetCurrentlySelectedProfile();
-        document.querySelector(".box-container[data-value=\"" + index + "\"] .box").classList.remove('chosen');
-    })
-    document.querySelector('#editBtn').addEventListener('click', () => {
+    document.querySelector('.model-button').innerHTML += "<button id=\"editBtn\"><img class=\"button-icon icon-edit\"/></button>\n";
+    let editBtn = document.querySelector('#editBtn');
+    let originalImg = editBtn.querySelector('img');
+    originalImg.setAttribute('src', "Images/icons/icon_edit-profile.png");
+
+    editBtn.addEventListener('click', () => {
         let createdProfile = currentlySelectedProfile.clone();
         createdProfile.material = currentlySelectedMaterial.clone();
         createdProfile.material.selectedDensityIndex = currentlySelectedMaterial.selectedDensityIndex;
