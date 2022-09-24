@@ -22,7 +22,7 @@ class density {
     getFullName()
     {
         name = this.name;
-        if(name.length != 0)
+        if(name.length !== 0)
         {
             name += " ";
         }
@@ -77,175 +77,6 @@ class profileValue {
     }
 }
 
-function roundNumber(l,n) {
-    r = Math.pow(10,n);
-    return Math.round(l*r)/r;
-}
-
-function pretokragly() {
-    let density = currentlySelectedDensity.value;
-    currentlySelectedProfile.pricePerKg = parseFloat(document.querySelector('#pricePerKg').value);
-    let pricePerKg = currentlySelectedProfile.pricePerKg;
-    let r = parseFloat(currentlySelectedProfile.values[0].value) /2 /100;
-    let l = parseFloat(currentlySelectedProfile.values[1].value) /100;
-    let p = Math.PI * Math.pow(r,2);
-    let weight = roundNumber(p*l*density,3);
-    let price = roundNumber(weight * pricePerKg,2);
-    document.querySelector('#weight').value = weight;
-    document.querySelector('#setPrice').value = price;
-}
-
-function ruraokragla() {
-    let density = currentlySelectedDensity.value;
-    currentlySelectedProfile.pricePerKg = parseFloat(document.querySelector('#pricePerKg').value);
-    let pricePerKg = currentlySelectedProfile.pricePerKg;
-    let r = parseFloat(currentlySelectedProfile.values[0].value) /2 /100;
-    let r2 = r - (parseFloat(currentlySelectedProfile.values[1].value) /100);
-    let l = parseFloat(currentlySelectedProfile.values[2].value) /100;
-    let p1 = Math.PI * Math.pow(r,2);
-    let p2 = Math.PI * Math.pow(r2,2);
-    let weight = roundNumber((p1-p2)*l*density,3);
-    let price = roundNumber(weight * pricePerKg,2);
-    document.querySelector('#weight').value = weight;
-    document.querySelector('#setPrice').value = price;
-}
-
-function pretszesciokatny() {
-    let density = currentlySelectedDensity.value;
-    currentlySelectedProfile.pricePerKg = parseFloat(document.querySelector('#pricePerKg').value);
-    let pricePerKg = currentlySelectedProfile.pricePerKg;
-    let h = parseFloat(currentlySelectedProfile.values[0].value) /2 /100;
-    let l = parseFloat(currentlySelectedProfile.values[1].value) /100;
-    let p = 2 * Math.pow(h,2)* Math.sqrt(3);
-    let weight = roundNumber(p*l*density,3);
-    let price = roundNumber(weight * pricePerKg,2);
-    document.querySelector('#weight').value = weight;
-    document.querySelector('#setPrice').value = price;
-}
-
-function ruraszesciotna() {
-    let density = currentlySelectedDensity.value;
-    currentlySelectedProfile.pricePerKg = parseFloat(document.querySelector('#pricePerKg').value);
-    let pricePerKg = currentlySelectedProfile.pricePerKg;
-    let h = parseFloat(currentlySelectedProfile.values[0].value) /2 /100;
-    let b = parseFloat(currentlySelectedProfile.values[1].value) /2 /100;
-    let l = parseFloat(currentlySelectedProfile.values[2].value) /100;
-    let p1 = 2 * Math.pow(h,2)* Math.sqrt(3);
-    let p2 = Math.PI * Math.pow(b,2);
-    let weight = roundNumber((p1-p2)*l*density,3);
-    let price = roundNumber(weight * pricePerKg,2);
-    document.querySelector('#weight').value = weight;
-    document.querySelector('#setPrice').value = price;
-}
-
-function kwadrat() {
-    let density = currentlySelectedDensity.value;
-    currentlySelectedProfile.pricePerKg = parseFloat(document.querySelector('#pricePerKg').value);
-    let pricePerKg = currentlySelectedProfile.pricePerKg;
-    let weight = parseFloat(currentlySelectedProfile.values[0].value) /100;
-    let l = parseFloat(currentlySelectedProfile.values[1].value) /100;
-    let p = weight * weight;
-    weight = roundNumber(p*l*density,3);
-    let price = roundNumber(weight * pricePerKg,2);
-    document.querySelector('#weight').value = weight;
-    document.querySelector('#setPrice').value = price;
-}
-
-function blacha() {
-    let density = currentlySelectedDensity.value;
-    currentlySelectedProfile.pricePerKg = parseFloat(document.querySelector('#pricePerKg').value);
-    let pricePerKg = currentlySelectedProfile.pricePerKg;
-    let h = parseFloat(currentlySelectedProfile.values[0].value) /100;
-    let weight = parseFloat(currentlySelectedProfile.values[1].value) /100;
-    let l = parseFloat(currentlySelectedProfile.values[2].value) /100;
-    let p = h * weight;
-    weight = roundNumber(p*l*density,3);
-    let price = roundNumber(weight * pricePerKg,2);
-    document.querySelector('#weight').value = weight;
-    document.querySelector('#setPrice').value = price;
-}
-
-function profilzamkniety() {
-    let density = currentlySelectedDensity.value;
-    currentlySelectedProfile.pricePerKg = parseFloat(document.querySelector('#pricePerKg').value);
-    let pricePerKg = currentlySelectedProfile.pricePerKg;
-    let h = parseFloat(currentlySelectedProfile.values[0].value) /100;
-    let weight = parseFloat(currentlySelectedProfile.values[1].value) /100;
-    let b = parseFloat(currentlySelectedProfile.values[2].value) /100;
-    let l = parseFloat(currentlySelectedProfile.values[3].value) /100;
-    let p1 = h * weight;
-    let p2 = (h-2*b)*(weight-2*b);
-    weight = roundNumber((p1-p2)*l*density,3);
-    let price = roundNumber(weight * pricePerKg,2);
-    document.querySelector('#weight').value = weight;
-    document.querySelector('#setPrice').value = price;
-}
-
-function katownik() {
-    let density = currentlySelectedDensity.value;
-    currentlySelectedProfile.pricePerKg = parseFloat(document.querySelector('#pricePerKg').value);
-    let pricePerKg = currentlySelectedProfile.pricePerKg;
-    let h = parseFloat(currentlySelectedProfile.values[0].value) /100;
-    let weight = parseFloat(currentlySelectedProfile.values[1].value) /100;
-    let b = parseFloat(currentlySelectedProfile.values[2].value) /100;
-    let l = parseFloat(currentlySelectedProfile.values[3].value) /100;
-    let p1 = h * weight;
-    let p2 = (h-b)*(weight-b);
-    weight = roundNumber((p1-p2)*l*density,3);
-    let price = roundNumber(weight * pricePerKg,2);
-    document.querySelector('#weight').value = weight;
-    document.querySelector('#setPrice').value = price;
-}
-
-function ceownik() {
-    let density = currentlySelectedDensity.value;
-    currentlySelectedProfile.pricePerKg = parseFloat(document.querySelector('#pricePerKg').value);
-    let pricePerKg = currentlySelectedProfile.pricePerKg;
-    let h = parseFloat(currentlySelectedProfile.values[0].value) /100;
-    let weight = parseFloat(currentlySelectedProfile.values[1].value) /100;
-    let b = parseFloat(currentlySelectedProfile.values[2].value) /100;
-    let l = parseFloat(currentlySelectedProfile.values[3].value) /100;
-    let p1 = h * weight;
-    let p2 = (h-2*b)*(weight-b);
-    weight = roundNumber((p1-p2)*l*density,3);
-    let price = roundNumber(weight * pricePerKg,2);
-    document.querySelector('#weight').value = weight;
-    document.querySelector('#setPrice').value = price;
-}
-
-function teownik() {
-    let density = currentlySelectedDensity.value;
-    currentlySelectedProfile.pricePerKg = parseFloat(document.querySelector('#pricePerKg').value);
-    let pricePerKg = currentlySelectedProfile.pricePerKg;
-    let h = parseFloat(currentlySelectedProfile.values[0].value) /100;
-    let weight = parseFloat(currentlySelectedProfile.values[1].value) /100;
-    let b = parseFloat(currentlySelectedProfile.values[2].value) /100;
-    let l = parseFloat(currentlySelectedProfile.values[3].value) /100;
-    let p1 = h * weight;
-    let p2 = (h-b)*(weight-b);
-    weight = roundNumber((p1-p2)*l*density,3);
-    let price = roundNumber(weight * pricePerKg,2);
-    document.querySelector('#weight').value = weight;
-    document.querySelector('#setPrice').value = price;
-}
-
-function dwuteownik() {
-    let density = currentlySelectedDensity.value;
-    currentlySelectedProfile.pricePerKg = parseFloat(document.querySelector('#pricePerKg').value);
-    let pricePerKg = currentlySelectedProfile.pricePerKg;
-    let h = parseFloat(currentlySelectedProfile.values[0].value) /100;
-    let weight = parseFloat(currentlySelectedProfile.values[1].value) /100;
-    let b = parseFloat(currentlySelectedProfile.values[2].value) /100;
-    let l = parseFloat(currentlySelectedProfile.values[3].value) /100;
-    let p1 = h * weight;
-    let p2 = (h-2*b)*(weight-b);
-    weight = roundNumber((p1-p2)*l*density,3);
-    let price = roundNumber(weight * pricePerKg,2);
-    weight = roundNumber(weight,3);
-    document.querySelector('#weight').value = weight;
-    document.querySelector('#setPrice').value = price;
-}
-
 class profile {
     constructor(name, values, material, icon, image, calc) {
         this.name = name;
@@ -261,11 +92,6 @@ class profile {
 
     getCost(){
         return roundNumber(this.weight * this.pricePerKg, 2);
-    }
-
-    setMaterial(newMaterial)
-    {
-        this.material = newMaterial;
     }
 
     clone() 
@@ -436,7 +262,7 @@ let profiles = [
 ]
 
 function fillProfiles() {
-    profilesDiv = document.querySelector('#profiles');
+    let profilesDiv = document.querySelector('#profiles');
 
     profilesDiv.innerHTML = "";
     for(let i = 0; i < profiles.length; i++) {
@@ -448,7 +274,7 @@ function fillProfiles() {
             "</div>";
         profilesDiv.innerHTML += profileElement;
 
-        let originalImg = profilesDiv.lastChild.querySelector('.shape-img');
+        let originalImg = profilesDiv.querySelector('.shape:last-child .shape-img');
         originalImg.setAttribute('src', profiles[i].icon);
     }
 
@@ -460,7 +286,7 @@ function fillProfiles() {
 }
 
 function fillMaterials() {
-    materialsDiv = document.querySelector('#materials');
+    let materialsDiv = document.querySelector('#materials');
 
     materialsDiv.innerHTML = "";
     for (let i = 0; i < materials.length; i++) {
@@ -471,27 +297,26 @@ function fillMaterials() {
             "<div class=\"shape-line\"></div>" +
             "<div class=\"shape-material\">" + materials[i].name + "</div>" +
          "</div>";
-        
         if(materials[i].densities.length > 1) {
-            materialElement += "<div class=\"shape-box\">" + 
-            "<div class=\"shape-container\">";
-                for (let j = 0; j < materials[i].densities.length; j++) {
-                    let density = materials[i].densities[j];
-                    materialElement += "<div class=\"shape-option\">" + 
-                        "<input class=\"shape-radio\" id=\"materialDensity" + j + "\" type=\"radio\" name=\"category\"/>" + 
-                        "<label for=\"materialDensity" + j + "\">" + density.getFullName() + "</label>"
-                        + "</div>";
-                }
-                materialElement += "</div>";
-                materialElement += "<div class=\"shape-selected\">" +
-                    materials[i].densities[0].getFullName() +
+            materialElement += "<div class=\"shape-box\">" +
+                "<div class=\"shape-container\">";
+            for (let j = 0; j < materials[i].densities.length; j++) {
+                let density = materials[i].densities[j];
+                materialElement += "<div class=\"shape-option\">" +
+                    "<input class=\"shape-radio\" id=\"materialDensity" + j + "\" type=\"radio\" name=\"category\"/>" +
+                    "<label for=\"materialDensity" + j + "\">" + density.getFullName() + "</label>"
+                    + "</div>";
+            }
+            materialElement += "</div>";
+            materialElement += "<div class=\"shape-selected\">" +
+                materials[i].densities[0].getFullName() +
                 "</div>";
             materialElement += "</div>";
         }
         else {
             materialElement += "<div class=\"shape-single-box\">" +
                 materials[i].densities[0].getFullName() +
-            "</div>";
+                "</div>";
         }
         materialElement += "</div>";
 
@@ -502,7 +327,7 @@ function fillMaterials() {
             Dropdown(item);
         });
 
-        let originalImg = materialsDiv.lastChild.querySelector('.shape-circle');
+        let originalImg = materialsDiv.querySelector('.shape:last-child .shape-circle');
         originalImg.setAttribute('src', materials[i].icon);
     }
 
@@ -516,7 +341,7 @@ function fillMaterials() {
 function hoverModel(chosenText) {
     let hoverModelElement = document.querySelector('#modelHovered');
 
-    if(currentlySelectedMaterial != undefined && currentlySelectedProfile != undefined) {
+    if(currentlySelectedMaterial !== undefined && currentlySelectedProfile !== undefined) {
         hoverModelElement.classList.remove('hover');
     }
     else {
@@ -585,8 +410,6 @@ function ChangeMaterial(chosenMaterial, chosenMaterialId){
     modelMaterialDiv = chosenMaterial;
 
     selectMaterial(chosenMaterialId);
-    if(currentlySelectedMaterial == undefined)
-        return;
 }
 
 function Dropdown(elementDiv) {
@@ -662,12 +485,10 @@ function Carousel() {
 }
 
 function AddFieldsToModel(clickedProfile) {
-    modelDiv = document.querySelector('#modelContent');
+    let modelDiv = document.querySelector('#modelContent');
 
     modelDiv.innerHTML = "";
-    let profileElement = "";
-    //creating profile div
-    profileElement = "<div class=\"row model-img\">\n" +
+    let profileElement = "<div class=\"row model-img\">\n" +
         "<img alt=\"Model\" class=\"model-photo\" src=" + clickedProfile.image + "/>" +
         "</div>\n" +
         "<div class=\"row model-labels\">\n";
@@ -708,7 +529,7 @@ function AddFieldsToModel(clickedProfile) {
         })
     })
 
-    modelDiv.querySelectorAll('#pricePerKg').forEach((item, idx) => {
+    modelDiv.querySelectorAll('#pricePerKg').forEach((item) => {
         item.addEventListener('change', e => {
             currentlySelectedProfile.weight = e.target.value;
             calculateProfile();
@@ -751,10 +572,8 @@ function ifValuesHigherThanZero(profile) {
             return false;
         }
     }
-    if(profile.pricePerKg <= 0) {
-        return false;
-    }
-    return true;
+    return profile.pricePerKg > 0;
+
 }
 
 function addProfile() {
@@ -773,41 +592,17 @@ function addProfile() {
     createdProfiles.push(createdProfile);
     let index = createdProfiles.length - 1;
     let boxesContainer = document.querySelector("#boxesContainer");
-    let profileElement = "";
-    profileElement = "<div class=\"box-container\" data-value=" + index + ">" +
+    let profileElement = "<div class=\"box-container\" data-value=" + index + ">" +
         "<div class=\"box\">" +
         "<div class=\"row left-box\">" +
-        "<div class=\"row box-shape\">" +
-        "<img alt=\"shape\" class=\"box-img\" src=" + createdProfile.icon + " />" +
-        "<div class=\"box-name\">" + createdProfile.name + "</div>" +
-        "</div>" +
-        "<div class=\"row box-shape\">" +
-        "<img alt=\"material\" class=\"box-circle\" src=" + createdProfile.material.icon + " />" +
-        "<div class=\"box-material\">" + createdProfile.material.name + "</div>" +
-        "<div class=\"box-desc\">" + createdProfile.material.densities[createdProfile.material.selectedDensityIndex].getFullName() + "</div>" +
-        "</div>" +
         "</div>" +
         "<div class=\"row right-box\">" +
-        "<div class=\"box-labels\">";
-    for (let i = 0; i < createdProfile.values.length; i++) {
-        profileElement += "<div class=\"box-label\">" +
-            createdProfile.values[i].name + " - " + createdProfile.values[i].letter + " = <span class=\"box-label-value\">" + createdProfile.values[i].value + "</span> " + createdProfile.values[i].unit +
-            "</div>";
-    }
-    profileElement += "<div class=\"box-label\">" +
-        "Waga = " + createdProfile.weight + " kg" +
-        "</div>" +
-        "<div class=\"box-label\">" +
-        "Cena/kg = " + createdProfile.pricePerKg + " zł" +
-        "</div><br />" +
-        "<div class=\"box-label\">" +
-        "Wartość " + createdProfile.getCost() + " zł" +
-        "</div>" +
+        "<div class=\"box-labels\">" +
         "</div>" +
         "<div class=\"box-buttons\">" +
-        "<button class=\"button-edit\"><img class=\"button-icon icon-edit\"/></button>" +
-        "<button class=\"button-duplicate\"><img class=\"button-icon icon-duplicate\"/></button>" +
-        "<button class=\"button-delete\"><img class=\"button-icon icon-delete\"/></button>" +
+        "<button class=\"button-edit\"><img class=\"button-icon icon-edit\" alt=\"Edit button\"/></button>" +
+        "<button class=\"button-duplicate\"><img class=\"button-icon icon-duplicate\" alt=\"Duplicate button\"/></button>" +
+        "<button class=\"button-delete\"><img class=\"button-icon icon-delete\" alt=\"Delete button\"/></button>" +
         "</div>" +
         "</div>" +
         "<div class=\"box-hover hover\">" +
@@ -828,6 +623,11 @@ function addProfile() {
         "</div>";
 
     boxesContainer.insertAdjacentHTML('afterbegin', profileElement);
+
+    let leftBoxDiv = boxesContainer.querySelector(".left-box");
+    fillLeftBox(leftBoxDiv, createdProfile);
+    let labelsDiv = boxesContainer.querySelector(".box-labels");
+    fillRightBox(labelsDiv, createdProfile);
 
     let editImg = boxesContainer.querySelector('.icon-edit');
     editImg.setAttribute('src', "Images/icons/icon_edit-profile.png");
@@ -857,7 +657,7 @@ function AddProfileToList() {
             ResetCurrentlySelectedProfile();
             console.log(document.querySelector('#editBtn'))
             if(document.querySelector('#editBtn')) {
-                document.querySelector(".box-container[data-value=\"" + index + "\"] .box").classList.remove('chosen');
+                // document.querySelector(".box-container[data-value=\"" + index + "\"] .box").classList.remove('chosen');
                 if(document.querySelector('#editBtn'))
                     document.querySelector('#editBtn').remove();
             }
@@ -867,7 +667,7 @@ function AddProfileToList() {
 
 function DeleteButtonHover(index) {
     let deleteBtn = document.querySelector(".button-delete");
-    deleteBtn.addEventListener('click', e => {
+    deleteBtn.addEventListener('click', () => {
         let boxHoverDiv = deleteBtn.closest(".box").querySelector('.box-hover');
         boxHoverDiv.classList.remove('hover');
 
@@ -886,7 +686,7 @@ function DeleteButtonHover(index) {
 function EditButtonHover(index) {
     let editBtn = document.querySelector(".button-edit");
     let boxDiv = editBtn.closest(".box");
-    editBtn.addEventListener('click', e => {
+    editBtn.addEventListener('click', () => {
         let boxHoverDiv = editBtn.closest(".box").querySelector('.box-hover-edit');
         boxHoverDiv.classList.remove('hover');
 
@@ -913,7 +713,7 @@ function EditButtonHover(index) {
 
 function DuplicateButton(index) {
     let duplicateBtn = document.querySelector(".button-duplicate");
-    duplicateBtn.addEventListener('click', e => {
+    duplicateBtn.addEventListener('click', () => {
         currentlySelectedProfile = createdProfiles[index].clone();
         currentlySelectedMaterial = createdProfiles[index].material.clone();
         currentlySelectedDensity = createdProfiles[index].material.densities[createdProfiles[index].material.selectedDensityIndex];
@@ -921,8 +721,40 @@ function DuplicateButton(index) {
     })
 }
 
+function fillLeftBox(leftBoxDiv, createdProfile) {
+    leftBoxDiv.innerHTML = "<div class=\"row box-shape\">" +
+        "<img alt=\"shape\" class=\"box-img\" src=" + createdProfile.icon + " />" +
+        "<div class=\"box-name\">" + createdProfile.name + "</div>" +
+        "</div>" +
+        "<div class=\"row box-shape\">" +
+        "<img alt=\"material\" class=\"box-circle\" src=" + createdProfile.material.icon + " />" +
+        "<div class=\"box-material\">" + createdProfile.material.name + "</div>" +
+        "<div class=\"box-desc\">" + createdProfile.material.densities[createdProfile.material.selectedDensityIndex].getFullName() + "</div>" +
+        "</div>" +
+        "</div>";
+}
+
+function fillRightBox(labelsDiv, createdProfile) {
+    let profileElement = "";
+    for (let i = 0; i < createdProfile.values.length; i++) {
+        profileElement += "<div class=\"box-label\">" +
+            createdProfile.values[i].name + " - " + createdProfile.values[i].letter + " = <span class=\"box-label-value\">" + createdProfile.values[i].value + "</span> " + createdProfile.values[i].unit +
+            "</div>";
+    }
+    profileElement += "<div class=\"box-label\">" +
+        "Waga = " + createdProfile.weight + " kg" +
+        "</div>" +
+        "<div class=\"box-label\">" +
+        "Cena/kg = " + createdProfile.pricePerKg + " zł" +
+        "</div><br />" +
+        "<div class=\"box-label\">" +
+        "Wartość " + createdProfile.getCost() + " zł" +
+        "</div>";
+    labelsDiv.innerHTML = profileElement;
+}
+
 function addEditButtonToModel(index) {
-    document.querySelector('.model-button').innerHTML += "<button id=\"editBtn\"><img class=\"button-icon icon-edit\"/></button>\n";
+    document.querySelector('.model-button').innerHTML += "<button id=\"editBtn\"><img src=\"Images/icons/icon_edit-profile.png\" class=\"button-icon icon-edit\" alt=\"Edit button\"/></button>\n";
     let editBtn = document.querySelector('#editBtn');
     let originalImg = editBtn.querySelector('img');
     originalImg.setAttribute('src', "Images/icons/icon_edit-profile.png");
@@ -938,35 +770,11 @@ function addEditButtonToModel(index) {
         }
 
         let leftBoxDiv = document.querySelector(".box-container[data-value=\"" + index + "\"] .left-box");
+        fillLeftBox(leftBoxDiv, createdProfile);
         let labelsDiv = document.querySelector(".box-container[data-value=\"" + index + "\"] .box-labels");
-        let profileElement = "<div class=\"row box-shape\">" +
-            "<img alt=\"shape\" class=\"box-img\" src=" + createdProfile.icon + " />" +
-            "<div class=\"box-name\">" + createdProfile.name + "</div>" +
-            "</div>" +
-            "<div class=\"row box-shape\">" +
-            "<img alt=\"material\" class=\"box-circle\" src=" + createdProfile.material.icon + " />" +
-            "<div class=\"box-material\">" + createdProfile.material.name + "</div>" +
-            "<div class=\"box-desc\">" + createdProfile.material.densities[createdProfile.material.selectedDensityIndex].getFullName() + "</div>" +
-            "</div>" +
-            "</div>";
-        leftBoxDiv.innerHTML = profileElement;
+        fillRightBox(labelsDiv, createdProfile);
 
-        profileElement = "";
-        for (let i = 0; i < createdProfile.values.length; i++) {
-            profileElement += "<div class=\"box-label\">" +
-                createdProfile.values[i].name + " - " + createdProfile.values[i].letter + " = <span class=\"box-label-value\">" + createdProfile.values[i].value + "</span> " + createdProfile.values[i].unit +
-                "</div>";
-        }
-        profileElement += "<div class=\"box-label\">" +
-            "Waga = " + createdProfile.weight + " kg" +
-            "</div>" +
-            "<div class=\"box-label\">" +
-            "Cena/kg = " + createdProfile.pricePerKg + " zł" +
-            "</div><br />" +
-            "<div class=\"box-label\">" +
-            "Wartość " + createdProfile.getCost() + " zł" +
-            "</div>";
-        labelsDiv.innerHTML = profileElement;
+
 
         createdProfiles[index] = createdProfile;
 
@@ -1010,3 +818,179 @@ function calculateProfile() {
 }
 
 Start();
+
+// /////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+function roundNumber(l,n) {
+    let r = Math.pow(10,n);
+    return Math.round(l*r)/r;
+}
+
+function pretokragly() {
+    let density = currentlySelectedDensity.value;
+    currentlySelectedProfile.pricePerKg = parseFloat(document.querySelector('#pricePerKg').value);
+    let pricePerKg = currentlySelectedProfile.pricePerKg;
+    let r = parseFloat(currentlySelectedProfile.values[0].value) /2 /100;
+    let l = parseFloat(currentlySelectedProfile.values[1].value) /100;
+    let p = Math.PI * Math.pow(r,2);
+    let weight = roundNumber(p*l*density,3);
+    let price = roundNumber(weight * pricePerKg,2);
+    document.querySelector('#weight').value = weight;
+    document.querySelector('#setPrice').value = price;
+}
+
+function ruraokragla() {
+    let density = currentlySelectedDensity.value;
+    currentlySelectedProfile.pricePerKg = parseFloat(document.querySelector('#pricePerKg').value);
+    let pricePerKg = currentlySelectedProfile.pricePerKg;
+    let r = parseFloat(currentlySelectedProfile.values[0].value) /2 /100;
+    let r2 = r - (parseFloat(currentlySelectedProfile.values[1].value) /100);
+    let l = parseFloat(currentlySelectedProfile.values[2].value) /100;
+    let p1 = Math.PI * Math.pow(r,2);
+    let p2 = Math.PI * Math.pow(r2,2);
+    let weight = roundNumber((p1-p2)*l*density,3);
+    let price = roundNumber(weight * pricePerKg,2);
+    document.querySelector('#weight').value = weight;
+    document.querySelector('#setPrice').value = price;
+}
+
+function pretszesciokatny() {
+    let density = currentlySelectedDensity.value;
+    currentlySelectedProfile.pricePerKg = parseFloat(document.querySelector('#pricePerKg').value);
+    let pricePerKg = currentlySelectedProfile.pricePerKg;
+    let h = parseFloat(currentlySelectedProfile.values[0].value) /2 /100;
+    let l = parseFloat(currentlySelectedProfile.values[1].value) /100;
+    let p = 2 * Math.pow(h,2)* Math.sqrt(3);
+    let weight = roundNumber(p*l*density,3);
+    let price = roundNumber(weight * pricePerKg,2);
+    document.querySelector('#weight').value = weight;
+    document.querySelector('#setPrice').value = price;
+}
+
+function ruraszesciotna() {
+    let density = currentlySelectedDensity.value;
+    currentlySelectedProfile.pricePerKg = parseFloat(document.querySelector('#pricePerKg').value);
+    let pricePerKg = currentlySelectedProfile.pricePerKg;
+    let h = parseFloat(currentlySelectedProfile.values[0].value) /2 /100;
+    let b = parseFloat(currentlySelectedProfile.values[1].value) /2 /100;
+    let l = parseFloat(currentlySelectedProfile.values[2].value) /100;
+    let p1 = 2 * Math.pow(h,2)* Math.sqrt(3);
+    let p2 = Math.PI * Math.pow(b,2);
+    let weight = roundNumber((p1-p2)*l*density,3);
+    let price = roundNumber(weight * pricePerKg,2);
+    document.querySelector('#weight').value = weight;
+    document.querySelector('#setPrice').value = price;
+}
+
+function kwadrat() {
+    let density = currentlySelectedDensity.value;
+    currentlySelectedProfile.pricePerKg = parseFloat(document.querySelector('#pricePerKg').value);
+    let pricePerKg = currentlySelectedProfile.pricePerKg;
+    let weight = parseFloat(currentlySelectedProfile.values[0].value) /100;
+    let l = parseFloat(currentlySelectedProfile.values[1].value) /100;
+    let p = weight * weight;
+    weight = roundNumber(p*l*density,3);
+    let price = roundNumber(weight * pricePerKg,2);
+    document.querySelector('#weight').value = weight;
+    document.querySelector('#setPrice').value = price;
+}
+
+function blacha() {
+    let density = currentlySelectedDensity.value;
+    currentlySelectedProfile.pricePerKg = parseFloat(document.querySelector('#pricePerKg').value);
+    let pricePerKg = currentlySelectedProfile.pricePerKg;
+    let h = parseFloat(currentlySelectedProfile.values[0].value) /100;
+    let weight = parseFloat(currentlySelectedProfile.values[1].value) /100;
+    let l = parseFloat(currentlySelectedProfile.values[2].value) /100;
+    let p = h * weight;
+    weight = roundNumber(p*l*density,3);
+    let price = roundNumber(weight * pricePerKg,2);
+    document.querySelector('#weight').value = weight;
+    document.querySelector('#setPrice').value = price;
+}
+
+function profilzamkniety() {
+    let density = currentlySelectedDensity.value;
+    currentlySelectedProfile.pricePerKg = parseFloat(document.querySelector('#pricePerKg').value);
+    let pricePerKg = currentlySelectedProfile.pricePerKg;
+    let h = parseFloat(currentlySelectedProfile.values[0].value) /100;
+    let weight = parseFloat(currentlySelectedProfile.values[1].value) /100;
+    let b = parseFloat(currentlySelectedProfile.values[2].value) /100;
+    let l = parseFloat(currentlySelectedProfile.values[3].value) /100;
+    let p1 = h * weight;
+    let p2 = (h-2*b)*(weight-2*b);
+    weight = roundNumber((p1-p2)*l*density,3);
+    let price = roundNumber(weight * pricePerKg,2);
+    document.querySelector('#weight').value = weight;
+    document.querySelector('#setPrice').value = price;
+}
+
+function katownik() {
+    let density = currentlySelectedDensity.value;
+    currentlySelectedProfile.pricePerKg = parseFloat(document.querySelector('#pricePerKg').value);
+    let pricePerKg = currentlySelectedProfile.pricePerKg;
+    let h = parseFloat(currentlySelectedProfile.values[0].value) /100;
+    let weight = parseFloat(currentlySelectedProfile.values[1].value) /100;
+    let b = parseFloat(currentlySelectedProfile.values[2].value) /100;
+    let l = parseFloat(currentlySelectedProfile.values[3].value) /100;
+    let p1 = h * weight;
+    let p2 = (h-b)*(weight-b);
+    weight = roundNumber((p1-p2)*l*density,3);
+    let price = roundNumber(weight * pricePerKg,2);
+    document.querySelector('#weight').value = weight;
+    document.querySelector('#setPrice').value = price;
+}
+
+function ceownik() {
+    let density = currentlySelectedDensity.value;
+    currentlySelectedProfile.pricePerKg = parseFloat(document.querySelector('#pricePerKg').value);
+    let pricePerKg = currentlySelectedProfile.pricePerKg;
+    let h = parseFloat(currentlySelectedProfile.values[0].value) /100;
+    let weight = parseFloat(currentlySelectedProfile.values[1].value) /100;
+    let b = parseFloat(currentlySelectedProfile.values[2].value) /100;
+    let l = parseFloat(currentlySelectedProfile.values[3].value) /100;
+    let p1 = h * weight;
+    let p2 = (h-2*b)*(weight-b);
+    weight = roundNumber((p1-p2)*l*density,3);
+    let price = roundNumber(weight * pricePerKg,2);
+    document.querySelector('#weight').value = weight;
+    document.querySelector('#setPrice').value = price;
+}
+
+function teownik() {
+    let density = currentlySelectedDensity.value;
+    currentlySelectedProfile.pricePerKg = parseFloat(document.querySelector('#pricePerKg').value);
+    let pricePerKg = currentlySelectedProfile.pricePerKg;
+    let h = parseFloat(currentlySelectedProfile.values[0].value) /100;
+    let weight = parseFloat(currentlySelectedProfile.values[1].value) /100;
+    let b = parseFloat(currentlySelectedProfile.values[2].value) /100;
+    let l = parseFloat(currentlySelectedProfile.values[3].value) /100;
+    let p1 = h * weight;
+    let p2 = (h-b)*(weight-b);
+    weight = roundNumber((p1-p2)*l*density,3);
+    let price = roundNumber(weight * pricePerKg,2);
+    document.querySelector('#weight').value = weight;
+    document.querySelector('#setPrice').value = price;
+}
+
+function dwuteownik() {
+    let density = currentlySelectedDensity.value;
+    currentlySelectedProfile.pricePerKg = parseFloat(document.querySelector('#pricePerKg').value);
+    let pricePerKg = currentlySelectedProfile.pricePerKg;
+    let h = parseFloat(currentlySelectedProfile.values[0].value) /100;
+    let weight = parseFloat(currentlySelectedProfile.values[1].value) /100;
+    let b = parseFloat(currentlySelectedProfile.values[2].value) /100;
+    let l = parseFloat(currentlySelectedProfile.values[3].value) /100;
+    let p1 = h * weight;
+    let p2 = (h-2*b)*(weight-b);
+    weight = roundNumber((p1-p2)*l*density,3);
+    let price = roundNumber(weight * pricePerKg,2);
+    weight = roundNumber(weight,3);
+    document.querySelector('#weight').value = weight;
+    document.querySelector('#setPrice').value = price;
+}
