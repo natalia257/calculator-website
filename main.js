@@ -814,7 +814,7 @@ function areValuesHigherThanZero(profile) {
         }
     }
 
-    return pricePerKg > 0;
+    return profile.pricePerKg > 0;
 }
 
 /***********
