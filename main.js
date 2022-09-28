@@ -124,7 +124,8 @@ class profile {
     }
 
     calculateWeight() {
-        return this.calc();
+        this.weight = this.calc();
+        return this.weight;
     }
 }
 
@@ -637,12 +638,14 @@ function DeleteButtonHover(index) {
             boxHoverDiv.classList.add('hover');
             delete createdProfiles[index];
             boxHoverDiv.closest(".box-container").remove();
+            updateTotalCosts();
 
             if(index == editedProfileIndexInCart)
             {
                 ResetCurrentlySelectedProfile();
                 editedProfileIndexInCart = undefined;
             }
+
         });
 
         boxHoverDiv.querySelector('#skipButton').addEventListener('click', () => {
@@ -877,8 +880,9 @@ function addProfile() {
 
     EditButtonHover(index);
 
-    DuplicateButton(index);
+    duplicateButton(index);
 
+    updateTotalCosts();
     return true;
 }
 
@@ -909,6 +913,8 @@ function AddProfileToList() {
         createdProfiles[editedProfileIndexInCart] = createdProfile;
 
         ResetCurrentlySelectedProfile();
+
+        updateTotalCosts();
     });
 }
 
@@ -948,7 +954,7 @@ function calculateProfile() {
     fillCalculatedFields(selectedProfileWeight, selectedProfilePrice);
 }
 
-function DuplicateButton(index) {
+function duplicateButton(index) {
     let duplicateBtn = document.querySelector(".button-duplicate");
     duplicateBtn.addEventListener('click', () => {
         currentlySelectedProfile = createdProfiles[index].clone();
@@ -956,6 +962,21 @@ function DuplicateButton(index) {
         currentlySelectedDensity = createdProfiles[index].material.densities[createdProfiles[index].material.selectedDensityIndex];
         addProfile();
     })
+}
+
+function updateTotalCosts() {
+    let summaryLabel = document.querySelectorAll(".summary-amount")[0]; //TODO: to powinno byc id, a nie klasa.
+
+    let totalCost = 0;
+
+    for (let i = 0; i < createdProfiles.length; i++) {
+        if(createdProfiles[i] != undefined)
+        {
+            totalCost += createdProfiles[i].getCost();
+        }
+    }
+
+    summaryLabel.innerHTML = roundNumber(totalCost, 2) + " zł";
 }
 
 /********************
