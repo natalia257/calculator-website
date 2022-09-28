@@ -894,7 +894,21 @@ function AddProfileToList() {
     });
 
     editBtn.addEventListener('click', () => {
-       console.log("edytowanko");
+        let createdProfile = currentlySelectedProfile.clone();
+        createdProfile.material = currentlySelectedMaterial.clone();
+        createdProfile.material.selectedDensityIndex = currentlySelectedMaterial.selectedDensityIndex;
+
+        if (!areValuesHigherThanZero(createdProfile)) {
+            return;
+        }
+
+        let leftBoxDiv = document.querySelector(".box-container[data-value=\"" + editedProfileIndexInCart + "\"] .left-box");
+        fillLeftBox(leftBoxDiv, createdProfile);
+        let labelsDiv = document.querySelector(".box-container[data-value=\"" + editedProfileIndexInCart + "\"] .box-labels");
+        fillRightBox(labelsDiv, createdProfile);
+        createdProfiles[editedProfileIndexInCart] = createdProfile;
+
+        ResetCurrentlySelectedProfile();
     });
 }
 
