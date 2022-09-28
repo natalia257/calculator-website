@@ -5,8 +5,13 @@ let currentlySelectedMaterial = undefined;
 let currentlySelectedDensity = undefined;
 let createdProfiles = [];
 let editedProfileIndexInCart = undefined;
+let addBtn;
+let editBtn;
 
 function Start() {
+    addBtn = document.querySelector('#addBtn');
+    editBtn = document.querySelector('#editBtn');
+
     fillProfiles();
     fillMaterials();
     Carousel();
@@ -419,7 +424,7 @@ function fillProfiles() {
     let profilesDivs = profilesDiv.querySelectorAll('.shape');
 
     profilesDivs.forEach(function (item, idx) {
-       item.addEventListener('click', () => ChangeProfile(item, idx));
+       item.addEventListener('click', () => ChangeProfile(item, idx, false));
     });
 }
 
@@ -534,7 +539,6 @@ function AddFieldsToModel(clickedProfile) {
 
 function addEditButtonToModel(index) {
     document.querySelector('.model-button').innerHTML += "<button id=\"editBtn\"><img src=\"Images/icons/icon_edit-profile.png\" class=\"button-icon icon-edit\" alt=\"Edit button\"/></button>\n";
-    let editBtn = document.querySelector('#editBtn');
     let originalImg = editBtn.querySelector('img');
     originalImg.setAttribute('src', "Images/icons/icon_edit-profile.png");
 
@@ -542,7 +546,6 @@ function addEditButtonToModel(index) {
         let createdProfile = currentlySelectedProfile.clone();
         createdProfile.material = currentlySelectedMaterial.clone();
         createdProfile.material.selectedDensityIndex = currentlySelectedMaterial.selectedDensityIndex;
-        GetCurrentValues(createdProfile);
 
         if (!areValuesHigherThanZero(createdProfile)) {
             return;
@@ -659,8 +662,7 @@ function EditButtonHover(index) {
             console.log('edytuj')
             boxHoverDiv.classList.add('hover');
             editedProfileIndexInCart = index;
-            showProfile(createdProfiles[index]);
-            addEditButtonToModel(index);
+            showEditedProfile(createdProfiles[index]);
         });
 
         boxHoverDiv.querySelector('#addButton').addEventListener('click', () => {
@@ -674,7 +676,7 @@ function EditButtonHover(index) {
  *** Changing Object Functions ***
  *********************************/
 
-function ChangeProfile(chosenShape, chosenProfileId) {
+function ChangeProfile(chosenShape, chosenProfileId, isEditMode) {
     if(modelProfileDiv != null) {
         unselectImage(modelProfileDiv,  'Images/profiles_icons/', 23, '_selected')
     }
@@ -682,6 +684,18 @@ function ChangeProfile(chosenShape, chosenProfileId) {
     modelProfileDiv = chosenShape;
 
     selectProfile(chosenProfileId);
+
+
+    if(isEditMode)
+    {
+        addBtn.style.display = 'none';
+        editBtn.style.display = '';
+    }
+    else
+    {
+        addBtn.style.display = '';
+        editBtn.style.display = 'none';
+    }
 }
 
 function ChangeMaterial(chosenMaterial, chosenMaterialId){
@@ -804,7 +818,6 @@ function addProfile() {
     let createdProfile = currentlySelectedProfile.clone();
     createdProfile.material = currentlySelectedMaterial.clone();
     createdProfile.material.selectedDensityIndex = currentlySelectedMaterial.selectedDensityIndex;
-    GetCurrentValues(createdProfile);
 
     if (!areValuesHigherThanZero(createdProfile)) {
         return false;
@@ -870,7 +883,6 @@ function addProfile() {
 }
 
 function AddProfileToList() {
-    let addBtn = document.querySelector("#addBtn");
     let originalImg = addBtn.querySelector('img');
     originalImg.setAttribute('src', "Images/icons/icon_add-profile.png");
 
@@ -878,14 +890,12 @@ function AddProfileToList() {
         var sucesfullyAddedProfile = addProfile();
         if(sucesfullyAddedProfile) {
             ResetCurrentlySelectedProfile();
-            console.log(document.querySelector('#editBtn'))
-            if(document.querySelector('#editBtn')) {
-                //document.querySelector(".box-container[data-value=\"" + index + "\"] .box").classList.remove('chosen');
-                if(document.querySelector('#editBtn'))
-                    document.querySelector('#editBtn').remove();
-            }
         }
-    })
+    });
+
+    editBtn.addEventListener('click', () => {
+       console.log("edytowanko");
+    });
 }
 
 function SetData(value, idx) {
@@ -917,20 +927,7 @@ function ResetCurrentlySelectedProfile() {
     unselectImage(materialDiv, 'Images/materials_icons/', 24, '_selected')
 }
 
-function GetCurrentValues(createdProfile) {
-    //TODO: to nie powinno dzialac poprzez wczytanie wartosc, ale poprzez to, ze jak wpiszesz wartosc, to wywolywane jest SetData(value,idx)
-    //TODO: a nastepnie wartosc jest zapamietywana. To samo powinno dotyczyc pricePerKg.
-    let valuesInput = document.querySelectorAll('.model-label-value');
-    for (let i = 0; i < createdProfile.values.length; i++) {
-        createdProfile.values[i].value = valuesInput[i].value;
-    }
-
-    createdProfile.pricePerKg = document.querySelector('#pricePerKg').value; // zle
-    createdProfile.weight = document.querySelector('#weight').value; //zle
-}
-
 function calculateProfile() {
-    //GetCurrentValues(currentlySelectedProfile);
     let selectedProfileWeight = currentlySelectedProfile.calculateWeight();
     let selectedProfilePrice = selectedProfileWeight*currentlySelectedProfile.pricePerKg;
     selectedProfilePrice = roundNumber(selectedProfilePrice, 2);
@@ -951,7 +948,7 @@ function DuplicateButton(index) {
  *** Presentation ***
  ********************/
 
-function showProfile(profile) {
+function showEditedProfile(profile) {
     console.log(profile)
     currentlySelectedProfile = profile.clone();
     currentlySelectedMaterial = profile.material.clone();
@@ -959,7 +956,7 @@ function showProfile(profile) {
 
     let profilesDiv = document.querySelector('#profiles');
     let profilesDivs = profilesDiv.querySelectorAll('.shape')[profile.id];
-    ChangeProfile(profilesDivs, profile.id);
+    ChangeProfile(profilesDivs, profile.id, true);
     let materialsDiv = document.querySelector('#materials');
     let materialCircles = materialsDiv.querySelectorAll('.shape-clicked')[profile.material.id]
     ChangeMaterial(materialCircles.parentElement, profile.material.id);
