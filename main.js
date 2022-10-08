@@ -84,6 +84,18 @@ class profileValue {
     {
         return this.name + " - " + "<span style=\"color:" + this.letterColor + "\">" + this.letter + "</span>" + " [" + this.unit + "]";
     }
+
+    clone()
+    {
+        let cloned = Object.create(this);
+        cloned.name = this.name;
+        cloned.unity = this.unit;
+        cloned.value = this.value;
+        cloned.letter = this.letter;
+        cloned.letterColor = this.letterColor;
+
+        return cloned;
+    }
 }
 
 class profile {
@@ -112,7 +124,12 @@ class profile {
     {
         let cloned = Object.create(this);
         cloned.name = this.name;
-        cloned.values = this.values;
+        cloned.values = [];
+
+        for (let i = 0; i < this.values.length; i++) {
+            cloned.values.push(this.values[i].clone());
+        }
+
         cloned.material = this.material;
         cloned.weight = this.weight;
         cloned.pricePerKg = this.pricePerKg;
@@ -686,18 +703,19 @@ function ChangeProfile(chosenShape, chosenProfileId, isEditMode) {
     selectImage(chosenShape, 'Images/profiles_select/', 22, '.');
     modelProfileDiv = chosenShape;
 
-    selectProfile(chosenProfileId);
-
-
     if(isEditMode)
     {
         addBtn.style.display = 'none';
         editBtn.style.display = '';
+
+        hoverModel("Wybierz materiał");
+        AddFieldsToModel(currentlySelectedProfile);
     }
     else
     {
         addBtn.style.display = '';
         editBtn.style.display = 'none';
+        selectProfile(chosenProfileId);
     }
 }
 
@@ -825,6 +843,7 @@ function addProfile() {
     if (!areValuesHigherThanZero(createdProfile)) {
         return false;
     }
+
     createdProfiles.push(createdProfile);
     let index = createdProfiles.length - 1;
     let boxesContainer = document.querySelector("#boxesContainer");
@@ -883,6 +902,7 @@ function addProfile() {
     duplicateButton(index);
 
     updateTotalCosts();
+
     return true;
 }
 
@@ -957,9 +977,9 @@ function calculateProfile() {
 function duplicateButton(index) {
     let duplicateBtn = document.querySelector(".button-duplicate");
     duplicateBtn.addEventListener('click', () => {
-        currentlySelectedProfile = createdProfiles[index].clone();
-        currentlySelectedMaterial = createdProfiles[index].material.clone();
-        currentlySelectedDensity = createdProfiles[index].material.densities[createdProfiles[index].material.selectedDensityIndex];
+        currentlySelectedProfile = createdProfiles[index];
+        currentlySelectedMaterial = createdProfiles[index].material;
+        currentlySelectedDensity = createdProfiles[index].material.densities[currentlySelectedMaterial.selectedDensityIndex];
         addProfile();
     })
 }
