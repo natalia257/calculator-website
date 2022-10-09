@@ -560,6 +560,11 @@ input[type="text"]
         width: 50%;
     }
 
+    .model-button {
+        top: 250px;
+        left: 220px;
+    }
+
     .shapes {
         padding-right: 60px;
     }
