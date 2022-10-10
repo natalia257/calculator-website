@@ -75,7 +75,7 @@ input[type="text"]
 
 .hover-text {
     font-size: 30px;
-    color: #599c50;
+    color: #019540;
     margin: 0;
     position: absolute;
     top: 50%;
@@ -116,7 +116,7 @@ input[type="text"]
 
 .green .model-label-value {
     color: white;
-    background-color: #6a9768;
+    background-color: #019540;
 }
 
 .model-button {
@@ -141,7 +141,7 @@ input[type="text"]
 .shapes {
     width: calc(100%);
     padding-top: 20px;
-    padding-left: 60px;
+    padding-left: 20px;
 }
 
 .shape {
@@ -150,7 +150,7 @@ input[type="text"]
     width: 9.09%;
     text-align: center;
     cursor: pointer;
-    min-height: 130px;
+    min-height: 100px;
 }
 
 .shape-img {
@@ -159,12 +159,12 @@ input[type="text"]
 }
 
 .shape-line {
-    height: 6px;
+    height: 5px;
     background: #dfdfdf;
 }
 
 .green .shape-line {
-    background: green;
+    background: #019540;
 }
 
 .shape-name {
@@ -177,7 +177,7 @@ input[type="text"]
 }
 
 .green .shape-name {
-    color: green;
+    color: #019540;
 }
 
 .material-shape {
@@ -193,7 +193,7 @@ input[type="text"]
 }
 
 .green .shape-circle {
-    border-color: green;
+    border-color: #019540;
 }
 
 .shape-material {
@@ -205,7 +205,7 @@ input[type="text"]
 }
 
 .green .shape-material {
-    color: green;
+    color: #019540;
 }
 
 /* SHAPE BOX ----------------------------------------------------------------- */
@@ -285,7 +285,7 @@ input[type="text"]
 }
 
 .shape-container::-webkit-scrollbar-thumb {
-    background: #016101;
+    background: #019540;
 }
 
 .shape-option,
@@ -302,7 +302,7 @@ input[type="text"]
 }
 
 .shape-option:hover {
-    background: #008000;
+    background: #019540;
 }
 
 .shape-box label {
@@ -316,27 +316,30 @@ input[type="text"]
 /* SUMMARY -----------------------------------------------------------------------------------*/
 
 .line {
-    height: 2px;
+    margin-top: 20px;
+    height: 1px;
     background: #dfdfdf;
 }
 
 .summary {
-    padding-left: 50px;
+    padding-left: 30px;
 }
 
 .summary-sum {
     padding: 20px;
+    padding-top: 60px;
 }
 
 .summary-name {
     color: #232731;
-    font-weight: bold;
+    font-weight: 700;
+    font-size: 12px;
 }
 
 .summary-amount {
-    font-size: 1.5rem;
-    color: #599c50;
-    font-weight: bold;
+    font-size: 18px;
+    color: #019540;
+    font-weight: 500;
     margin-left: 5px;
 }
 
@@ -371,12 +374,12 @@ input[type="text"]
     position: relative;
     width: 100%;
     height: 100%;
-    border: 2px solid #599c50;
+    border: 1px solid #019540;
     box-sizing: border-box;
 }
 
 .box.chosen {
-    background: #6a9768;
+    background: #019540;
 }
 
 .box-hover {
@@ -392,7 +395,7 @@ input[type="text"]
 }
 
 .box-hover-content {
-    color: #5f9f56;
+    color: #019540;
     margin: 0;
     position: absolute;
     top: 50%;
@@ -406,14 +409,14 @@ input[type="text"]
 
 .left-box {
     height: 100%;
-    width: 30%;
-    border-right: 1px solid #599c50;
+    width: 35%;
+    border-right: 1px solid #019540;
     text-align: center;
 }
 
 .right-box {
     height: 100%;
-    width: 70%;
+    width: 65%;
     position: relative;
 }
 
