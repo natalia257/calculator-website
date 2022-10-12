@@ -10,7 +10,7 @@ html {
 }
 
 body {
-    color: black;
+    color: #c5c5c5;
     padding: 0;
     margin: 0;
     border: 0;
@@ -24,7 +24,6 @@ input[type="text"]
 {
     font-size: 16px;
     line-height: 1.61111em;
-    color: black;
     font-weight: bold;
 }
 
@@ -50,8 +49,6 @@ input[type="text"]
 
 .right-div {
     width: 75%;
-    /*color: #dfdfdf;*/
-    color: black;
 }
 
 /* MODEL ---------------------------------------------------------------------------------------------*/
@@ -76,7 +73,7 @@ input[type="text"]
 
 .hover-text {
     font-size: 30px;
-    color: #019540;
+    color: #01953f;
     margin: 0;
     position: absolute;
     top: 50%;
@@ -110,6 +107,7 @@ input[type="text"]
 .model-label-name {
     font-size: 12px;
     font-weight: 600;
+    color: black;
 }
 
 .model-label-value {
@@ -126,12 +124,12 @@ input[type="text"]
 
 .green .model-label-value {
     color: white;
-    background-color: #019540;
+    background-color: #01953f;
 }
 
 .model-button {
     position: absolute;
-    background: #019540;
+    background: #01953f;
     text-align: center;
     left: 1px;
     width: 99%;
@@ -145,6 +143,10 @@ input[type="text"]
     background: none;
     padding: 0;
     width: 100%;
+}
+
+.model-button .icon-edit {
+    filter: none;
 }
 
 /* SHAPES -------------------------------------------------------------------------------------------*/
@@ -175,7 +177,7 @@ input[type="text"]
 }
 
 .green .shape-line {
-    background: #019540;
+    background: #01953f;
 }
 
 .shape-name {
@@ -188,7 +190,7 @@ input[type="text"]
 }
 
 .green .shape-name {
-    color: #019540;
+    color: #01953f;
 }
 
 .material-shape {
@@ -204,7 +206,7 @@ input[type="text"]
 }
 
 .green .shape-circle {
-    border-color: #019540;
+    border-color: #01953f;
 }
 
 .shape-material {
@@ -216,7 +218,7 @@ input[type="text"]
 }
 
 .green .shape-material {
-    color: #019540;
+    color: #01953f;
 }
 
 /* SHAPE BOX ----------------------------------------------------------------- */
@@ -296,7 +298,7 @@ input[type="text"]
 }
 
 .shape-container::-webkit-scrollbar-thumb {
-    background: #019540;
+    background: #01953f;
 }
 
 .shape-option,
@@ -313,7 +315,7 @@ input[type="text"]
 }
 
 .shape-option:hover {
-    background: #019540;
+    background: #01953f;
 }
 
 .shape-box label {
@@ -349,7 +351,7 @@ input[type="text"]
 
 .summary-amount {
     font-size: 18px;
-    color: #019540;
+    color: #01953f;
     font-weight: 500;
     margin-left: 5px;
 }
@@ -379,27 +381,29 @@ input[type="text"]
     height: 250px;
     padding-right: 30px;
     box-sizing: border-box;
-    font-size: 12px;
+    font-size: 13px;
 }
 
 .box {
     position: relative;
     width: 100%;
     height: 100%;
-    border: 1px solid #019540;
+    border: 1px solid #01953f;
     box-sizing: border-box;
 }
 
 .box.chosen {
-    background: #019540;
+    background: #01953f;
 }
 
 .box-hover {
     display: block;
     position: absolute;
-    height: 100%;
-    width: 100%;
-    background: #dfdfdf;
+    height: 61px;
+    width: 258px;
+    background: red;
+    bottom: 0;
+    right: 0;
 }
 
 .hover.box-hover {
@@ -407,22 +411,39 @@ input[type="text"]
 }
 
 .box-hover-content {
-    color: #019540;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
     margin: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    height: 100%;
+    width: 100%;
 }
 
-.box-hover-content button {
-    margin: 10px 10px 5px 0;
+.box-hover-content div {
+    display: inline-block;
+    width: 45%;
+    font-size: 12px;
+    margin-right: 10px;
+}
+
+.box .box-hover-content button {
+    color: white;
+    border: solid 1px white;
+    padding: 1px 5px;
+    margin-right: 5px;
+    font-size: 12px;
+}
+
+.box .box-hover-content button:hover {
+    background: white;
+    color: red;
 }
 
 .left-box {
     height: 100%;
     width: 30%;
-    border-right: 1px solid #019540;
+    border-right: 1px solid #dfdfdf;
     text-align: center;
 }
 
@@ -438,18 +459,17 @@ input[type="text"]
 }
 
 .box-img {
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
 }
 
 .box-name {
-    padding: 5px;
     text-align: center;
 }
 
 .box-circle {
-    height: 50px;
-    width: 50px;
+    height: 60px;
+    width: 60px;
     border-radius: 50%;
 }
 
@@ -468,8 +488,12 @@ input[type="text"]
 
 .box-buttons {
     position: absolute;
+    border-top: solid 1px #dfdfdf;
+    text-align: right;
+    padding-top: 5px;
+    width: 100%;
     right: 0;
-    bottom: 0;
+    bottom: -5px;
 }
 
 .box button {
@@ -485,7 +509,7 @@ input[type="text"]
 }
 
 .icon-delete {
-    filter: invert(32%) sepia(83%) saturate(1343%) hue-rotate(122deg) brightness(96%) contrast(102%);
+    filter: invert(50%) sepia(0%) saturate(3%) hue-rotate(22deg) brightness(101%) contrast(90%);
 }
 
 .boxes-arrow {
@@ -524,7 +548,7 @@ input[type="text"]
 
 @media only screen and (max-width: 1140px) {
     body {
-        font-size: 16px;
+        font-size: 14px;
     }
 
     .left-div {
@@ -536,9 +560,8 @@ input[type="text"]
     }
 
     .model {
-        position: relative;
-        height: 341px;
-        padding-top: 40px;
+        height: 404px;
+        padding-top: 20px;
         text-align: center;
     }
 
@@ -551,7 +574,7 @@ input[type="text"]
     }
 
     .model-img {
-        width: 60%;
+        width: 55%;
         text-align: end;
     }
 
@@ -568,6 +591,7 @@ input[type="text"]
 
     .model-label {
         width: 100%;
+        text-align: left;
     }
 
     .model-label-name {
@@ -576,16 +600,19 @@ input[type="text"]
     }
 
     .model-button {
-        top: 250px;
-        left: 220px;
+        top: 280px;
+        left: 0;
+        width: 100%;
     }
 
     .shapes {
-        padding-right: 60px;
+        padding-right: 20px;
+        padding-top: 0;
     }
 
     .shape {
         width: 16.66%;
+        min-height: 120px;
     }
 
     .shape-container {
@@ -605,6 +632,10 @@ input[type="text"]
     .shape-selected {
         font-size: 14px;
     }
+
+    .line {
+        margin: 0;
+    }
     
     .summary {
         padding-right: 50px;
@@ -622,6 +653,10 @@ input[type="text"]
 
     .boxes-arrow {
         top: 90px;
+    }
+
+    .summary-sum {
+        padding-top: 20px;
     }
 }
 

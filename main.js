@@ -862,16 +862,16 @@ function addProfile() {
         "</div>" +
         "<div class=\"box-hover hover\">" +
         "<div class=\"box-hover-content\">" +
-        "<div>Czy napewno chcesz usunąć element?</div>" +
-        "<button id=\"deleteButton\">Usuń</button>" +
-        "<button id=\"skipButton\">Anuluj</button>" +
+        "<div>Czy napewno chcesz usunąć?</div>" +
+        "<button id=\"deleteButton\">TAK</button>" +
+        "<button id=\"skipButton\">NIE</button>" +
         "</div>" +
         "</div>" +
         "<div class=\"box-hover hover box-hover-edit\">" +
         "<div class=\"box-hover-content\">" +
-        "<div>Czy napewno chcesz edytować element?</div>" +
-        "<button id=\"editButton\">Edytuj</button>" +
-        "<button id=\"addButton\">Anuluj</button>" +
+        "<div>Czy napewno chcesz edytować?</div>" +
+        "<button id=\"editButton\">TAK</button>" +
+        "<button id=\"addButton\">NIE</button>" +
         "</div>" +
         "</div>" +
         "</div>" +
