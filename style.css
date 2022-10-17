@@ -73,7 +73,7 @@ input[type="text"]
 
 .hover-text {
     font-size: 30px;
-    color: #01953f;
+    color: #009640;
     margin: 0;
     position: absolute;
     top: 50%;
@@ -124,12 +124,12 @@ input[type="text"]
 
 .green .model-label-value {
     color: white;
-    background-color: #01953f;
+    background-color: #009640;
 }
 
 .model-button {
     position: absolute;
-    background: #01953f;
+    background: #009640;
     text-align: center;
     left: 1px;
     width: 99%;
@@ -143,6 +143,14 @@ input[type="text"]
     background: none;
     padding: 0;
     width: 100%;
+}
+
+.model-button:hover {
+    background: #f9f9f9;
+}
+
+.model-button:hover button {
+    filter: brightness(0) saturate(100%) invert(31%) sepia(95%) saturate(1210%) hue-rotate(122deg) brightness(96%) contrast(99%);
 }
 
 .model-button .icon-edit {
@@ -177,7 +185,7 @@ input[type="text"]
 }
 
 .green .shape-line {
-    background: #01953f;
+    background: #009640;
 }
 
 .shape-name {
@@ -190,7 +198,7 @@ input[type="text"]
 }
 
 .green .shape-name {
-    color: #01953f;
+    color: #009640;
 }
 
 .material-shape {
@@ -206,7 +214,7 @@ input[type="text"]
 }
 
 .green .shape-circle {
-    border-color: #01953f;
+    border-color: #009640;
 }
 
 .shape-material {
@@ -218,7 +226,7 @@ input[type="text"]
 }
 
 .green .shape-material {
-    color: #01953f;
+    color: #009640;
 }
 
 /* SHAPE BOX ----------------------------------------------------------------- */
@@ -298,7 +306,7 @@ input[type="text"]
 }
 
 .shape-container::-webkit-scrollbar-thumb {
-    background: #01953f;
+    background: #009640;
 }
 
 .shape-option,
@@ -315,7 +323,7 @@ input[type="text"]
 }
 
 .shape-option:hover {
-    background: #01953f;
+    background: #009640;
 }
 
 .shape-box label {
@@ -351,7 +359,7 @@ input[type="text"]
 
 .summary-amount {
     font-size: 18px;
-    color: #01953f;
+    color: #009640;
     font-weight: 500;
     margin-left: 5px;
 }
@@ -388,12 +396,12 @@ input[type="text"]
     position: relative;
     width: 100%;
     height: 100%;
-    border: 1px solid #01953f;
+    border: 1px solid #009640;
     box-sizing: border-box;
 }
 
 .box.chosen {
-    background: #01953f;
+    background: #009640;
 }
 
 .box-hover {
@@ -401,7 +409,7 @@ input[type="text"]
     position: absolute;
     height: 61px;
     width: 258px;
-    background: red;
+    background: #be0000;
     bottom: 0;
     right: 0;
 }
@@ -437,7 +445,7 @@ input[type="text"]
 
 .box .box-hover-content button:hover {
     background: white;
-    color: red;
+    color: #be0000;
 }
 
 .left-box {
@@ -505,19 +513,14 @@ input[type="text"]
 
 .icon-edit,
 .icon-duplicate {
-    filter: invert(50%) sepia(0%) saturate(3%) hue-rotate(22deg) brightness(101%) contrast(90%);
-}
-
-.icon-delete {
-    filter: invert(50%) sepia(0%) saturate(3%) hue-rotate(22deg) brightness(101%) contrast(90%);
+    filter: brightness(0) saturate(100%) invert(57%) sepia(0%) saturate(1063%) hue-rotate(200deg) brightness(88%) contrast(88%);
 }
 
 .boxes-arrow {
     position: absolute;
-    width: 25px;
     height: 70px;
     z-index: 100;
-    top: 65px;
+    top: 89px;
     cursor: pointer;
 }
 
@@ -527,11 +530,11 @@ input[type="text"]
 }
 
 .next {
-    right: -10px;
+    right: 4px;
 }
 
 .prev {
-    left: -28px;
+    left: -25px;
     transform: rotate(180deg);
     display: none;
 }

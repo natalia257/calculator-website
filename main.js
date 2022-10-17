@@ -556,9 +556,9 @@ function AddFieldsToModel(clickedProfile) {
 }
 
 function addEditButtonToModel(index) {
-    document.querySelector('.model-button').innerHTML += "<button id=\"editBtn\"><img src=\"Images/icons/icon_edit-profile.png\" class=\"button-icon icon-edit\" alt=\"Edit button\"/></button>\n";
+    document.querySelector('.model-button').innerHTML += "<button id=\"editBtn\"><img src=\"Images/icons/icon_save-profile.png\" class=\"button-icon icon-edit\" alt=\"Edit button\"/></button>\n";
     let originalImg = editBtn.querySelector('img');
-    originalImg.setAttribute('src', "Images/icons/icon_edit-profile.png");
+    originalImg.setAttribute('src', "Images/icons/icon_save-profile.png");
 
     editBtn.addEventListener('click', () => {
         let createdProfile = currentlySelectedProfile.clone();
@@ -862,14 +862,14 @@ function addProfile() {
         "</div>" +
         "<div class=\"box-hover hover\">" +
         "<div class=\"box-hover-content\">" +
-        "<div>Czy napewno chcesz usunąć?</div>" +
+        "<div>Czy na pewno chcesz usunąć?</div>" +
         "<button id=\"deleteButton\">TAK</button>" +
         "<button id=\"skipButton\">NIE</button>" +
         "</div>" +
         "</div>" +
         "<div class=\"box-hover hover box-hover-edit\">" +
         "<div class=\"box-hover-content\">" +
-        "<div>Czy napewno chcesz edytować?</div>" +
+        "<div>Czy na pewno chcesz edytować?</div>" +
         "<button id=\"editButton\">TAK</button>" +
         "<button id=\"addButton\">NIE</button>" +
         "</div>" +
