@@ -14,7 +14,7 @@ function Start() {
 
     fillProfiles();
     fillMaterials();
-    Carousel();
+    // Carousel();
     AddProfileToList();
 }
 

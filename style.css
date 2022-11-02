@@ -42,20 +42,20 @@ input[type="text"]
 }
 
 .left-div {
-    position: relative;
-    width: 25%;
-    background-color: #f8f8f8;
+    position: fixed;
+    width: 300px;
 }
 
 .right-div {
-    width: 75%;
+    margin-left: 300px;
+    width: 840px;
 }
 
 /* MODEL ---------------------------------------------------------------------------------------------*/
 
 .model {
     height: 100vh;
-    width: 95%;
+    background-color: #f8f8f8;
 }
 
 .model-hover {
@@ -94,6 +94,7 @@ input[type="text"]
 }
 
 .model-labels {
+    margin-top: 20px;
     position: relative;
 }
 
@@ -134,7 +135,7 @@ input[type="text"]
     left: 1px;
     width: 99%;
     padding: 5px 0;
-    top: 490px;
+    top: 520px;
 }
 
 .model-button button {
@@ -160,7 +161,7 @@ input[type="text"]
 /* SHAPES -------------------------------------------------------------------------------------------*/
 
 .shapes {
-    width: calc(100%);
+    width: 100%;
     padding-top: 20px;
     padding-left: 20px;
 }
@@ -189,7 +190,7 @@ input[type="text"]
 }
 
 .shape-name {
-    padding: 10px 5px;
+    padding: 10px 3px;
     text-align: center;
 }
 
@@ -348,7 +349,7 @@ input[type="text"]
 
 .summary-sum {
     padding: 20px;
-    padding-top: 60px;
+    padding-top: 35px;
 }
 
 .summary-name {
@@ -367,9 +368,9 @@ input[type="text"]
 /* BOX ----------------------------------------------------------------------------------*/
 
 .boxes-container {
-    width: 801px;
+    width: 825px;
     position: relative;
-    min-height: 250px;
+    min-height: 210px;
     margin: 0 auto;
 }
 
@@ -378,15 +379,17 @@ input[type="text"]
 }
 
 .boxes-track {
-    display: inline-flex;
+    display: flex;
+    flex-wrap: wrap;
     transition: transform 0.5s;
 }
 
 .box-container {
     position: relative;
-    width: 267px;
+    width: 275px;
     flex-shrink: 0;
-    height: 220px;
+    height: 210px;
+    margin-bottom: 15px;
     padding-right: 15px;
     box-sizing: border-box;
 }
@@ -522,6 +525,10 @@ input[type="text"]
     height: 45px;
 }
 
+.boxes-nav {
+    display: none;
+}
+
 .boxes-arrow {
     position: absolute;
     height: 70px;
@@ -561,10 +568,12 @@ input[type="text"]
     }
 
     .left-div {
+        position: relative;
         width: 100%;
     }
 
     .right-div {
+        margin-left: 0;
         width: 100%;
     }
 
@@ -616,7 +625,7 @@ input[type="text"]
 
     .shapes {
         padding-right: 20px;
-        padding-top: 0;
+        padding-top: 10px;
     }
 
     .shape {
