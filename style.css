@@ -367,7 +367,7 @@ input[type="text"]
 /* BOX ----------------------------------------------------------------------------------*/
 
 .boxes-container {
-    width: 800px;
+    width: 801px;
     position: relative;
     min-height: 250px;
     margin: 0 auto;
@@ -384,12 +384,11 @@ input[type="text"]
 
 .box-container {
     position: relative;
-    width: 400px;
+    width: 267px;
     flex-shrink: 0;
-    height: 250px;
-    padding-right: 30px;
+    height: 220px;
+    padding-right: 15px;
     box-sizing: border-box;
-    font-size: 13px;
 }
 
 .box {
@@ -407,8 +406,8 @@ input[type="text"]
 .box-hover {
     display: block;
     position: absolute;
-    height: 61px;
-    width: 258px;
+    height: 50px;
+    width: 175px;
     background: #be0000;
     bottom: 0;
     right: 0;
@@ -431,7 +430,7 @@ input[type="text"]
 .box-hover-content div {
     display: inline-block;
     width: 45%;
-    font-size: 12px;
+    font-size: 8px;
     margin-right: 10px;
 }
 
@@ -440,7 +439,7 @@ input[type="text"]
     border: solid 1px white;
     padding: 1px 5px;
     margin-right: 5px;
-    font-size: 12px;
+    font-size: 10px;
 }
 
 .box .box-hover-content button:hover {
@@ -462,13 +461,13 @@ input[type="text"]
 }
 
 .box-shape {
-    padding-top: 20px;
+    padding-top: 15px;
     float: left;
 }
 
 .box-img {
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
 }
 
 .box-name {
@@ -476,8 +475,8 @@ input[type="text"]
 }
 
 .box-circle {
-    height: 60px;
-    width: 60px;
+    height: 45px;
+    width: 45px;
     border-radius: 50%;
 }
 
@@ -487,7 +486,7 @@ input[type="text"]
 
 .box-labels {
     padding-top: 10px;
-    padding-left: 20px;
+    padding-left: 10px;
 }
 
 .box-label {
@@ -514,6 +513,13 @@ input[type="text"]
 .icon-edit,
 .icon-duplicate {
     filter: brightness(0) saturate(100%) invert(57%) sepia(0%) saturate(1063%) hue-rotate(200deg) brightness(88%) contrast(88%);
+    width: 45px;
+    height: 45px;
+}
+
+.icon-delete {
+    width: 45px;
+    height: 45px;
 }
 
 .boxes-arrow {
@@ -645,13 +651,13 @@ input[type="text"]
     }
 
     .boxes-container {
-        width: 799px;
-        font-size: 14px;
+        width: 800px;
+        font-size: 12px;
     }
 
     .box-container { 
         width: 400px;
-        height: 250px;
+        height: 220px;
     }
 
     .boxes-arrow {
