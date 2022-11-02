@@ -324,12 +324,6 @@ const materials = [
         new density("8,0", 8.0),
         new density("8,1", 8.1),
     ], "Images/materials_icons/material_stal.png"),
-    new material("Stopy Cu-Ni", [
-        new density("8,9", 8.9)
-    ], "Images/materials_icons/material_miedzionikiel.png"),
-    new material("CuA18/BA8", [
-        new density("7,8", 7.8)
-    ], "Images/materials_icons/material_miedzionikiel.png"),
     new material("Ołów", [
         new density("11,68", 11.68)
     ], "Images/materials_icons/material_olow.png"),
@@ -342,9 +336,6 @@ const materials = [
     new material("Stopy cynku", [
         new density("6,7", 6.7)
     ], "Images/materials_icons/material_stopy_cynku.png"),
-    new material("Złoto", [
-        new density("19,3", 19.3)
-    ], "Images/materials_icons/material_zloto.png"), //TODO: fill with correct material icons
 ];
 
 let profiles = [
